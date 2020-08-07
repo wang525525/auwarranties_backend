@@ -11,7 +11,12 @@ export class UserEventSubscriber {
 
     @On(events.user.created)
     public onUserCreate(user: User): void {
-        log.info('User ' + user.toString() + ' created!');
+        log.info('User ' + user.username + ' created!');
+    }
+
+    @On(events.user.login)
+    public onUserLogin(user: User): void {
+        log.info('User ' + user.username + ' logined!');
     }
 
 }

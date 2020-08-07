@@ -2,7 +2,7 @@ import { Connection } from 'typeorm';
 import { Factory, Seed, times } from 'typeorm-seeding';
 
 import { Pet } from '../../../src/api/models/Pet';
-import { User } from '../../../src/api/models/User';
+import { User } from '../../api/models/User';
 
 export class CreatePets implements Seed {
 

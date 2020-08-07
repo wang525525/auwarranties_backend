@@ -6,6 +6,7 @@
 export const events = {
     user: {
         created: 'onUserCreate',
+        login: 'onUserLogin',
     },
     pet: {
         created: 'onPetCreate',

@@ -1,66 +1,266 @@
-import * as bcrypt from 'bcrypt';
-import { Exclude } from 'class-transformer';
-import { IsNotEmpty } from 'class-validator';
-import { BeforeInsert, Column, Entity, OneToMany, PrimaryColumn } from 'typeorm';
+// import * as bcrypt from 'bcrypt';
+// import { Exclude } from 'class-transformer';
+// import { IsNotEmpty } from 'class-validator';
+import { PrimaryGeneratedColumn, Column, Entity } from 'typeorm';
 
-import { Pet } from './Pet';
-
-@Entity()
+@Entity('users')
 export class User {
 
-    public static hashPassword(password: string): Promise<string> {
-        return new Promise((resolve, reject) => {
-            bcrypt.hash(password, 10, (err, hash) => {
-                if (err) {
-                    return reject(err);
-                }
-                resolve(hash);
-            });
-        });
-    }
-
     public static comparePassword(user: User, password: string): Promise<boolean> {
-        return new Promise((resolve, reject) => {
-            bcrypt.compare(password, user.password, (err, res) => {
-                resolve(res === true);
-            });
+        // return new Promise((resolve, reject) => {
+        //     bcrypt.compare(password, user.password, (err, res) => {
+        //         resolve(res === true);
+        //     });
+        // });
+
+        return new Promise ((resolve, reject) => {
+            if (user.password === password) {
+                resolve(true);
+            } else {
+                resolve(false);
+            }
         });
     }
 
-    @PrimaryColumn('uuid')
-    public id: string;
+    @PrimaryGeneratedColumn()
+    public userid: number;
 
-    @IsNotEmpty()
-    @Column({ name: 'first_name' })
-    public firstName: string;
-
-    @IsNotEmpty()
-    @Column({ name: 'last_name' })
-    public lastName: string;
-
-    @IsNotEmpty()
-    @Column()
-    public email: string;
-
-    @IsNotEmpty()
-    @Column()
-    @Exclude()
-    public password: string;
-
-    @IsNotEmpty()
-    @Column()
+    @Column({
+        length: 99,
+    })
     public username: string;
 
-    @OneToMany(type => Pet, pet => pet.user)
-    public pets: Pet[];
+    @Column({
+        length: 99,
+    })
+    public password: string;
 
-    public toString(): string {
-        return `${this.firstName} ${this.lastName} (${this.email})`;
-    }
+    @Column({
+        length: 99,
+    })
+    public email: string;
 
-    @BeforeInsert()
-    public async hashPassword(): Promise<void> {
-        this.password = await User.hashPassword(this.password);
-    }
+    @Column({
+        nullable: true,
+        length: 99,
+    })
+    public address1: string;
 
+    @Column({
+        nullable: true,
+        length: 99,
+    })
+    public address2: string;
+
+    @Column({
+        nullable: true,
+        length: 99,
+    })
+    public county: string;
+
+    @Column({
+        nullable: true,
+        length: 99,
+    })
+    public town: string;
+
+    @Column({
+        nullable: true,
+    })
+    public active: boolean;
+
+    @Column({
+        nullable: true,
+    })
+    public hide: boolean;
+
+    @Column({
+        nullable: true,
+        length: 99,
+    })
+    public firstname: string;
+
+    @Column({
+        nullable: true,
+        length: 99,
+    })
+    public lastname: string;
+
+    @Column({
+        nullable: true,
+    })
+    public usertype: number;
+
+    @Column({
+        nullable: true,
+        default: -1,
+    })
+    public dealerid: number;
+
+    @Column({
+        nullable: true,
+    })
+    public companyname: string;
+
+    @Column({
+        nullable: true,
+    })
+    public address3: string;
+
+    @Column({
+        name: 'disp_policies',
+        nullable: true,
+    })
+    public disppolicies: number;
+
+    @Column({
+        nullable: true,
+    })
+    public vatamount: number;
+
+    @Column({
+        nullable: true,
+    })
+    public vatpercentage: number;
+
+    @Column({
+        nullable: true,
+    })
+    public commissioncent: number;
+
+    @Column({
+        nullable: true,
+    })
+    public vatrule: number;
+
+    @Column({
+        nullable: true,
+    })
+    public datejoined: Date;
+
+    @Column({
+        nullable: true,
+    })
+    public cansendtext: boolean;
+
+    @Column({
+        nullable: true,
+    })
+    public cansendemail: boolean;
+
+    @Column({
+        nullable: true,
+    })
+    public cansendbulkemail: boolean;
+
+    @Column({
+        nullable: true,
+    })
+    public ecardenabled: boolean;
+
+    @Column({
+        nullable: true,
+    })
+    public ecardfolderpath: string;
+
+    @Column({
+        nullable: true,
+    })
+    public ecarddatafoldername: string;
+
+    @Column({
+        nullable: true,
+    })
+    public admincosttype: number;
+
+    @Column({
+        nullable: true,
+    })
+    public admincostcent: number;
+
+    @Column({
+        nullable: true,
+    })
+    public admincostamt: number;
+
+    @Column({
+        nullable: true,
+    })
+    public phonelandline: string;
+
+    @Column({
+        nullable: true,
+    })
+    public phonemobile: string;
+
+    @Column({
+        nullable: true,
+    })
+    public policiesavailable: string;
+
+    @Column({
+        nullable: true,
+    })
+    public permissionid: number;
+
+    @Column({
+        nullable: true,
+    })
+    public commissiontype: number;
+
+    @Column({
+        nullable: true,
+    })
+    public commissionamt: number;
+
+    @Column({
+        nullable: true,
+    })
+    public commissionpaid: number;
+
+    @Column({
+        nullable: true,
+    })
+    public openingbalance: number;
+
+    @Column({
+        nullable: true,
+    })
+    public refundafter: number;
+
+    @Column({
+        nullable: true,
+        default: true,
+    })
+    public sendagreementemail: boolean;
+
+    @Column({
+        nullable: true,
+    })
+    public usernotes: string;
+
+    @Column({
+        nullable: true,
+    })
+    public appcode: string;
+
+    @Column({
+        nullable: true,
+    })
+    public usecustomlogo: boolean;
+
+    @Column({
+        nullable: true,
+    })
+    public banksortcode: string;
+
+    @Column({
+        nullable: true,
+    })
+    public bankaccountnumber: string;
+
+    @Column({
+        nullable: true,
+    })
+    public pricingall: boolean;
 }

@@ -5,6 +5,7 @@ import { OrmRepository } from 'typeorm-typedi-extensions';
 import { User } from '../api/models/User';
 import { UserRepository } from '../api/repositories/UserRepository';
 import { Logger, LoggerInterface } from '../decorators/Logger';
+import utilService from '../api/services/utilService';
 
 @Service()
 export class AuthService {
@@ -17,14 +18,23 @@ export class AuthService {
     public parseBasicAuthFromRequest(req: express.Request): { username: string, password: string } {
         const authorization = req.header('authorization');
 
-        if (authorization && authorization.split(' ')[0] === 'Basic') {
+        if (authorization && authorization.split(' ')[0] === 'Bearer') {
             this.log.info('Credentials provided by the client');
-            const decodedBase64 = Buffer.from(authorization.split(' ')[1], 'base64').toString('ascii');
-            const username = decodedBase64.split(':')[0];
-            const password = decodedBase64.split(':')[1];
-            if (username && password) {
-                return { username, password };
-            }
+
+            const token = authorization.split(' ')[1];
+            // console.log('bearer', token);
+            const data = utilService.parseToken(token);
+            // console.log('parsed', data);
+
+            return data;
+
+            // Basic Auth
+            // const decodedBase64 = Buffer.from(authorization.split(' ')[1], 'base64').toString('ascii');
+            // const username = decodedBase64.split(':')[0];
+            // const password = decodedBase64.split(':')[1];
+            // if (username && password) {
+            //     return { username, password };
+            // }
         }
 
         this.log.info('No credentials provided by the client');

@@ -1,7 +1,7 @@
 import { Factory, Seed } from 'typeorm-seeding';
 import { Connection } from 'typeorm/connection/Connection';
 
-import { User } from '../../../src/api/models/User';
+import { User } from '../../api/models/User';
 
 export class CreateUsers implements Seed {
 

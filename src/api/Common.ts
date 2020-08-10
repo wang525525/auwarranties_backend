@@ -36,4 +36,8 @@ export class ResponseMessage {
     public static readonly DUPLICATED_RECORD = 'Alread exist such record.';
     public static readonly NO_POLICY = 'No Policy.';
     public static readonly INVALID_PARAMS_OVER_200_PERCENT = 'There is some value over 200%. Please fix this.';
+
+    // group status comment
+    public static readonly DUPLICATED_GROUPNAME = 'This group name is already existed. Please select the other name';
+    public static readonly NOT_FOUND_GROUP = 'Not found group';
 }

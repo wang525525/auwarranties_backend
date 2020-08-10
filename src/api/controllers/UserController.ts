@@ -9,7 +9,7 @@ import { User } from '../models/User';
 import { UserService } from '../services/UserService';
 
 import { ResponseMessage } from '../Common';
-import { UserRegisterRequest } from './requests/UserRequest';
+import { UserRegisterRequest, UserUpdateRequest } from './requests/UserRequest';
 import { UsersResponse, UserResponse, UserDetail } from './responses/UserResponse';
 import { StatusResponse } from './responses/CommonResponse';
 
@@ -58,18 +58,23 @@ export class UserController {
         }
     }
 
-    @Post('/update/:id')
+    @Post('/update')
     @ResponseSchema(UserResponse)
-    public async update(@Param('id') id: string, @Body() body: UserRegisterRequest): Promise<UserResponse> {
-        const userId = parseInt(id, 10);
-        const user = await this.userService.findOneByUserId(userId);
+    public async update(@Body() body: UserUpdateRequest): Promise<UserResponse> {
+        const user = await this.userService.findOneByUserId(body.userid);
 
         if (user) {
-            let updateUser = new User();
-            updateUser = body as User;
-            const updatedUser = await this.userService.update(updateUser) as UserDetail;
+            const duplicateUser = await this.userService.checkDuplicated(body.username);
 
-            return {status: ResponseMessage.SUCCEEDED, res: updatedUser };
+            if (duplicateUser) {
+                return {status: ResponseMessage.DUPLICATED_USERNAME, res: undefined};
+            } else {
+                let updateUser = new User();
+                updateUser = body as User;
+                const updatedUser = await this.userService.update(updateUser) as UserDetail;
+
+                return {status: ResponseMessage.SUCCEEDED, res: updatedUser };
+            }
         } else {
             return {status: ResponseMessage.NOT_FOUND_USER, res: undefined};
         }

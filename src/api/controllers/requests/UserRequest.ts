@@ -9,7 +9,7 @@ export class UserLoginRequest {
     public password: string;
 
 }
-export class UserRegisterRequest {
+export class UserInfo {
 
     @IsString()
     public username: string;
@@ -189,4 +189,13 @@ export class UserRegisterRequest {
     @IsBoolean()
     @IsOptional()
     public pricingall?: boolean;
+}
+
+export class UserRegisterRequest extends UserInfo {
+
+}
+
+export class UserUpdateRequest extends UserInfo {
+    @IsNumber()
+    public userid: number;
 }

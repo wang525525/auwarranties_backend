@@ -263,4 +263,5 @@ export class User {
         nullable: true,
     })
     public pricingall: boolean;
+
 }

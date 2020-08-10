@@ -40,4 +40,5 @@ export class ResponseMessage {
     // group status comment
     public static readonly DUPLICATED_GROUPNAME = 'This group name is already existed. Please select the other name';
     public static readonly NOT_FOUND_GROUP = 'Not found group';
+    public static readonly NOT_FOUND_GROUP_MEMBERS = 'Not found group members';
 }

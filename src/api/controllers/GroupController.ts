@@ -4,13 +4,13 @@ import {
 } from 'routing-controllers';
 import { OpenAPI, ResponseSchema } from 'routing-controllers-openapi';
 
-import { Group } from '../models/Group';
+import { Group, GroupMember } from '../models/Group';
 
 import { GroupService } from '../services/GroupService';
 
 import { ResponseMessage } from '../Common';
-import { GroupRegisterRequest, GroupUpdateRequest } from './requests/GroupRequest';
-import { GroupsResponse, GroupResponse, GroupDetail } from './responses/GroupResponse';
+import { GroupRegisterRequest, GroupUpdateRequest, GroupMemberRequest } from './requests/GroupRequest';
+import { GroupsResponse, GroupResponse, GroupDetail, GroupMemberDetail, GroupMembersResponse } from './responses/GroupResponse';
 import { StatusResponse } from './responses/CommonResponse';
 
 @Authorized()
@@ -22,6 +22,7 @@ export class GroupController {
         private groupService: GroupService
     ) { }
 
+    // Group
     @Get('/all')
     @ResponseSchema(GroupsResponse)
     public async find(): Promise<GroupsResponse> {
@@ -66,7 +67,6 @@ export class GroupController {
         if (group) {
             let updateGroup = new Group();
             updateGroup = body as Group;
-            console.log('updated group => ', updateGroup);
             const updatedGroup = await this.groupService.update(updateGroup) as GroupDetail;
 
             return {status: ResponseMessage.SUCCEEDED, res: updatedGroup };
@@ -88,4 +88,38 @@ export class GroupController {
         }
     }
 
+    // Group Members
+    @Get('/:groupid/all')
+    @ResponseSchema(GroupMembersResponse)
+    public async findGroupMembers(@Param('groupid') groupid: string): Promise<GroupMembersResponse> {
+        const groups = await this.groupService.findMembers(parseInt(groupid, 10)) as GroupMemberDetail[];
+
+        if (groups.length) {
+            return { status: ResponseMessage.SUCCEEDED, res: groups };
+        } else {
+            return { status: ResponseMessage.NOT_FOUND_GROUP_MEMBERS, res: undefined };
+        }
+    }
+
+    @Post('/members/save')
+    @ResponseSchema(GroupMembersResponse)
+    public async saveGroupMembers(@Body() body: GroupMemberRequest): Promise<GroupMembersResponse> {
+        await this.groupService.deleteMembers(body.groupid);
+        console.log('group is deleted**');
+
+        const saveData: GroupMember[] = [];
+        body.dealerid.map(item => {
+            const tmp: GroupMember = { groupid: body.groupid, dealerid: item };
+            saveData.push(tmp);
+        });
+        console.log('saveData**', saveData);
+
+        const groups = await this.groupService.saveMembers(saveData) as GroupMemberDetail[];
+
+        if (groups) {
+            return { status: ResponseMessage.SUCCEEDED, res: groups };
+        } else {
+            return { status: ResponseMessage.NOT_FOUND_GROUP_MEMBERS, res: undefined };
+        }
+    }
 }

@@ -2,17 +2,20 @@ import { Service } from 'typedi';
 import { OrmRepository } from 'typeorm-typedi-extensions';
 
 import { Logger, LoggerInterface } from '../../decorators/Logger';
-import { Group } from '../models/Group';
+import { Group, GroupMember } from '../models/Group';
 import { GroupRepository } from '../repositories/GroupRepository';
+import { GroupMemberRepository } from '../repositories/GroupMemberRepository';
 
 @Service()
 export class GroupService {
 
     constructor(
         @OrmRepository() private groupRepository: GroupRepository,
+        @OrmRepository() private groupMemberRepository: GroupMemberRepository,
         @Logger(__filename) private log: LoggerInterface
     ) { }
 
+    // group
     public find(): Promise<Group[]> {
         this.log.info('Find all groups');
         return this.groupRepository.find();
@@ -52,5 +55,26 @@ export class GroupService {
         this.log.info('Delete a group');
         await this.groupRepository.delete(groupid);
         return;
+    }
+
+    // group members
+    public async findMembers(groupid: number): Promise<GroupMember[] | undefined> {
+        this.log.info('find members by groupid in the groupmembers');
+        const group = await this.groupMemberRepository.findByGroupId(groupid);
+
+        return group;
+    }
+
+    public async deleteMembers(groupid: number): Promise<void> {
+        this.log.info('Delete a group members in groupid ', groupid);
+        await this.groupMemberRepository.deleteMembers(groupid);
+        return;
+    }
+
+    public async saveMembers(groups: GroupMember[]): Promise<GroupMember[] | undefined> {
+        this.log.info('find members by groupid in the groupmembers ==', groups);
+        const group = await this.groupMemberRepository.save(groups);
+
+        return group;
     }
 }

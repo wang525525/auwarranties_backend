@@ -1,4 +1,4 @@
-import { IsString, IsNumber } from 'class-validator';
+import { IsString, IsNumber, IsArray } from 'class-validator';
 
 export class GroupInfo {
 
@@ -7,7 +7,9 @@ export class GroupInfo {
 
 }
 
-export class GroupRegisterRequest extends GroupInfo {
+export class GroupRegisterRequest {
+    @IsString()
+    public groupname: string;
 
 }
 
@@ -15,4 +17,15 @@ export class GroupUpdateRequest extends GroupInfo {
 
     @IsNumber()
     public groupid: number;
+
+}
+
+export class GroupMemberRequest {
+
+    @IsNumber()
+    public groupid: number;
+
+    @IsArray()
+    public dealerid: number[];
+
 }

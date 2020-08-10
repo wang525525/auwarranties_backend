@@ -67,12 +67,18 @@ export class GroupService {
 
     public async deleteMembers(groupid: number): Promise<void> {
         this.log.info('Delete a group members in groupid ', groupid);
-        await this.groupMemberRepository.deleteMembers(groupid);
+        await this.groupMemberRepository.delete({groupid: groupid});
+        return;
+    }
+
+    public async deleteMember(id: number): Promise<void> {
+        this.log.info('Delete a group member id in groupid ');
+        await this.groupMemberRepository.delete({id: id});
         return;
     }
 
     public async saveMembers(groups: GroupMember[]): Promise<GroupMember[] | undefined> {
-        this.log.info('find members by groupid in the groupmembers ==', groups);
+        this.log.info('find members by groupid in the groupmembers');
         const group = await this.groupMemberRepository.save(groups);
 
         return group;

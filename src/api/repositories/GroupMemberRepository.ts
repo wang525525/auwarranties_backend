@@ -15,15 +15,4 @@ export class GroupMemberRepository extends Repository<GroupMember>  {
                             .getMany();
     }
 
-    /**
-     * Delete dealerids by groupid
-     */
-    public deleteMembers(groupid: number): Promise<any> {
-        return  this.createQueryBuilder()
-                    .delete()
-                    .from(GroupMember)
-                    .where(`groupid = ${groupid}`)
-                    .execute();
-    }
-
 }

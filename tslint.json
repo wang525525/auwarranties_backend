@@ -124,6 +124,7 @@
             "check-operator",
             "check-separator",
             "check-type"
-        ]
+        ],
+        "object-literal-shorthand": false
     }
 }

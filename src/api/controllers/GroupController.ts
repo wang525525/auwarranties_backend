@@ -105,14 +105,12 @@ export class GroupController {
     @ResponseSchema(GroupMembersResponse)
     public async saveGroupMembers(@Body() body: GroupMemberRequest): Promise<GroupMembersResponse> {
         await this.groupService.deleteMembers(body.groupid);
-        console.log('group is deleted**');
 
         const saveData: GroupMember[] = [];
         body.dealerid.map(item => {
             const tmp: GroupMember = { groupid: body.groupid, dealerid: item };
             saveData.push(tmp);
         });
-        console.log('saveData**', saveData);
 
         const groups = await this.groupService.saveMembers(saveData) as GroupMemberDetail[];
 
@@ -121,5 +119,13 @@ export class GroupController {
         } else {
             return { status: ResponseMessage.NOT_FOUND_GROUP_MEMBERS, res: undefined };
         }
+    }
+
+    @Delete('/member/:id')
+    @ResponseSchema(StatusResponse)
+    public async deleteGroupMember(@Param('id') id: string): Promise<StatusResponse> {
+        await this.groupService.deleteMember(parseInt(id, 10));
+
+        return { status: ResponseMessage.SUCCEEDED };
     }
 }

@@ -15,7 +15,7 @@ export class AuthService {
         @OrmRepository() private userRepository: UserRepository
     ) { }
 
-    public parseBasicAuthFromRequest(req: express.Request): { username: string, password: string } {
+    public parseBearerAuthFromRequest(req: express.Request): { username: string, password: string } {
         const authorization = req.header('authorization');
 
         if (authorization && authorization.split(' ')[0] === 'Bearer') {

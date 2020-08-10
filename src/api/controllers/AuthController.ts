@@ -50,4 +50,5 @@ export class AuthController {
 
         return this.userService.login(user);
     }
+
 }

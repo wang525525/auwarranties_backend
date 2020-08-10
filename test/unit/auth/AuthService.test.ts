@@ -25,7 +25,7 @@ describe('AuthService', () => {
                     Authorization: `Basic ${base64}`,
                 },
             });
-            const credentials = authService.parseBasicAuthFromRequest(req);
+            const credentials = authService.parseBearerAuthFromRequest(req);
             expect(credentials.username).toBe('bruce');
             expect(credentials.password).toBe('1234');
         });
@@ -34,7 +34,7 @@ describe('AuthService', () => {
             const req: Request = new MockExpressRequest({
                 headers: {},
             });
-            const token = authService.parseBasicAuthFromRequest(req);
+            const token = authService.parseBearerAuthFromRequest(req);
             expect(token).toBeUndefined();
             expect(log.infoMock).toBeCalledWith('No credentials provided by the client', []);
         });
@@ -45,7 +45,7 @@ describe('AuthService', () => {
                     Authorization: 'Basic 1234',
                 },
             });
-            const token = authService.parseBasicAuthFromRequest(req);
+            const token = authService.parseBearerAuthFromRequest(req);
             expect(token).toBeUndefined();
             expect(log.infoMock).toBeCalledWith('No credentials provided by the client', []);
         });

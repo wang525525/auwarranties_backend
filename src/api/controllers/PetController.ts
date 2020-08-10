@@ -32,7 +32,7 @@ class CreatePetBody extends BasePet {
 
 @Authorized()
 @JsonController('/pets')
-@OpenAPI({ security: [{ basicAuth: [] }] })
+@OpenAPI({ security: [{ bearerAuth: [] }] })
 export class PetController {
 
     constructor(

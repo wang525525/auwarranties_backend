@@ -9,6 +9,7 @@ export class ResponseMessage {
     public static readonly SUCCEEDED = 'Succeeded!';
     public static readonly LOGINED = 'user logined!';
     public static readonly FAILED = 'failed';
+    public static readonly NO_DATA = 'No Data';
     public static readonly AUTHORIZATION_FAILED = 'Authorization Failed.';
     public static readonly NOT_VERIFIED_USER = 'This user not verified yet. Please verify or sign up again.';
     public static readonly SESSION_UNDEFINED = 'Session Undefined.';

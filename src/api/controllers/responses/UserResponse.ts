@@ -1,4 +1,4 @@
-import { IsString, IsNumber, IsOptional, IsBoolean, IsDate, IsEmail, IsArray, ValidateNested } from 'class-validator';
+import { IsString, IsNumber, IsOptional, IsBoolean, IsDate, IsEmail, IsArray, IsJSON, ValidateNested } from 'class-validator';
 import { Type } from 'class-transformer';
 
 export class UserDetail {
@@ -186,7 +186,7 @@ export class UserDetail {
     public pricingall?: boolean;
 }
 
-export class UserResponse {
+export class UsersResponse {
 
     @IsString()
     public status: string;
@@ -195,5 +195,17 @@ export class UserResponse {
     @IsArray()
     @Type(() => UserDetail)
     public res: UserDetail[];
+
+}
+
+export class UserResponse {
+
+    @IsString()
+    public status: string;
+
+    @ValidateNested({ each: true })
+    @IsJSON()
+    @Type(() => UserDetail)
+    public res: UserDetail;
 
 }

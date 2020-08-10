@@ -1,12 +1,17 @@
 
 import {
-    Authorized, Get, JsonController
+    Authorized, Get, Post, JsonController, Param, Body, Delete
 } from 'routing-controllers';
 import { OpenAPI, ResponseSchema } from 'routing-controllers-openapi';
 
+import { User } from '../models/User';
+
 import { UserService } from '../services/UserService';
-import { UserResponse, UserDetail } from './responses/UserResponse';
+
 import { ResponseMessage } from '../Common';
+import { UserRegisterRequest } from './requests/UserRequest';
+import { UsersResponse, UserResponse, UserDetail } from './responses/UserResponse';
+import { StatusResponse } from './responses/CommonResponse';
 
 @Authorized()
 @JsonController('/users')
@@ -18,17 +23,69 @@ export class UserController {
     ) { }
 
     @Get('/all')
-    @ResponseSchema(UserResponse)
-    public async find(): Promise<UserResponse> {
+    @ResponseSchema(UsersResponse)
+    public async find(): Promise<UsersResponse> {
         const users = await this.userService.find() as UserDetail[];
 
         return { status: ResponseMessage.SUCCEEDED, res: users };
     }
 
-    // @Get('/:id')
-    // public async one(@Param('id') id: string): Promise<any> {
-    //     const user = await this.userService.findOne(id);
-    //     return {status: ResponseMessage.OK, user};
-    // }
+    @Get('/:id')
+    @ResponseSchema(UserResponse)
+    public async one(@Param('id') id: string): Promise<UserResponse> {
+        const user = await this.userService.findOneByUserId(parseInt(id, 10)) as UserDetail;
+        if (user) {
+            return {status: ResponseMessage.SUCCEEDED, res: user};
+        } else {
+            return {status: ResponseMessage.NOT_FOUND_USER, res: undefined};
+        }
+    }
+
+    @Post('/create')
+    @ResponseSchema(UserResponse)
+    public async create(@Body() body: UserRegisterRequest): Promise<UserResponse> {
+        const username = body.username;
+
+        const user = await this.userService.checkDuplicated(username);
+        if (user) {
+            return {status: ResponseMessage.DUPLICATED_USERNAME, res: undefined};
+        } else {
+            let newUser = new User();
+            newUser = body as User;
+            const createdUser = await this.userService.create(newUser) as UserDetail;
+
+            return {status: ResponseMessage.SUCCEEDED, res: createdUser};
+        }
+    }
+
+    @Post('/update/:id')
+    @ResponseSchema(UserResponse)
+    public async update(@Param('id') id: string, @Body() body: UserRegisterRequest): Promise<UserResponse> {
+        const userId = parseInt(id, 10);
+        const user = await this.userService.findOneByUserId(userId);
+
+        if (user) {
+            let updateUser = new User();
+            updateUser = body as User;
+            const updatedUser = await this.userService.update(updateUser) as UserDetail;
+
+            return {status: ResponseMessage.SUCCEEDED, res: updatedUser };
+        } else {
+            return {status: ResponseMessage.NOT_FOUND_USER, res: undefined};
+        }
+    }
+
+    @Delete('/:id')
+    @ResponseSchema(StatusResponse)
+    public async delete(@Param('id') id: string): Promise<StatusResponse> {
+        const userId = parseInt(id, 10);
+        const user = await this.userService.findOneByUserId(userId);
+        if (user) {
+            await this.userService.delete(userId);
+            return {status: ResponseMessage.SUCCEEDED };
+        } else {
+            return {status: ResponseMessage.NOT_FOUND_USER };
+        }
+    }
 
 }

@@ -4,9 +4,9 @@ import {
 } from 'routing-controllers';
 import { OpenAPI, ResponseSchema } from 'routing-controllers-openapi';
 
-import { User } from '../models/User';
 import { UserService } from '../services/UserService';
-import { UserResponse } from './responses/UserResponse';
+import { UserResponse, UserDetail } from './responses/UserResponse';
+import { ResponseMessage } from '../Common';
 
 @Authorized()
 @JsonController('/users')
@@ -18,9 +18,17 @@ export class UserController {
     ) { }
 
     @Get('/all')
-    @ResponseSchema(UserResponse, { isArray: true })
-    public find(): Promise<User[]> {
-        return this.userService.find();
+    @ResponseSchema(UserResponse)
+    public async find(): Promise<UserResponse> {
+        const users = await this.userService.find() as UserDetail[];
+
+        return { status: ResponseMessage.SUCCEEDED, res: users };
     }
+
+    // @Get('/:id')
+    // public async one(@Param('id') id: string): Promise<any> {
+    //     const user = await this.userService.findOne(id);
+    //     return {status: ResponseMessage.OK, user};
+    // }
 
 }

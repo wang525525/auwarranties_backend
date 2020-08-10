@@ -1,6 +1,10 @@
-import { IsString, IsNumber, IsOptional, IsBoolean, IsDate, IsEmail } from 'class-validator';
+import { IsString, IsNumber, IsOptional, IsBoolean, IsDate, IsEmail, IsArray, ValidateNested } from 'class-validator';
+import { Type } from 'class-transformer';
 
-export class UserResponse {
+export class UserDetail {
+
+    @IsNumber()
+    public userid: number;
 
     @IsString()
     public username: string;
@@ -180,4 +184,16 @@ export class UserResponse {
     @IsBoolean()
     @IsOptional()
     public pricingall?: boolean;
+}
+
+export class UserResponse {
+
+    @IsString()
+    public status: string;
+
+    @ValidateNested({ each: true })
+    @IsArray()
+    @Type(() => UserDetail)
+    public res: UserDetail[];
+
 }

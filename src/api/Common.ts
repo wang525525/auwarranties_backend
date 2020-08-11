@@ -52,4 +52,7 @@ export class ResponseMessage {
 
     // purchase limit status comment
     public static readonly NOT_FOUND_LIMIT = 'Not found limit';
+
+    // pricing status comment
+    public static readonly NOT_FOUND_PRICING = 'Not found pricing';
 }

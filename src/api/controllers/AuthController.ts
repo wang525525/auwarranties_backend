@@ -48,7 +48,8 @@ export class AuthController {
             return {status: ResponseMessage.AUTHORIZATION_FAILED};
         }
 
-        return this.userService.login(user);
+        const token = await this.userService.login(user);
+        return {status: ResponseMessage.LOGINED, token: token, user: user};
     }
 
 }

@@ -1,0 +1,227 @@
+{
+	"variables": [],
+	"info": {
+		"name": "AU_Warranties",
+		"_postman_id": "919cb713-fa2c-0e95-2b1d-8b040044858c",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Users",
+			"description": "",
+			"item": [
+				{
+					"name": "UserAll",
+					"request": {
+						"url": "http://localhost:3000/api/users/all",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNkYXJiYXIiLCJwYXNzd29yZCI6IkFVMTIzISIsInNlc3Npb25faWQiOiIzMGY2NmY4Mi03YzgwLTQ1NmUtOWRhMS1jZTY4ODgxZjNiNTYiLCJpYXQiOjE1OTcxNTI0MDh9.CIZUqBAnEf7ym3SXFZr-4J9sFASmoJRt4qtXAEcs_Jo",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"username\": \"sdarbar\",\r\n  \"password\": \"AU123!\"\r\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "UserCreate",
+					"request": {
+						"url": "http://localhost:3000/api/users/create",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNkYXJiYXIiLCJwYXNzd29yZCI6IkFVMTIzISIsInNlc3Npb25faWQiOiIzMGY2NmY4Mi03YzgwLTQ1NmUtOWRhMS1jZTY4ODgxZjNiNTYiLCJpYXQiOjE1OTcxNTI0MDh9.CIZUqBAnEf7ym3SXFZr-4J9sFASmoJRt4qtXAEcs_Jo",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"username\": \"aaabbbteste\",\r\n  \"password\": \"123456\",\r\n  \"email\": \"user@example.com\",\r\n  \"address1\": \"string\",\r\n  \"address2\": \"string\",\r\n  \"county\": \"string\",\r\n  \"town\": \"string\",\r\n  \"active\": true,\r\n  \"hide\": true,\r\n  \"firstname\": \"string\",\r\n  \"lastname\": \"string\",\r\n  \"usertype\": 0,\r\n  \"dealerid\": 0,\r\n  \"companyname\": \"string\",\r\n  \"address3\": \"string\",\r\n  \"disppolicies\": 0,\r\n  \"vatamount\": 0,\r\n  \"vatpercentage\": 0,\r\n  \"commissioncent\": 0,\r\n  \"vatrule\": 0,\r\n  \"cansendtext\": true,\r\n  \"cansendemail\": true,\r\n  \"cansendbulkemail\": true,\r\n  \"ecardenabled\": true,\r\n  \"ecardfolderpath\": \"string\",\r\n  \"ecarddatafoldername\": \"string\",\r\n  \"admincosttype\": 0,\r\n  \"admincostcent\": 0,\r\n  \"admincostamt\": 0,\r\n  \"phonelandline\": \"string\",\r\n  \"phonemobile\": \"string\",\r\n  \"policiesavailable\": \"string\",\r\n  \"permissionid\": 0,\r\n  \"commissiontype\": 0,\r\n  \"commissionamt\": 0,\r\n  \"commissionpaid\": 0,\r\n  \"openingbalance\": 0,\r\n  \"refundafter\": 0,\r\n  \"sendagreementemail\": true,\r\n  \"usernotes\": \"string\",\r\n  \"appcode\": \"string\",\r\n  \"usecustomlogo\": true,\r\n  \"banksortcode\": \"string\",\r\n  \"bankaccountnumber\": \"string\",\r\n  \"pricingall\": true\r\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "GetUserOneById",
+					"request": {
+						"url": "http://localhost:3000/api/users/502",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNkYXJiYXIiLCJwYXNzd29yZCI6IkFVMTIzISIsInNlc3Npb25faWQiOiIzMGY2NmY4Mi03YzgwLTQ1NmUtOWRhMS1jZTY4ODgxZjNiNTYiLCJpYXQiOjE1OTcxNTI0MDh9.CIZUqBAnEf7ym3SXFZr-4J9sFASmoJRt4qtXAEcs_Jo",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"username\": \"sdarbar\",\r\n  \"password\": \"AU123!\"\r\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteUserOneById",
+					"request": {
+						"url": "http://localhost:3000/api/users/504",
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNkYXJiYXIiLCJwYXNzd29yZCI6IkFVMTIzISIsInNlc3Npb25faWQiOiIzMGY2NmY4Mi03YzgwLTQ1NmUtOWRhMS1jZTY4ODgxZjNiNTYiLCJpYXQiOjE1OTcxNTI0MDh9.CIZUqBAnEf7ym3SXFZr-4J9sFASmoJRt4qtXAEcs_Jo",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"username\": \"sdarbar\",\r\n  \"password\": \"AU123!\"\r\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "UserUpdate",
+					"request": {
+						"url": "http://localhost:3000/api/users/update",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNkYXJiYXIiLCJwYXNzd29yZCI6IkFVMTIzISIsInNlc3Npb25faWQiOiIzMGY2NmY4Mi03YzgwLTQ1NmUtOWRhMS1jZTY4ODgxZjNiNTYiLCJpYXQiOjE1OTcxNTI0MDh9.CIZUqBAnEf7ym3SXFZr-4J9sFASmoJRt4qtXAEcs_Jo",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"userid\": 502,\r\n  \"username\": \"aaatestere\",\r\n  \"password\": \"123456\",\r\n  \"email\": \"user@example.com\",\r\n  \"address1\": \"string\",\r\n  \"address2\": \"string\",\r\n  \"county\": \"string\",\r\n  \"town\": \"string\",\r\n  \"active\": true,\r\n  \"hide\": true,\r\n  \"firstname\": \"string\",\r\n  \"lastname\": \"string\",\r\n  \"usertype\": 0,\r\n  \"dealerid\": 0,\r\n  \"companyname\": \"string\",\r\n  \"address3\": \"string\",\r\n  \"disppolicies\": 0,\r\n  \"vatamount\": 0,\r\n  \"vatpercentage\": 0,\r\n  \"commissioncent\": 0,\r\n  \"vatrule\": 0,\r\n  \"cansendtext\": true,\r\n  \"cansendemail\": true,\r\n  \"cansendbulkemail\": true,\r\n  \"ecardenabled\": true,\r\n  \"ecardfolderpath\": \"string\",\r\n  \"ecarddatafoldername\": \"string\",\r\n  \"admincosttype\": 0,\r\n  \"admincostcent\": 0,\r\n  \"admincostamt\": 0,\r\n  \"phonelandline\": \"string\",\r\n  \"phonemobile\": \"string\",\r\n  \"policiesavailable\": \"string\",\r\n  \"permissionid\": 0,\r\n  \"commissiontype\": 0,\r\n  \"commissionamt\": 0,\r\n  \"commissionpaid\": 0,\r\n  \"openingbalance\": 0,\r\n  \"refundafter\": 0,\r\n  \"sendagreementemail\": true,\r\n  \"usernotes\": \"string\",\r\n  \"appcode\": \"string\",\r\n  \"usecustomlogo\": true,\r\n  \"banksortcode\": \"string\",\r\n  \"bankaccountnumber\": \"string\",\r\n  \"pricingall\": true\r\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Register",
+			"request": {
+				"url": "http://localhost:3000/api/auth/register",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "",
+						"value": "",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"username\": \"aaatestuser\",\r\n  \"password\": \"aaatestuser\",\r\n  \"email\": \"user@example.com\",\r\n  \"address1\": \"string\",\r\n  \"address2\": \"string\",\r\n  \"county\": \"string\",\r\n  \"town\": \"string\",\r\n  \"active\": true,\r\n  \"hide\": true,\r\n  \"firstname\": \"string\",\r\n  \"lastname\": \"string\",\r\n  \"usertype\": 0,\r\n  \"dealerid\": 0,\r\n  \"companyname\": \"string\",\r\n  \"address3\": \"string\",\r\n  \"disppolicies\": 0,\r\n  \"vatamount\": 0,\r\n  \"vatpercentage\": 0,\r\n  \"commissioncent\": 0,\r\n  \"vatrule\": 0,\r\n  \"cansendtext\": true,\r\n  \"cansendemail\": true,\r\n  \"cansendbulkemail\": true,\r\n  \"ecardenabled\": true,\r\n  \"ecardfolderpath\": \"string\",\r\n  \"ecarddatafoldername\": \"string\",\r\n  \"admincosttype\": 0,\r\n  \"admincostcent\": 0,\r\n  \"admincostamt\": 0,\r\n  \"phonelandline\": \"string\",\r\n  \"phonemobile\": \"string\",\r\n  \"policiesavailable\": \"string\",\r\n  \"permissionid\": 0,\r\n  \"commissiontype\": 0,\r\n  \"commissionamt\": 0,\r\n  \"commissionpaid\": 0,\r\n  \"openingbalance\": 0,\r\n  \"refundafter\": 0,\r\n  \"sendagreementemail\": true,\r\n  \"usernotes\": \"string\",\r\n  \"appcode\": \"string\",\r\n  \"usecustomlogo\": true,\r\n  \"banksortcode\": \"string\",\r\n  \"bankaccountnumber\": \"string\",\r\n  \"pricingall\": true\r\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"request": {
+				"url": "http://localhost:3000/api/auth/login",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "",
+						"value": "",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"username\": \"sdarbar\",\r\n  \"password\": \"AU123!\"\r\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}

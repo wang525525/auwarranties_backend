@@ -8,7 +8,6 @@ import { UserRepository } from '../repositories/UserRepository';
 import { events } from '../subscribers/events';
 import { UuidService } from './UuidService';
 import utilApi from './UtilService';
-import { ResponseMessage } from '../Common';
 
 @Service()
 export class UserService {
@@ -66,7 +65,7 @@ export class UserService {
 
         this.eventDispatcher.dispatch(events.user.login, user);
 
-        return {status: ResponseMessage.LOGINED, token};
+        return token;
     }
 
     public async delete(userid: number): Promise<void> {

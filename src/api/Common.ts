@@ -46,4 +46,7 @@ export class ResponseMessage {
     // cover type status comment
     public static readonly DUPLICATED_COVERNAME = 'This cover name is already existed. Please select the other name';
     public static readonly NOT_FOUND_COVERTYPE = 'Not found cover type';
+
+    // duration status comment
+    public static readonly NOT_FOUND_DURATION = 'Not found duration';
 }

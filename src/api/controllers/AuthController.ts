@@ -49,7 +49,7 @@ export class AuthController {
         }
 
         const token = await this.userService.login(user);
-        return {status: ResponseMessage.LOGINED, token: token, user: user};
+        return {status: ResponseMessage.LOGINED, user: {token: token, ...user}};
     }
 
 }

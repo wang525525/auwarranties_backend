@@ -5,6 +5,9 @@ import { Logger, LoggerInterface } from '../../decorators/Logger';
 import { Group, GroupMember } from '../models/Group';
 import { GroupRepository } from '../repositories/GroupRepository';
 import { GroupMemberRepository } from '../repositories/GroupMemberRepository';
+import { UserRepository } from '../repositories/UserRepository';
+
+import { User } from '../models/User';
 
 @Service()
 export class GroupService {
@@ -12,6 +15,7 @@ export class GroupService {
     constructor(
         @OrmRepository() private groupRepository: GroupRepository,
         @OrmRepository() private groupMemberRepository: GroupMemberRepository,
+        @OrmRepository() private userRepository: UserRepository,
         @Logger(__filename) private log: LoggerInterface
     ) { }
 
@@ -82,5 +86,12 @@ export class GroupService {
         const group = await this.groupMemberRepository.save(groups);
 
         return group;
+    }
+
+    public async findNonGroupMembers(): Promise<User[] | undefined> {
+        this.log.info('find non group members');
+        const nonGroupUsers = await this.userRepository.findNonGroupMembers();
+
+        return nonGroupUsers;
     }
 }

@@ -12,6 +12,7 @@ import { ResponseMessage } from '../Common';
 import { GroupRegisterRequest, GroupUpdateRequest, GroupMemberRequest } from './requests/GroupRequest';
 import { GroupsResponse, GroupResponse, GroupDetail, GroupMemberDetail, GroupMembersResponse } from './responses/GroupResponse';
 import { StatusResponse } from './responses/CommonResponse';
+import { UsersResponse, UserDetail } from './responses/UserResponse';
 
 @Authorized()
 @JsonController('/group')
@@ -127,5 +128,18 @@ export class GroupController {
         await this.groupService.deleteMember(parseInt(id, 10));
 
         return { status: ResponseMessage.SUCCEEDED };
+    }
+
+    @Get('/none/members')
+    @ResponseSchema(UsersResponse)
+    public async findNonGroupMembers(): Promise<UsersResponse> {
+        console.log('non group members in controller.=');
+        const nonGroupUsers = await this.groupService.findNonGroupMembers() as UserDetail[];
+
+        if (nonGroupUsers.length) {
+            return { status: ResponseMessage.SUCCEEDED, res: nonGroupUsers };
+        } else {
+            return { status: ResponseMessage.NOT_FOUND_NON_GROUP_MEMBERS, res: undefined };
+        }
     }
 }

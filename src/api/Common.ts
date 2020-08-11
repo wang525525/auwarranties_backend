@@ -49,4 +49,7 @@ export class ResponseMessage {
 
     // duration status comment
     public static readonly NOT_FOUND_DURATION = 'Not found duration';
+
+    // purchase limit status comment
+    public static readonly NOT_FOUND_LIMIT = 'Not found limit';
 }

@@ -42,4 +42,8 @@ export class ResponseMessage {
     public static readonly NOT_FOUND_GROUP = 'Not found group';
     public static readonly NOT_FOUND_GROUP_MEMBERS = 'Not found group members';
     public static readonly NOT_FOUND_NON_GROUP_MEMBERS = 'Not found non-group members';
+
+    // cover type status comment
+    public static readonly DUPLICATED_COVERNAME = 'This cover name is already existed. Please select the other name';
+    public static readonly NOT_FOUND_COVERTYPE = 'Not found cover type';
 }

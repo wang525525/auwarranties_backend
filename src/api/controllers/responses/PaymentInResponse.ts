@@ -1,5 +1,6 @@
-import { IsString, IsNumber, IsArray, IsDate, IsJSON, ValidateNested } from 'class-validator';
+import { IsString, IsNumber, IsArray, IsDate, IsJSON, ValidateNested, IsOptional } from 'class-validator';
 import { Type } from 'class-transformer';
+import { UserDetail } from './UserResponse';
 
 export class PaymentInDetail {
 
@@ -23,6 +24,12 @@ export class PaymentInDetail {
 
     @IsNumber()
     public receivedbyoperator: number;
+
+    @ValidateNested({each: true})
+    @IsJSON()
+    @Type(() => UserDetail)
+    @IsOptional()
+    public dealer: UserDetail;
 
 }
 

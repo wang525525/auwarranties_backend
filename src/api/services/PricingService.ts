@@ -15,7 +15,7 @@ export class PricingService {
 
     public find(): Promise<Pricing[]> {
         this.log.info('Find all pricings');
-        return this.pricingRepository.find();
+        return this.pricingRepository.findAll();
     }
 
     public async create(pricing: Pricing): Promise<Pricing> {

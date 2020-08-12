@@ -1,5 +1,6 @@
 import { IsString, IsNumber, IsArray, IsEmail, IsJSON, ValidateNested } from 'class-validator';
 import { Type } from 'class-transformer';
+import { CoverTypeDetail } from './CoverTypeResponse';
 
 export class PricingDetail {
 
@@ -8,6 +9,11 @@ export class PricingDetail {
 
     @IsNumber()
     public coverid: number;
+
+    @ValidateNested({ each: true })
+    @IsJSON()
+    @Type(() => CoverTypeDetail)
+    public cover: CoverTypeDetail;
 
     @IsNumber()
     public durationid: number;

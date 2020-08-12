@@ -26,7 +26,12 @@ export class PermissionUpdateRequest extends PermissionRegisterRequest {
 export class PermissionItemDetail {
 
     @IsNumber()
-    public permissionid: number;
+    @IsOptional()
+    public permissionitemid?: number;
+
+    @IsNumber()
+    @IsOptional()
+    public permissionid?: number;
 
     @IsBoolean()
     @IsOptional()

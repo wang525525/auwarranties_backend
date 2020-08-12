@@ -53,7 +53,7 @@ export class PermissionService {
     }
 
     public async saveItems(items: PermissionItem[]): Promise<PermissionItem[] | undefined> {
-        this.log.info('Create a new permission => ');
+        this.log.info('Save new permission items => ');
 
         const permissionItems = await this.permissionItemRepository.save(items);
 
@@ -61,7 +61,7 @@ export class PermissionService {
     }
 
     public async findItems(permissionid: number): Promise<PermissionItem[] | undefined> {
-        this.log.info('Create a new permission => ');
+        this.log.info('Find permission items => ');
 
         const permissionItems = await this.permissionItemRepository.find({permissionid});
 

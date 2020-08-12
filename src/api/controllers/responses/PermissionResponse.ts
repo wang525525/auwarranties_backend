@@ -13,7 +13,9 @@ export class PermissionDetail {
     @IsBoolean()
     public active: boolean;
 
+    @ValidateNested({each: true})
     @IsArray()
+    @Type(() => PermissionItemDetail)
     @IsOptional()
     public items: PermissionItemDetail[];
 

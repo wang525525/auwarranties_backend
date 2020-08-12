@@ -64,17 +64,11 @@ export class UserController {
         const user = await this.userService.findOneByUserId(body.userid);
 
         if (user) {
-            const duplicateUser = await this.userService.checkDuplicated(body.username);
+            let updateUser = new User();
+            updateUser = body as User;
+            const updatedUser = await this.userService.update(updateUser) as UserDetail;
 
-            if (duplicateUser) {
-                return {status: ResponseMessage.DUPLICATED_USERNAME, res: undefined};
-            } else {
-                let updateUser = new User();
-                updateUser = body as User;
-                const updatedUser = await this.userService.update(updateUser) as UserDetail;
-
-                return {status: ResponseMessage.SUCCEEDED, res: updatedUser };
-            }
+            return {status: ResponseMessage.SUCCEEDED, res: updatedUser };
         } else {
             return {status: ResponseMessage.NOT_FOUND_USER, res: undefined};
         }

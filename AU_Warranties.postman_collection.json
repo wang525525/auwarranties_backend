@@ -14,7 +14,7 @@
 				{
 					"name": "UserAll",
 					"request": {
-						"url": "http://localhost:3000/api/users/all",
+						"url": "http://localhost:3000/api/users",
 						"method": "GET",
 						"header": [
 							{
@@ -156,6 +156,780 @@
 						"body": {
 							"mode": "raw",
 							"raw": "{\r\n  \"userid\": 502,\r\n  \"username\": \"aaatestere\",\r\n  \"password\": \"123456\",\r\n  \"email\": \"user@example.com\",\r\n  \"address1\": \"string\",\r\n  \"address2\": \"string\",\r\n  \"county\": \"string\",\r\n  \"town\": \"string\",\r\n  \"active\": true,\r\n  \"hide\": true,\r\n  \"firstname\": \"string\",\r\n  \"lastname\": \"string\",\r\n  \"usertype\": 0,\r\n  \"dealerid\": 0,\r\n  \"companyname\": \"string\",\r\n  \"address3\": \"string\",\r\n  \"disppolicies\": 0,\r\n  \"vatamount\": 0,\r\n  \"vatpercentage\": 0,\r\n  \"commissioncent\": 0,\r\n  \"vatrule\": 0,\r\n  \"cansendtext\": true,\r\n  \"cansendemail\": true,\r\n  \"cansendbulkemail\": true,\r\n  \"ecardenabled\": true,\r\n  \"ecardfolderpath\": \"string\",\r\n  \"ecarddatafoldername\": \"string\",\r\n  \"admincosttype\": 0,\r\n  \"admincostcent\": 0,\r\n  \"admincostamt\": 0,\r\n  \"phonelandline\": \"string\",\r\n  \"phonemobile\": \"string\",\r\n  \"policiesavailable\": \"string\",\r\n  \"permissionid\": 0,\r\n  \"commissiontype\": 0,\r\n  \"commissionamt\": 0,\r\n  \"commissionpaid\": 0,\r\n  \"openingbalance\": 0,\r\n  \"refundafter\": 0,\r\n  \"sendagreementemail\": true,\r\n  \"usernotes\": \"string\",\r\n  \"appcode\": \"string\",\r\n  \"usecustomlogo\": true,\r\n  \"banksortcode\": \"string\",\r\n  \"bankaccountnumber\": \"string\",\r\n  \"pricingall\": true\r\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Pricing",
+			"description": "",
+			"item": [
+				{
+					"name": "PricingAll",
+					"request": {
+						"url": "http://localhost:3000/api/pricing",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNkYXJiYXIiLCJwYXNzd29yZCI6IkFVMTIzISIsInNlc3Npb25faWQiOiIzMGY2NmY4Mi03YzgwLTQ1NmUtOWRhMS1jZTY4ODgxZjNiNTYiLCJpYXQiOjE1OTcxNTI0MDh9.CIZUqBAnEf7ym3SXFZr-4J9sFASmoJRt4qtXAEcs_Jo",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"username\": \"sdarbar\",\r\n  \"password\": \"AU123!\"\r\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "PricingGetOneById",
+					"request": {
+						"url": "http://localhost:3000/api/pricing/121",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNkYXJiYXIiLCJwYXNzd29yZCI6IkFVMTIzISIsInNlc3Npb25faWQiOiIzMGY2NmY4Mi03YzgwLTQ1NmUtOWRhMS1jZTY4ODgxZjNiNTYiLCJpYXQiOjE1OTcxNTI0MDh9.CIZUqBAnEf7ym3SXFZr-4J9sFASmoJRt4qtXAEcs_Jo",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"username\": \"sdarbar\",\r\n  \"password\": \"AU123!\"\r\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "PricingCreateOne",
+					"request": {
+						"url": "http://localhost:3000/api/pricing/create",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNkYXJiYXIiLCJwYXNzd29yZCI6IkFVMTIzISIsInNlc3Npb25faWQiOiIzMGY2NmY4Mi03YzgwLTQ1NmUtOWRhMS1jZTY4ODgxZjNiNTYiLCJpYXQiOjE1OTcxNTI0MDh9.CIZUqBAnEf7ym3SXFZr-4J9sFASmoJRt4qtXAEcs_Jo",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"coverid\": 58,\r\n    \"durationid\": 2,\r\n    \"price\": 199,\r\n    \"claimid\": 14,\r\n    \"deposit\": 0,\r\n    \"email\": \"example@test.com\",\r\n    \"refundid\": 4,\r\n    \"pricingrefundvalue\": 0,\r\n    \"pricingrefundduration\": \"\"\r\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "PricingDeleteOne",
+					"request": {
+						"url": "http://localhost:3000/api/pricing/160",
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNkYXJiYXIiLCJwYXNzd29yZCI6IkFVMTIzISIsInNlc3Npb25faWQiOiIzMGY2NmY4Mi03YzgwLTQ1NmUtOWRhMS1jZTY4ODgxZjNiNTYiLCJpYXQiOjE1OTcxNTI0MDh9.CIZUqBAnEf7ym3SXFZr-4J9sFASmoJRt4qtXAEcs_Jo",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"coverid\": 58,\r\n    \"durationid\": 2,\r\n    \"price\": 199,\r\n    \"claimid\": 14,\r\n    \"deposit\": 0,\r\n    \"email\": \"example@test.com\",\r\n    \"refundid\": 4,\r\n    \"pricingrefundvalue\": 0,\r\n    \"pricingrefundduration\": \"\"\r\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "PricingUpdateOne",
+					"request": {
+						"url": "http://localhost:3000/api/pricing/update",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNkYXJiYXIiLCJwYXNzd29yZCI6IkFVMTIzISIsInNlc3Npb25faWQiOiIzMGY2NmY4Mi03YzgwLTQ1NmUtOWRhMS1jZTY4ODgxZjNiNTYiLCJpYXQiOjE1OTcxNTI0MDh9.CIZUqBAnEf7ym3SXFZr-4J9sFASmoJRt4qtXAEcs_Jo",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"id\": 161,\r\n    \"coverid\": 58,\r\n    \"durationid\": 2,\r\n    \"price\": 199,\r\n    \"claimid\": 14,\r\n    \"deposit\": 0,\r\n    \"email\": \"example222@test.com\",\r\n    \"refundid\": 4,\r\n    \"pricingrefundvalue\": 0,\r\n    \"pricingrefundduration\": \"\"\r\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Setting",
+			"description": "",
+			"item": [
+				{
+					"name": "FindAll",
+					"request": {
+						"url": "http://localhost:3000/api/setting",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNkYXJiYXIiLCJwYXNzd29yZCI6IkFVMTIzISIsInNlc3Npb25faWQiOiIzMGY2NmY4Mi03YzgwLTQ1NmUtOWRhMS1jZTY4ODgxZjNiNTYiLCJpYXQiOjE1OTcxNTI0MDh9.CIZUqBAnEf7ym3SXFZr-4J9sFASmoJRt4qtXAEcs_Jo",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"id\": 161,\r\n    \"coverid\": 58,\r\n    \"durationid\": 2,\r\n    \"price\": 199,\r\n    \"claimid\": 14,\r\n    \"deposit\": 0,\r\n    \"email\": \"example222@test.com\",\r\n    \"refundid\": 4,\r\n    \"pricingrefundvalue\": 0,\r\n    \"pricingrefundduration\": \"\"\r\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "FindOne",
+					"request": {
+						"url": "http://localhost:3000/api/setting/1",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNkYXJiYXIiLCJwYXNzd29yZCI6IkFVMTIzISIsInNlc3Npb25faWQiOiIzMGY2NmY4Mi03YzgwLTQ1NmUtOWRhMS1jZTY4ODgxZjNiNTYiLCJpYXQiOjE1OTcxNTI0MDh9.CIZUqBAnEf7ym3SXFZr-4J9sFASmoJRt4qtXAEcs_Jo",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"id\": 161,\r\n    \"coverid\": 58,\r\n    \"durationid\": 2,\r\n    \"price\": 199,\r\n    \"claimid\": 14,\r\n    \"deposit\": 0,\r\n    \"email\": \"example222@test.com\",\r\n    \"refundid\": 4,\r\n    \"pricingrefundvalue\": 0,\r\n    \"pricingrefundduration\": \"\"\r\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Create",
+					"request": {
+						"url": "http://localhost:3000/api/setting/create",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNkYXJiYXIiLCJwYXNzd29yZCI6IkFVMTIzISIsInNlc3Npb25faWQiOiIzMGY2NmY4Mi03YzgwLTQ1NmUtOWRhMS1jZTY4ODgxZjNiNTYiLCJpYXQiOjE1OTcxNTI0MDh9.CIZUqBAnEf7ym3SXFZr-4J9sFASmoJRt4qtXAEcs_Jo",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"settingtype\": \"VAT\",\r\n    \"settingvalue\": 30\r\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"url": "http://localhost:3000/api/setting/update",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNkYXJiYXIiLCJwYXNzd29yZCI6IkFVMTIzISIsInNlc3Npb25faWQiOiIzMGY2NmY4Mi03YzgwLTQ1NmUtOWRhMS1jZTY4ODgxZjNiNTYiLCJpYXQiOjE1OTcxNTI0MDh9.CIZUqBAnEf7ym3SXFZr-4J9sFASmoJRt4qtXAEcs_Jo",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"settingid\": 2,\r\n\t\"settingtype\": \"VAT\",\r\n    \"settingvalue\": 50\r\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"url": "http://localhost:3000/api/setting/2",
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNkYXJiYXIiLCJwYXNzd29yZCI6IkFVMTIzISIsInNlc3Npb25faWQiOiIzMGY2NmY4Mi03YzgwLTQ1NmUtOWRhMS1jZTY4ODgxZjNiNTYiLCJpYXQiOjE1OTcxNTI0MDh9.CIZUqBAnEf7ym3SXFZr-4J9sFASmoJRt4qtXAEcs_Jo",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"settingid\": 2,\r\n\t\"settingtype\": \"VAT\",\r\n    \"settingvalue\": 50\r\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Permission",
+			"description": "",
+			"item": [
+				{
+					"name": "FindAllPermissions",
+					"request": {
+						"url": "http://localhost:3000/api/permission",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNkYXJiYXIiLCJwYXNzd29yZCI6IkFVMTIzISIsInNlc3Npb25faWQiOiIxNjk3MWEzOC1hNWFiLTRmMmUtYWQ3OS1lNDA0ZWNjOGYzNzMiLCJpYXQiOjE1OTcwMjQ5ODd9.fVGEDKa8h3AI30qTzf9SltJCF5PMlZZ8_HV4ydwViJY",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"purchaselimitid\": 15,\r\n\t\"purchaselimitamount\": 123250\r\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "FindOnePermission",
+					"request": {
+						"url": "http://localhost:3000/api/permission/14",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNkYXJiYXIiLCJwYXNzd29yZCI6IkFVMTIzISIsInNlc3Npb25faWQiOiIxNjk3MWEzOC1hNWFiLTRmMmUtYWQ3OS1lNDA0ZWNjOGYzNzMiLCJpYXQiOjE1OTcwMjQ5ODd9.fVGEDKa8h3AI30qTzf9SltJCF5PMlZZ8_HV4ydwViJY",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"purchaselimitid\": 15,\r\n\t\"purchaselimitamount\": 123250\r\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "CreatePermission",
+					"request": {
+						"url": "http://localhost:3000/api/permission/create",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNkYXJiYXIiLCJwYXNzd29yZCI6IkFVMTIzISIsInNlc3Npb25faWQiOiIxNjk3MWEzOC1hNWFiLTRmMmUtYWQ3OS1lNDA0ZWNjOGYzNzMiLCJpYXQiOjE1OTcwMjQ5ODd9.fVGEDKa8h3AI30qTzf9SltJCF5PMlZZ8_HV4ydwViJY",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"permissionname\": \"aaa test\",\r\n\t\"active\": true,\r\n\t\"items\": [\r\n\t    {\r\n\t      \"permissionvalue\": true,\r\n\t      \"permissiontype\": \"string\"\r\n\t    }\r\n\t]\r\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "UpdatePermission",
+					"request": {
+						"url": "http://localhost:3000/api/paymentin/all",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNkYXJiYXIiLCJwYXNzd29yZCI6IkFVMTIzISIsInNlc3Npb25faWQiOiIxNjk3MWEzOC1hNWFiLTRmMmUtYWQ3OS1lNDA0ZWNjOGYzNzMiLCJpYXQiOjE1OTcwMjQ5ODd9.fVGEDKa8h3AI30qTzf9SltJCF5PMlZZ8_HV4ydwViJY",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"permissionid\": 21,\r\n\t\"permissionname\": \"222app developers222\",\r\n    \"active\": true,\r\n    \"items\": [\r\n\t    {\r\n\t      \"permissionvalue\": true,\r\n\t      \"permissiontype\": \"string2\"\r\n\t    },\r\n\t    {\r\n\t      \"permissionvalue\": true,\r\n\t      \"permissiontype\": \"string3\"\r\n\t    },\r\n\t    {\r\n\t      \"permissionvalue\": true,\r\n\t      \"permissiontype\": \"string4\"\r\n\t    }\r\n\t]\r\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "DeletePermission",
+					"request": {
+						"url": "http://localhost:3000/api/permission/20",
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNkYXJiYXIiLCJwYXNzd29yZCI6IkFVMTIzISIsInNlc3Npb25faWQiOiIxNjk3MWEzOC1hNWFiLTRmMmUtYWQ3OS1lNDA0ZWNjOGYzNzMiLCJpYXQiOjE1OTcwMjQ5ODd9.fVGEDKa8h3AI30qTzf9SltJCF5PMlZZ8_HV4ydwViJY",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Payment",
+			"description": "",
+			"item": [
+				{
+					"name": "FindAllPaymentIn",
+					"request": {
+						"url": "http://localhost:3000/api/paymentin",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNkYXJiYXIiLCJwYXNzd29yZCI6IkFVMTIzISIsInNlc3Npb25faWQiOiIxNjk3MWEzOC1hNWFiLTRmMmUtYWQ3OS1lNDA0ZWNjOGYzNzMiLCJpYXQiOjE1OTcwMjQ5ODd9.fVGEDKa8h3AI30qTzf9SltJCF5PMlZZ8_HV4ydwViJY",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"purchaselimitid\": 15,\r\n\t\"purchaselimitamount\": 123250\r\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "GetOnePaymentIn",
+					"request": {
+						"url": "http://localhost:3000/api/paymentin/2",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNkYXJiYXIiLCJwYXNzd29yZCI6IkFVMTIzISIsInNlc3Npb25faWQiOiIxNjk3MWEzOC1hNWFiLTRmMmUtYWQ3OS1lNDA0ZWNjOGYzNzMiLCJpYXQiOjE1OTcwMjQ5ODd9.fVGEDKa8h3AI30qTzf9SltJCF5PMlZZ8_HV4ydwViJY",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"purchaselimitid\": 15,\r\n\t\"purchaselimitamount\": 123250\r\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "DeletePaymentIn",
+					"request": {
+						"url": "http://localhost:3000/api/paymentin/5",
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNkYXJiYXIiLCJwYXNzd29yZCI6IkFVMTIzISIsInNlc3Npb25faWQiOiIxNjk3MWEzOC1hNWFiLTRmMmUtYWQ3OS1lNDA0ZWNjOGYzNzMiLCJpYXQiOjE1OTcwMjQ5ODd9.fVGEDKa8h3AI30qTzf9SltJCF5PMlZZ8_HV4ydwViJY",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"paymentid\": 5,\r\n\t\"dealerid\": 502,\r\n    \"paymentamount\": 2504.24,\r\n    \"comment\": \"wwwwwwww\",\r\n    \"paymentnumber\": \"AUPAYIN1\",\r\n    \"datepayment\": \"2019-02-12T16:00:00.000Z\",\r\n    \"receivedbyoperator\": null\r\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "CreatePaymentIn",
+					"request": {
+						"url": "http://localhost:3000/api/paymentin/create",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNkYXJiYXIiLCJwYXNzd29yZCI6IkFVMTIzISIsInNlc3Npb25faWQiOiIxNjk3MWEzOC1hNWFiLTRmMmUtYWQ3OS1lNDA0ZWNjOGYzNzMiLCJpYXQiOjE1OTcwMjQ5ODd9.fVGEDKa8h3AI30qTzf9SltJCF5PMlZZ8_HV4ydwViJY",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"dealerid\": 502,\r\n    \"paymentamount\": 2504.24,\r\n    \"comment\": \"wwwwwwww\",\r\n    \"paymentnumber\": \"AUPAYIN1\",\r\n    \"datepayment\": \"2019-02-12T16:00:00.000Z\",\r\n    \"receivedbyoperator\": null\r\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "CreatePaymentIn",
+					"request": {
+						"url": "http://localhost:3000/api/paymentin/update",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNkYXJiYXIiLCJwYXNzd29yZCI6IkFVMTIzISIsInNlc3Npb25faWQiOiIxNjk3MWEzOC1hNWFiLTRmMmUtYWQ3OS1lNDA0ZWNjOGYzNzMiLCJpYXQiOjE1OTcwMjQ5ODd9.fVGEDKa8h3AI30qTzf9SltJCF5PMlZZ8_HV4ydwViJY",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"paymentid\": 5,\r\n\t\"dealerid\": 502,\r\n    \"paymentamount\": 2504.24,\r\n    \"comment\": \"wwwwwwww\",\r\n    \"paymentnumber\": \"AUPAYIN1\",\r\n    \"datepayment\": \"2019-02-12T16:00:00.000Z\",\r\n    \"receivedbyoperator\": null\r\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "FindAllPayments",
+					"request": {
+						"url": "http://localhost:3000/api/payments",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNkYXJiYXIiLCJwYXNzd29yZCI6IkFVMTIzISIsInNlc3Npb25faWQiOiIxNjk3MWEzOC1hNWFiLTRmMmUtYWQ3OS1lNDA0ZWNjOGYzNzMiLCJpYXQiOjE1OTcwMjQ5ODd9.fVGEDKa8h3AI30qTzf9SltJCF5PMlZZ8_HV4ydwViJY",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"purchaselimitid\": 15,\r\n\t\"purchaselimitamount\": 123250\r\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "GetOnePayments",
+					"request": {
+						"url": "http://localhost:3000/api/payments/385",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNkYXJiYXIiLCJwYXNzd29yZCI6IkFVMTIzISIsInNlc3Npb25faWQiOiIxNjk3MWEzOC1hNWFiLTRmMmUtYWQ3OS1lNDA0ZWNjOGYzNzMiLCJpYXQiOjE1OTcwMjQ5ODd9.fVGEDKa8h3AI30qTzf9SltJCF5PMlZZ8_HV4ydwViJY",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"purchaselimitid\": 15,\r\n\t\"purchaselimitamount\": 123250\r\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "CreatePayments",
+					"request": {
+						"url": "http://localhost:3000/api/payments/create",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNkYXJiYXIiLCJwYXNzd29yZCI6IkFVMTIzISIsInNlc3Npb25faWQiOiIxNjk3MWEzOC1hNWFiLTRmMmUtYWQ3OS1lNDA0ZWNjOGYzNzMiLCJpYXQiOjE1OTcwMjQ5ODd9.fVGEDKa8h3AI30qTzf9SltJCF5PMlZZ8_HV4ydwViJY",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"dealerid\": 502,\r\n    \"paymentamount\": 3333,\r\n    \"comment\": \"RETURN AGREED BY M STOKES\",\r\n    \"paymentnumber\": \"AUPAY380\",\r\n    \"datepayment\": \"2020-08-05T16:00:00.000Z\",\r\n    \"paidbyoperator\": null\r\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "UpdatePayments",
+					"request": {
+						"url": "http://localhost:3000/api/payments/update",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNkYXJiYXIiLCJwYXNzd29yZCI6IkFVMTIzISIsInNlc3Npb25faWQiOiIxNjk3MWEzOC1hNWFiLTRmMmUtYWQ3OS1lNDA0ZWNjOGYzNzMiLCJpYXQiOjE1OTcwMjQ5ODd9.fVGEDKa8h3AI30qTzf9SltJCF5PMlZZ8_HV4ydwViJY",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"paymentid\": 729,\r\n\t\"dealerid\": 502,\r\n    \"paymentamount\": 6666,\r\n    \"comment\": \"RETURN AGREED BY M STOKES\",\r\n    \"paymentnumber\": \"AUPAY380\",\r\n    \"datepayment\": \"2020-08-05T16:00:00.000Z\",\r\n    \"paidbyoperator\": null\r\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "DeletePayments",
+					"request": {
+						"url": "http://localhost:3000/api/payments/729",
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNkYXJiYXIiLCJwYXNzd29yZCI6IkFVMTIzISIsInNlc3Npb25faWQiOiIxNjk3MWEzOC1hNWFiLTRmMmUtYWQ3OS1lNDA0ZWNjOGYzNzMiLCJpYXQiOjE1OTcwMjQ5ODd9.fVGEDKa8h3AI30qTzf9SltJCF5PMlZZ8_HV4ydwViJY",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"paymentid\": 729,\r\n\t\"dealerid\": 502,\r\n    \"paymentamount\": 6666,\r\n    \"comment\": \"RETURN AGREED BY M STOKES\",\r\n    \"paymentnumber\": \"AUPAY380\",\r\n    \"datepayment\": \"2020-08-05T16:00:00.000Z\",\r\n    \"paidbyoperator\": null\r\n}"
 						},
 						"description": ""
 					},

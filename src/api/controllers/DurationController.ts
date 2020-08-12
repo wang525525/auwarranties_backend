@@ -37,7 +37,7 @@ export class DurationController {
         if (duration) {
             return {status: ResponseMessage.SUCCEEDED, res: duration};
         } else {
-            return {status: ResponseMessage.NOT_FOUND_COVERTYPE, res: undefined};
+            return {status: ResponseMessage.NOT_FOUND_DURATION, res: undefined};
         }
     }
 

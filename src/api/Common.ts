@@ -55,4 +55,7 @@ export class ResponseMessage {
 
     // pricing status comment
     public static readonly NOT_FOUND_PRICING = 'Not found pricing';
+
+    // pricing status comment
+    public static readonly NOT_FOUND_SETTING = 'Not found setting';
 }

@@ -24,7 +24,7 @@ export class GroupController {
     ) { }
 
     // Group
-    @Get('/all')
+    @Get('')
     @ResponseSchema(GroupsResponse)
     public async find(): Promise<GroupsResponse> {
         const groups = await this.groupService.find() as GroupDetail[];

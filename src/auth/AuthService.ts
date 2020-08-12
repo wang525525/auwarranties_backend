@@ -19,7 +19,6 @@ export class AuthService {
         const authorization = req.header('authorization');
 
         if (authorization && authorization.split(' ')[0] === 'Bearer') {
-            this.log.info('Credentials provided by the client');
 
             const token = authorization.split(' ')[1];
             // console.log('bearer', token);

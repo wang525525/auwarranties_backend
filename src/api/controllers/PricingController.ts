@@ -22,7 +22,7 @@ export class PricingController {
         private pricingService: PricingService
     ) { }
 
-    @Get('/all')
+    @Get('')
     @ResponseSchema(PricingsResponse)
     public async find(): Promise<PricingsResponse> {
         const pricings = await this.pricingService.find() as PricingDetail[];

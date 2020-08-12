@@ -22,7 +22,7 @@ export class SettingController {
         private settingService: SettingService
     ) { }
 
-    @Get('/all')
+    @Get('')
     @ResponseSchema(SettingsResponse)
     public async find(): Promise<SettingsResponse> {
         const settings = await this.settingService.find() as SettingDetail[];

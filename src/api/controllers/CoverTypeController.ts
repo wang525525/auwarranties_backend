@@ -22,7 +22,7 @@ export class CoverTypeController {
         private coverTypeService: CoverTypeService
     ) { }
 
-    @Get('/all')
+    @Get('')
     @ResponseSchema(CoverTypesResponse)
     public async find(): Promise<CoverTypesResponse> {
         const coverTypes = await this.coverTypeService.find() as CoverTypeDetail[];

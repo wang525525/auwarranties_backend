@@ -61,4 +61,7 @@ export class ResponseMessage {
 
     // pricing status comment
     public static readonly NOT_FOUND_PERMISSION = 'Not found permission';
+
+    // payment status comment
+    public static readonly NOT_FOUND_PAYMENT = 'Not found payment';
 }

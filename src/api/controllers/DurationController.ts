@@ -22,7 +22,7 @@ export class DurationController {
         private durationService: DurationService
     ) { }
 
-    @Get('/all')
+    @Get('')
     @ResponseSchema(DurationsResponse)
     public async find(): Promise<DurationsResponse> {
         const durations = await this.durationService.find() as DurationDetail[];

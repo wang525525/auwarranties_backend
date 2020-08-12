@@ -22,7 +22,7 @@ export class UserController {
         private userService: UserService
     ) { }
 
-    @Get('/all')
+    @Get('')
     @ResponseSchema(UsersResponse)
     public async find(): Promise<UsersResponse> {
         const users = await this.userService.find() as UserDetail[];

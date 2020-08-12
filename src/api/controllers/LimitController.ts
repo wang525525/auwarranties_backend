@@ -22,7 +22,7 @@ export class LimitController {
         private limitService: LimitService
     ) { }
 
-    @Get('/all')
+    @Get('')
     @ResponseSchema(LimitsResponse)
     public async find(): Promise<LimitsResponse> {
         const limits = await this.limitService.find() as LimitDetail[];

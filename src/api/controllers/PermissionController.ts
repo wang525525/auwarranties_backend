@@ -22,7 +22,7 @@ export class PermissionController {
         private permissionService: PermissionService
     ) { }
 
-    @Get('/all')
+    @Get('')
     @ResponseSchema(PermissionsResponse)
     public async find(): Promise<PermissionsResponse> {
         const permissions = await this.permissionService.find() as PermissionDetail[];

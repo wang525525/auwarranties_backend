@@ -21,7 +21,6 @@ export class GroupUpdateRequest extends GroupInfo {
 }
 
 export class GroupMemberRequest {
-
     @IsNumber()
     public groupid: number;
 

@@ -67,4 +67,7 @@ export class ResponseMessage {
 
     // policy item (covered parts) status comment
     public static readonly NOT_FOUND_POLICY_ITEM = 'Not found policy item';
+
+    // policy item (covered parts) status comment
+    public static readonly NOT_FOUND_SCHEDULE = 'Not found schedule';
 }

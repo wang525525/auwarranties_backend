@@ -64,4 +64,7 @@ export class ResponseMessage {
 
     // payment status comment
     public static readonly NOT_FOUND_PAYMENT = 'Not found payment';
+
+    // policy item (covered parts) status comment
+    public static readonly NOT_FOUND_POLICY_ITEM = 'Not found policy item';
 }

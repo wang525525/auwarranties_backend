@@ -36,6 +36,14 @@ export class UserInfo {
     @IsOptional()
     public town?: string;
 
+    @IsString()
+    @IsOptional()
+    public postcode?: string;
+
+    @IsString()
+    @IsOptional()
+    public country?: string;
+
     @IsBoolean()
     @IsOptional()
     public active?: boolean;

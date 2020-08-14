@@ -66,6 +66,18 @@ export class User {
 
     @Column({
         nullable: true,
+        length: 99,
+    })
+    public postcode: string;
+
+    @Column({
+        nullable: true,
+        length: 99,
+    })
+    public country: string;
+
+    @Column({
+        nullable: true,
     })
     public active: boolean;
 

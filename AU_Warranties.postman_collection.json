@@ -2128,7 +2128,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"coverid\": 22,\r\n    \"itemnames\": [\"Test\", \"Test 222\"]\r\n}"
+							"raw": "{\r\n    \"coverid\": 22,\r\n    \"itemnames\": [\"Test 222000\", \"Test 222111\"]\r\n}"
 						},
 						"url": {
 							"raw": "http://localhost:3000/api/policyitem/save",

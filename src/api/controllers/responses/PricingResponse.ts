@@ -1,7 +1,6 @@
 import { IsString, IsNumber, IsArray, IsEmail, IsJSON, ValidateNested } from 'class-validator';
 import { Type } from 'class-transformer';
 import { CoverTypeDetail } from './CoverTypeResponse';
-import { RefundDetail } from './RefundResponse';
 import { DurationDetail } from './DurationResponse';
 import { LimitDetail } from './LimitResponse';
 
@@ -45,11 +44,6 @@ export class PricingDetail {
 
     @IsNumber()
     public refundid: number;
-
-    @ValidateNested({ each: true })
-    @IsJSON()
-    @Type(() => RefundDetail)
-    public refund: RefundDetail;
 
     @IsNumber()
     public pricingrefundvalue: number;

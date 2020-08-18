@@ -73,4 +73,7 @@ export class ResponseMessage {
 
     // refund item status comment
     public static readonly NOT_FOUND_REFUND = 'Not found refund';
+
+    // pricing exception item status comment
+    public static readonly NOT_FOUND_EXCEPTION = 'Not found pricing exception';
 }

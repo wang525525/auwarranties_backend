@@ -3,7 +3,6 @@ import { IsEmail, IsOptional } from 'class-validator';
 import { CoverType } from './CoverType';
 import { Duration } from './Duration';
 import { Limit } from './Limit';
-import { Refund } from './Refund';
 
 @Entity('pricing')
 export class Pricing {
@@ -61,11 +60,6 @@ export class Pricing {
         nullable: true,
     })
     public refundid: number;
-
-    @OneToOne(type => Refund)
-    @JoinColumn({ name: 'refundid', referencedColumnName: 'refundid'})
-    @IsOptional()
-    public refund?: Refund;
 
     @Column({
         nullable: true,

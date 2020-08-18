@@ -79,4 +79,7 @@ export class ResponseMessage {
 
     // admin charge item status comment
     public static readonly NOT_FOUND_CHARGE = 'Not found admin charge';
+
+    // policy status comment
+    public static readonly NOT_FOUND_POLICY = 'Not found policy';
 }

@@ -49,7 +49,6 @@ export class PolicyItemService {
         this.log.info('Get all policy items by coverid');
         const items = await this.policyItemRepository.find({coverid});
 
-        console.log('items --', items);
         return items;
     }
 

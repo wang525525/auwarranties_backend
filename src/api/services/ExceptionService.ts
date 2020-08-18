@@ -34,8 +34,8 @@ export class ExceptionService {
         return updateException;
     }
 
-    public findOneById(exceptionid: number): Promise<Exception | undefined> {
-        return this.exceptionRepository.findOneById(exceptionid);
+    public findOneByUserId(userid: number): Promise<Exception[]> {
+        return this.exceptionRepository.findOneByUserId(userid);
     }
 
     public async delete(exceptionid: number): Promise<void> {

@@ -30,10 +30,10 @@ export class ExceptionController {
         return { status: ResponseMessage.SUCCEEDED, res: exceptions };
     }
 
-    @Get('/:id')
+    @Get('/:userid')
     @ResponseSchema(ExceptionResponse)
-    public async one(@Param('id') id: string): Promise<ExceptionResponse> {
-        const exception = await this.exceptionService.findOneById(parseInt(id, 10)) as ExceptionDetail;
+    public async one(@Param('userid') userid: string): Promise<ExceptionsResponse> {
+        const exception = await this.exceptionService.findOneByUserId(parseInt(userid, 10)) as ExceptionDetail[];
         if (exception) {
             return {status: ResponseMessage.SUCCEEDED, res: exception};
         } else {
@@ -54,7 +54,7 @@ export class ExceptionController {
     @Post('/update')
     @ResponseSchema(ExceptionResponse)
     public async update(@Body() body: ExceptionUpdateRequest): Promise<ExceptionResponse> {
-        const exception = await this.exceptionService.findOneById(body.exceptionid);
+        const exception = await this.exceptionService.findOneByUserId(body.exceptionid);
 
         if (exception) {
             let updateException = new Exception();
@@ -67,17 +67,11 @@ export class ExceptionController {
         }
     }
 
-    @Delete('/:id')
+    @Delete('/:exceptionId')
     @ResponseSchema(StatusResponse)
-    public async delete(@Param('id') id: string): Promise<StatusResponse> {
-        const exceptionId = parseInt(id, 10);
-        const exception = await this.exceptionService.findOneById(exceptionId);
-        if (exception) {
-            await this.exceptionService.delete(exceptionId);
-            return {status: ResponseMessage.SUCCEEDED };
-        } else {
-            return {status: ResponseMessage.NOT_FOUND_DURATION };
-        }
+    public async delete(@Param('exceptionId') exceptionId: string): Promise<StatusResponse> {
+        await this.exceptionService.delete(parseInt(exceptionId, 10));
+        return {status: ResponseMessage.SUCCEEDED };
     }
 
 }

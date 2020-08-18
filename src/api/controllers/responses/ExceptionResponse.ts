@@ -3,6 +3,7 @@ import { Type } from 'class-transformer';
 import { PricingDetail } from './PricingResponse';
 import { UserDetail } from './UserResponse';
 import { RefundDetail } from './RefundResponse';
+import { ChargeDetail } from './ChargeResponse';
 
 export class ExceptionDetail {
 
@@ -40,6 +41,11 @@ export class ExceptionDetail {
     @IsNumber()
     @IsOptional()
     public poladmincosttype?: number;
+
+    @ValidateNested({ each: true })
+    @IsJSON()
+    @Type(() => ChargeDetail)
+    public costtype: ChargeDetail;
 
     @IsNumber()
     @IsOptional()

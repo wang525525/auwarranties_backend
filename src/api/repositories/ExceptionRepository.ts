@@ -13,6 +13,7 @@ export class ExceptionRepository extends Repository<Exception>  {
                             .leftJoinAndSelect('pricingexception.pricing', 'pricing')
                             .leftJoinAndSelect('pricingexception.dealer', 'users')
                             .leftJoinAndSelect('pricingexception.refund', 'refund')
+                            .leftJoinAndSelect('pricingexception.costtype', 'admincharge')
                             .getMany();
     }
 
@@ -24,6 +25,7 @@ export class ExceptionRepository extends Repository<Exception>  {
                             .leftJoinAndSelect('pricingexception.pricing', 'pricing')
                             .leftJoinAndSelect('pricingexception.dealer', 'users')
                             .leftJoinAndSelect('pricingexception.refund', 'refund')
+                            .leftJoinAndSelect('pricingexception.costtype', 'admincharge')
                             .where(`exceptionid=${exceptionid}`)
                             .getOne();
     }

@@ -3,6 +3,7 @@ import { IsOptional } from 'class-validator';
 import { Pricing } from './Pricing';
 import { User } from './User';
 import { Refund } from './Refund';
+import { Charge } from './Charge';
 
 @Entity('pricingexception')
 export class Exception {
@@ -51,6 +52,11 @@ export class Exception {
     })
     @IsOptional()
     public poladmincosttype?: number;
+
+    @OneToOne(type => Charge)
+    @JoinColumn({ name: 'poladmincosttype', referencedColumnName: 'adminchargeid'})
+    @IsOptional()
+    public costtype?: Charge;
 
     @Column({
         nullable: true,

@@ -76,4 +76,7 @@ export class ResponseMessage {
 
     // pricing exception item status comment
     public static readonly NOT_FOUND_EXCEPTION = 'Not found pricing exception';
+
+    // admin charge item status comment
+    public static readonly NOT_FOUND_CHARGE = 'Not found admin charge';
 }

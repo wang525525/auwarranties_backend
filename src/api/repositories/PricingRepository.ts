@@ -12,6 +12,7 @@ export class PricingRepository extends Repository<Pricing>  {
                             .leftJoinAndSelect('pricing.cover', 'covertype')
                             .leftJoinAndSelect('pricing.duration', 'purchaseduration')
                             .leftJoinAndSelect('pricing.claim', 'purchaselimit')
+                            .leftJoinAndSelect('pricing.refund', 'refund')
                             .getMany();
     }
 }

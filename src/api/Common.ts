@@ -82,4 +82,7 @@ export class ResponseMessage {
 
     // policy status comment
     public static readonly NOT_FOUND_POLICY = 'Not found policy';
+
+    // state status comment
+    public static readonly NOT_FOUND_STATE = 'Not found state';
 }

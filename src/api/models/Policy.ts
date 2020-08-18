@@ -1,4 +1,8 @@
-import { PrimaryGeneratedColumn, Column, Entity } from 'typeorm';
+import { PrimaryGeneratedColumn, Column, Entity, OneToOne, JoinColumn } from 'typeorm';
+import { IsOptional } from 'class-validator';
+import { User } from './User';
+import { State } from './State';
+import { CoverType } from './CoverType';
 
 @Entity('policy')
 export class Policy {
@@ -86,6 +90,11 @@ export class Policy {
     })
     public branchid: number;
 
+    @OneToOne(type => User)
+    @JoinColumn({ name: 'branchid', referencedColumnName: 'userid'})
+    @IsOptional()
+    public branchuser?: User;
+
     @Column({
         nullable: true,
     })
@@ -101,6 +110,11 @@ export class Policy {
     })
     public coverid: number;
 
+    @OneToOne(type => CoverType)
+    @JoinColumn({ name: 'coverid', referencedColumnName: 'coverid'})
+    @IsOptional()
+    public cover?: CoverType;
+
     @Column({
         nullable: true,
     })
@@ -110,6 +124,11 @@ export class Policy {
         nullable: true,
     })
     public state: number;
+
+    @OneToOne(type => State)
+    @JoinColumn({ name: 'state', referencedColumnName: 'stateid'})
+    @IsOptional()
+    public policystate?: State;
 
     @Column({
         nullable: true,

@@ -13,9 +13,9 @@ export class PolicyService {
         @Logger(__filename) private log: LoggerInterface
     ) { }
 
-    public find(): Promise<Policy[]> {
+    public findAll(): Promise<Policy[]> {
         this.log.info('Find all policys');
-        return this.policyRepository.find();
+        return this.policyRepository.findAll();
     }
 
     public async create(policy: Policy): Promise<Policy> {
@@ -34,8 +34,8 @@ export class PolicyService {
         return updatePolicy;
     }
 
-    public findOneById(policyid: number): Promise<Policy | undefined> {
-        return this.policyRepository.findOne({policyid});
+    public findOneById(branchid: number): Promise<Policy | undefined> {
+        return this.policyRepository.findOneById(branchid);
     }
 
     public async delete(policyid: number): Promise<void> {

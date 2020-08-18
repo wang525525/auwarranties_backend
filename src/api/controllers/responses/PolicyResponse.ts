@@ -1,5 +1,8 @@
 import { IsString, IsNumber, IsDate, IsArray, IsBoolean, IsJSON, ValidateNested } from 'class-validator';
 import { Type } from 'class-transformer';
+import { UserDetail } from './UserResponse';
+import { StateDetail } from './StateResponse';
+import { CoverTypeDetail } from './CoverTypeResponse';
 
 export class PolicyDetail {
 
@@ -54,6 +57,11 @@ export class PolicyDetail {
     @IsNumber()
     public branchid: number;
 
+    @ValidateNested({ each: true })
+    @IsJSON()
+    @Type(() => UserDetail)
+    public branchuser: UserDetail;
+
     @IsString()
     public branchname: string;
 
@@ -63,11 +71,21 @@ export class PolicyDetail {
     @IsNumber()
     public coverid: number;
 
+    @ValidateNested({ each: true })
+    @IsJSON()
+    @Type(() => CoverTypeDetail)
+    public cover: CoverTypeDetail;
+
     @IsNumber()
     public operator: number;
 
     @IsNumber()
     public state: number;
+
+    @ValidateNested({ each: true })
+    @IsJSON()
+    @Type(() => StateDetail)
+    public policystate: StateDetail;
 
     @IsDate()
     public datepolicy: Date;

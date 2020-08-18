@@ -25,15 +25,15 @@ export class PolicyController {
     @Get('')
     @ResponseSchema(PolicysResponse)
     public async find(): Promise<PolicysResponse> {
-        const policys = await this.policyService.find() as PolicyDetail[];
+        const policys = await this.policyService.findAll() as PolicyDetail[];
 
         return { status: ResponseMessage.SUCCEEDED, res: policys };
     }
 
-    @Get('/:id')
+    @Get('/:branchid')
     @ResponseSchema(PolicyResponse)
-    public async one(@Param('id') id: string): Promise<PolicyResponse> {
-        const policy = await this.policyService.findOneById(parseInt(id, 10)) as PolicyDetail;
+    public async one(@Param('branchid') branchid: string): Promise<PolicyResponse> {
+        const policy = await this.policyService.findOneById(parseInt(branchid, 10)) as PolicyDetail;
         if (policy) {
             return {status: ResponseMessage.SUCCEEDED, res: policy};
         } else {

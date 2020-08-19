@@ -94,4 +94,7 @@ export class ResponseMessage {
 
     // claim status comment
     public static readonly NOT_FOUND_CLAIM = 'Not found claim';
+
+    // invoice status comment
+    public static readonly NOT_FOUND_INVOICE = 'Not found invoice';
 }

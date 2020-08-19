@@ -3643,6 +3643,230 @@
 			"protocolProfileBehavior": {}
 		},
 		{
+			"name": "Invoices",
+			"item": [
+				{
+					"name": "InvoiceAll",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNkYXJiYXIiLCJwYXNzd29yZCI6IkFVMTIzISIsInNlc3Npb25faWQiOiIzMGY2NmY4Mi03YzgwLTQ1NmUtOWRhMS1jZTY4ODgxZjNiNTYiLCJpYXQiOjE1OTcxNTI0MDh9.CIZUqBAnEf7ym3SXFZr-4J9sFASmoJRt4qtXAEcs_Jo"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/api/invoice/all/250",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"invoice",
+								"all",
+								"250"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "InvoiceByUserId",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNkYXJiYXIiLCJwYXNzd29yZCI6IkFVMTIzISIsInNlc3Npb25faWQiOiIzMGY2NmY4Mi03YzgwLTQ1NmUtOWRhMS1jZTY4ODgxZjNiNTYiLCJpYXQiOjE1OTcxNTI0MDh9.CIZUqBAnEf7ym3SXFZr-4J9sFASmoJRt4qtXAEcs_Jo"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/api/invoice/50",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"invoice",
+								"50"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "InvoiceOneById",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNkYXJiYXIiLCJwYXNzd29yZCI6IkFVMTIzISIsInNlc3Npb25faWQiOiIzMGY2NmY4Mi03YzgwLTQ1NmUtOWRhMS1jZTY4ODgxZjNiNTYiLCJpYXQiOjE1OTcxNTI0MDh9.CIZUqBAnEf7ym3SXFZr-4J9sFASmoJRt4qtXAEcs_Jo"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/api/invoice/one/468",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"invoice",
+								"one",
+								"468"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNkYXJiYXIiLCJwYXNzd29yZCI6IkFVMTIzISIsInNlc3Npb25faWQiOiIzMGY2NmY4Mi03YzgwLTQ1NmUtOWRhMS1jZTY4ODgxZjNiNTYiLCJpYXQiOjE1OTcxNTI0MDh9.CIZUqBAnEf7ym3SXFZr-4J9sFASmoJRt4qtXAEcs_Jo"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"invoicedate\": \"2017-03-23T16:00:00.000Z\",\r\n    \"invdateseconds\": \"3573230000\",\r\n    \"dealerid\": 50,\r\n    \"state\": 10,\r\n    \"invoicenumber\": \"AUINV509\",\r\n    \"details\": \"Test Records\",\r\n    \"net\": 100,\r\n    \"tax\": 5,\r\n    \"gross\": 105,\r\n    \"taxpercentage\": null,\r\n    \"invlog\": null,\r\n    \"paiddate\": \"2017-07-18T16:00:00.000Z\",\r\n    \"invvatrule\": null,\r\n    \"invvatamount\": null,\r\n    \"invadmincosttype\": 1,\r\n    \"invadmincostcent\": 25,\r\n    \"invadmincostamt\": null,\r\n    \"invvatcent\": 20,\r\n    \"taxadmin\": null,\r\n    \"totaladmin\": null\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/invoice/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"invoice",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNkYXJiYXIiLCJwYXNzd29yZCI6IkFVMTIzISIsInNlc3Npb25faWQiOiIzMGY2NmY4Mi03YzgwLTQ1NmUtOWRhMS1jZTY4ODgxZjNiNTYiLCJpYXQiOjE1OTcxNTI0MDh9.CIZUqBAnEf7ym3SXFZr-4J9sFASmoJRt4qtXAEcs_Jo"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"invoiceid\": 158037,\r\n    \"invoicedate\": \"2017-03-23T16:00:00.000Z\",\r\n    \"invdateseconds\": \"3573230000\",\r\n    \"dealerid\": 50,\r\n    \"state\": 10,\r\n    \"invoicenumber\": \"AUINV509\",\r\n    \"details\": \"Test Update Records\",\r\n    \"net\": 100,\r\n    \"tax\": 5,\r\n    \"gross\": 105,\r\n    \"taxpercentage\": null,\r\n    \"invlog\": null,\r\n    \"paiddate\": \"2017-07-18T16:00:00.000Z\",\r\n    \"invvatrule\": null,\r\n    \"invvatamount\": null,\r\n    \"invadmincosttype\": 1,\r\n    \"invadmincostcent\": 25,\r\n    \"invadmincostamt\": null,\r\n    \"invvatcent\": 20,\r\n    \"taxadmin\": null,\r\n    \"totaladmin\": null\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/invoice/update",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"invoice",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNkYXJiYXIiLCJwYXNzd29yZCI6IkFVMTIzISIsInNlc3Npb25faWQiOiIzMGY2NmY4Mi03YzgwLTQ1NmUtOWRhMS1jZTY4ODgxZjNiNTYiLCJpYXQiOjE1OTcxNTI0MDh9.CIZUqBAnEf7ym3SXFZr-4J9sFASmoJRt4qtXAEcs_Jo"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"invoiceid\": 158037,\r\n    \"invoicedate\": \"2017-03-23T16:00:00.000Z\",\r\n    \"invdateseconds\": \"3573230000\",\r\n    \"dealerid\": 50,\r\n    \"state\": 10,\r\n    \"invoicenumber\": \"AUINV509\",\r\n    \"details\": \"Test Update Records\",\r\n    \"net\": 100,\r\n    \"tax\": 5,\r\n    \"gross\": 105,\r\n    \"taxpercentage\": null,\r\n    \"invlog\": null,\r\n    \"paiddate\": \"2017-07-18T16:00:00.000Z\",\r\n    \"invvatrule\": null,\r\n    \"invvatamount\": null,\r\n    \"invadmincosttype\": 1,\r\n    \"invadmincostcent\": 25,\r\n    \"invadmincostamt\": null,\r\n    \"invvatcent\": 20,\r\n    \"taxadmin\": null,\r\n    \"totaladmin\": null\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/invoice/158037",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"invoice",
+								"158037"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
 			"name": "Register",
 			"request": {
 				"method": "POST",

@@ -3419,6 +3419,230 @@
 			"protocolProfileBehavior": {}
 		},
 		{
+			"name": "Claim",
+			"item": [
+				{
+					"name": "FindAll",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNkYXJiYXIiLCJwYXNzd29yZCI6IkFVMTIzISIsInNlc3Npb25faWQiOiIzMGY2NmY4Mi03YzgwLTQ1NmUtOWRhMS1jZTY4ODgxZjNiNTYiLCJpYXQiOjE1OTcxNTI0MDh9.CIZUqBAnEf7ym3SXFZr-4J9sFASmoJRt4qtXAEcs_Jo"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/api/claim/all/200",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"claim",
+								"all",
+								"200"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ClaimsByUserId",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNkYXJiYXIiLCJwYXNzd29yZCI6IkFVMTIzISIsInNlc3Npb25faWQiOiIzMGY2NmY4Mi03YzgwLTQ1NmUtOWRhMS1jZTY4ODgxZjNiNTYiLCJpYXQiOjE1OTcxNTI0MDh9.CIZUqBAnEf7ym3SXFZr-4J9sFASmoJRt4qtXAEcs_Jo"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/api/claim/50",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"claim",
+								"50"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ClaimOneById",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNkYXJiYXIiLCJwYXNzd29yZCI6IkFVMTIzISIsInNlc3Npb25faWQiOiIzMGY2NmY4Mi03YzgwLTQ1NmUtOWRhMS1jZTY4ODgxZjNiNTYiLCJpYXQiOjE1OTcxNTI0MDh9.CIZUqBAnEf7ym3SXFZr-4J9sFASmoJRt4qtXAEcs_Jo"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/api/claim/one/3406",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"claim",
+								"one",
+								"3406"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNkYXJiYXIiLCJwYXNzd29yZCI6IkFVMTIzISIsInNlc3Npb25faWQiOiIzMGY2NmY4Mi03YzgwLTQ1NmUtOWRhMS1jZTY4ODgxZjNiNTYiLCJpYXQiOjE1OTcxNTI0MDh9.CIZUqBAnEf7ym3SXFZr-4J9sFASmoJRt4qtXAEcs_Jo"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"mileageatclaim\": 0,\r\n    \"failedpart\": \"\",\r\n    \"failedarea\": \"\",\r\n    \"failurecause\": \"qweqweqwe qweqwe qwe qwe qwe qwe qw eqw \",\r\n    \"repairsrequired\": \"qqqq q q q q q q q q q q q q wewewewew\",\r\n    \"labourperhour\": 0,\r\n    \"partstotal\": 0,\r\n    \"labourtotal\": 0,\r\n    \"claimtotal\": 0,\r\n    \"payvat\": true,\r\n    \"adjustedclaim\": 0,\r\n    \"policyid\": 18192,\r\n    \"dateclaim\": \"2019-09-03T16:00:00.000Z\",\r\n    \"claimdateseconds\": \"3650444337\",\r\n    \"claimnumber\": \"AUCLM3359\",\r\n    \"state\": 24,\r\n    \"calculatedtotal\": 0,\r\n    \"claimvatamt\": 0,\r\n    \"claimsvatcent\": 20,\r\n    \"notes\": \"\",\r\n    \"claimnotifyemail\": \"none@gmail.co.uk\",\r\n    \"paiddate\": null,\r\n    \"lastservicedates\": \"\",\r\n    \"faultdiagnosed\": false,\r\n    \"confirmedwarrantyclaim\": false,\r\n    \"advicedtodiagnosefault\": true,\r\n    \"advicedtosenddiagnostic\": \"False\",\r\n    \"hasbooklet\": \"False\",\r\n    \"repairinggarage\": \"\",\r\n    \"adminresponded\": null,\r\n    \"represponded\": null,\r\n    \"adminrespondtime\": null\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/claim/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"claim",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNkYXJiYXIiLCJwYXNzd29yZCI6IkFVMTIzISIsInNlc3Npb25faWQiOiIzMGY2NmY4Mi03YzgwLTQ1NmUtOWRhMS1jZTY4ODgxZjNiNTYiLCJpYXQiOjE1OTcxNTI0MDh9.CIZUqBAnEf7ym3SXFZr-4J9sFASmoJRt4qtXAEcs_Jo"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"claimid\": 4487,\r\n    \"mileageatclaim\": 0,\r\n    \"failedpart\": \"\",\r\n    \"failedarea\": \"\",\r\n    \"failurecause\": \"asdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdf\",\r\n    \"repairsrequired\": \"qqqq q q q q q q q q q q q q wewewewew\",\r\n    \"labourperhour\": 0,\r\n    \"partstotal\": 0,\r\n    \"labourtotal\": 0,\r\n    \"claimtotal\": 0,\r\n    \"payvat\": true,\r\n    \"adjustedclaim\": 0,\r\n    \"policyid\": 18192,\r\n    \"dateclaim\": \"2019-09-03T16:00:00.000Z\",\r\n    \"claimdateseconds\": \"3650444337\",\r\n    \"claimnumber\": \"AUCLM3359\",\r\n    \"state\": 24,\r\n    \"calculatedtotal\": 0,\r\n    \"claimvatamt\": 0,\r\n    \"claimsvatcent\": 20,\r\n    \"notes\": \"\",\r\n    \"claimnotifyemail\": \"none@gmail.co.uk\",\r\n    \"paiddate\": null,\r\n    \"lastservicedates\": \"\",\r\n    \"faultdiagnosed\": false,\r\n    \"confirmedwarrantyclaim\": false,\r\n    \"advicedtodiagnosefault\": true,\r\n    \"advicedtosenddiagnostic\": \"False\",\r\n    \"hasbooklet\": \"False\",\r\n    \"repairinggarage\": \"\",\r\n    \"adminresponded\": null,\r\n    \"represponded\": null,\r\n    \"adminrespondtime\": null\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/claim/update",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"claim",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNkYXJiYXIiLCJwYXNzd29yZCI6IkFVMTIzISIsInNlc3Npb25faWQiOiIzMGY2NmY4Mi03YzgwLTQ1NmUtOWRhMS1jZTY4ODgxZjNiNTYiLCJpYXQiOjE1OTcxNTI0MDh9.CIZUqBAnEf7ym3SXFZr-4J9sFASmoJRt4qtXAEcs_Jo"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"claimid\": 4487,\r\n    \"mileageatclaim\": 0,\r\n    \"failedpart\": \"\",\r\n    \"failedarea\": \"\",\r\n    \"failurecause\": \"asdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdf\",\r\n    \"repairsrequired\": \"qqqq q q q q q q q q q q q q wewewewew\",\r\n    \"labourperhour\": 0,\r\n    \"partstotal\": 0,\r\n    \"labourtotal\": 0,\r\n    \"claimtotal\": 0,\r\n    \"payvat\": true,\r\n    \"adjustedclaim\": 0,\r\n    \"policyid\": 18192,\r\n    \"dateclaim\": \"2019-09-03T16:00:00.000Z\",\r\n    \"claimdateseconds\": \"3650444337\",\r\n    \"claimnumber\": \"AUCLM3359\",\r\n    \"state\": 24,\r\n    \"calculatedtotal\": 0,\r\n    \"claimvatamt\": 0,\r\n    \"claimsvatcent\": 20,\r\n    \"notes\": \"\",\r\n    \"claimnotifyemail\": \"none@gmail.co.uk\",\r\n    \"paiddate\": null,\r\n    \"lastservicedates\": \"\",\r\n    \"faultdiagnosed\": false,\r\n    \"confirmedwarrantyclaim\": false,\r\n    \"advicedtodiagnosefault\": true,\r\n    \"advicedtosenddiagnostic\": \"False\",\r\n    \"hasbooklet\": \"False\",\r\n    \"repairinggarage\": \"\",\r\n    \"adminresponded\": null,\r\n    \"represponded\": null,\r\n    \"adminrespondtime\": null\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/claim/4487",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"claim",
+								"4487"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
 			"name": "Register",
 			"request": {
 				"method": "POST",

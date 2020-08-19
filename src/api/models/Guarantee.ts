@@ -1,0 +1,93 @@
+import { PrimaryGeneratedColumn, Column, Entity } from 'typeorm';
+
+@Entity('guarantee')
+export class Guarantee {
+
+    @PrimaryGeneratedColumn()
+    public guaranteeid: number;
+
+    @Column({
+        nullable: true,
+    })
+    public startdate: Date;
+
+    @Column({
+        nullable: true,
+    })
+    public covertype: string;
+
+    @Column({
+        nullable: true,
+    })
+    public vehiclecategory: string;
+
+    @Column({
+        nullable: true,
+    })
+    public durationid: number;
+
+    @Column({
+        nullable: true,
+    })
+    public mileageband: number;
+
+    @Column({
+        nullable: true,
+    })
+    public dpfs: boolean;
+
+    @Column({
+        nullable: true,
+    })
+    public higherlabourrate: boolean;
+
+    @Column({
+        nullable: true,
+    })
+    public weartear: boolean;
+
+    @Column({
+        nullable: true,
+    })
+    public egrvalves: boolean;
+
+    @Column({
+        nullable: true,
+    })
+    public catalyticconverter: boolean;
+
+    @Column({
+        nullable: true,
+    })
+    public retailprice: number;
+
+    @Column({
+        nullable: true,
+    })
+    public policynumber: string;
+
+    @Column({
+        nullable: true,
+    })
+    public claimlimitamount: number;
+
+    @Column({
+        nullable: true,
+    })
+    public claimlimitid: number;
+
+    @Column({
+        nullable: true,
+    })
+    public coverid: number;
+
+    @Column({
+        nullable: true,
+    })
+    public startdateseconds: number;
+
+    @Column({
+        nullable: true,
+    })
+    public policyidguarantee: number;
+}

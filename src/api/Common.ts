@@ -88,4 +88,7 @@ export class ResponseMessage {
 
     // vehicle status comment
     public static readonly NOT_FOUND_VEHICLE = 'Not found vehicle';
+
+    // guarantee status comment
+    public static readonly NOT_FOUND_GUARANTEE = 'Not found guarantee';
 }

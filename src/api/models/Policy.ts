@@ -3,6 +3,7 @@ import { IsOptional } from 'class-validator';
 import { User } from './User';
 import { State } from './State';
 import { CoverType } from './CoverType';
+import { Vehicle } from './Vehicle';
 
 @Entity('policy')
 export class Policy {
@@ -59,6 +60,11 @@ export class Policy {
         nullable: true,
     })
     public policynumber: string;
+
+    @OneToOne(type => Vehicle, entity => entity.policynumber)
+    @JoinColumn({ name: 'policynumber', referencedColumnName: 'policynumber'})
+    @IsOptional()
+    public vehicle?: Vehicle;
 
     @Column({
         nullable: true,

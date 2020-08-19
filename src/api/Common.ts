@@ -85,4 +85,7 @@ export class ResponseMessage {
 
     // state status comment
     public static readonly NOT_FOUND_STATE = 'Not found state';
+
+    // vehicle status comment
+    public static readonly NOT_FOUND_VEHICLE = 'Not found vehicle';
 }

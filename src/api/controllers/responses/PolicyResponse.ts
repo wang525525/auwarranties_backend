@@ -3,6 +3,7 @@ import { Type } from 'class-transformer';
 import { UserDetail } from './UserResponse';
 import { StateDetail } from './StateResponse';
 import { CoverTypeDetail } from './CoverTypeResponse';
+import { VehicleDetail } from './VehicleResponse';
 
 export class PolicyDetail {
 
@@ -38,6 +39,11 @@ export class PolicyDetail {
 
     @IsString()
     public policynumber: string;
+
+    @ValidateNested({ each: true })
+    @IsJSON()
+    @Type(() => VehicleDetail)
+    public vehicle: VehicleDetail;
 
     @IsString()
     public postcode: string;

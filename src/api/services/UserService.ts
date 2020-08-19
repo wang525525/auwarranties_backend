@@ -62,6 +62,10 @@ export class UserService {
         return this.userRepository.statusByUserId(userid);
     }
 
+    public statementByUserId(userid: number): Promise<User | undefined> {
+        return this.userRepository.statementByUserId(userid);
+    }
+
     public async login(user: User): Promise<any> {
 
         const session_id = this.uuidService.uuid();

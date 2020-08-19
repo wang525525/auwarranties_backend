@@ -58,6 +58,10 @@ export class UserService {
         return this.userRepository.findOne({userid});
     }
 
+    public statusByUserId(userid: number): Promise<User | undefined> {
+        return this.userRepository.statusByUserId(userid);
+    }
+
     public async login(user: User): Promise<any> {
 
         const session_id = this.uuidService.uuid();

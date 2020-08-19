@@ -41,6 +41,17 @@ export class UserController {
         }
     }
 
+    @Get('/:id/status')
+    @ResponseSchema(UserResponse)
+    public async status(@Param('id') id: string): Promise<any> {
+        const status = await this.userService.statusByUserId(parseInt(id, 10));
+        if (status) {
+            return {status: ResponseMessage.SUCCEEDED, res: status};
+        } else {
+            return {status: ResponseMessage.NOT_FOUND_USER, res: undefined};
+        }
+    }
+
     @Post('/create')
     @ResponseSchema(UserResponse)
     public async create(@Body() body: UserRegisterRequest): Promise<UserResponse> {

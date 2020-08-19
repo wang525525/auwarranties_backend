@@ -91,4 +91,7 @@ export class ResponseMessage {
 
     // guarantee status comment
     public static readonly NOT_FOUND_GUARANTEE = 'Not found guarantee';
+
+    // claim status comment
+    public static readonly NOT_FOUND_CLAIM = 'Not found claim';
 }

@@ -22,18 +22,29 @@ export class PolicyController {
         private policyService: PolicyService
     ) { }
 
-    @Get('')
+    @Get('/:branchid')
     @ResponseSchema(PolicysResponse)
-    public async find(): Promise<PolicysResponse> {
-        const policys = await this.policyService.findAll() as PolicyDetail[];
+    public async one(@Param('branchid') branchid: string): Promise<PolicysResponse> {
+        const policy = await this.policyService.findByUserId(parseInt(branchid, 10)) as PolicyDetail[];
+        if (policy) {
+            return {status: ResponseMessage.SUCCEEDED, res: policy};
+        } else {
+            return {status: ResponseMessage.NOT_FOUND_DURATION, res: undefined};
+        }
+    }
+
+    @Get('/all/:limit')
+    @ResponseSchema(PolicysResponse)
+    public async find(@Param('limit') limit: string): Promise<PolicysResponse> {
+        const policys = await this.policyService.findAll(parseInt(limit, 10)) as PolicyDetail[];
 
         return { status: ResponseMessage.SUCCEEDED, res: policys };
     }
 
-    @Get('/:branchid')
-    @ResponseSchema(PolicyResponse)
-    public async one(@Param('branchid') branchid: string): Promise<PolicyResponse> {
-        const policy = await this.policyService.findOneById(parseInt(branchid, 10)) as PolicyDetail;
+    @Get('/one/:id')
+    @ResponseSchema(PolicysResponse)
+    public async policyOne(@Param('id') id: string): Promise<PolicyResponse> {
+        const policy = await this.policyService.findOneById(parseInt(id, 10)) as PolicyDetail;
         if (policy) {
             return {status: ResponseMessage.SUCCEEDED, res: policy};
         } else {

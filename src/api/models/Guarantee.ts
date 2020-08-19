@@ -1,4 +1,6 @@
-import { PrimaryGeneratedColumn, Column, Entity } from 'typeorm';
+import { PrimaryGeneratedColumn, Column, Entity, OneToOne, JoinColumn } from 'typeorm';
+import { IsOptional } from 'class-validator';
+import { Duration } from './Duration';
 
 @Entity('guarantee')
 export class Guarantee {
@@ -25,6 +27,11 @@ export class Guarantee {
         nullable: true,
     })
     public durationid: number;
+
+    @OneToOne(type => Duration, entity => entity.durationid)
+    @JoinColumn({ name: 'durationid', referencedColumnName: 'durationid'})
+    @IsOptional()
+    public duration?: Duration;
 
     @Column({
         nullable: true,

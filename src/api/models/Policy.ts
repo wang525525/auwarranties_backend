@@ -4,6 +4,7 @@ import { User } from './User';
 import { State } from './State';
 import { CoverType } from './CoverType';
 import { Vehicle } from './Vehicle';
+import { Guarantee } from './Guarantee';
 
 @Entity('policy')
 export class Policy {
@@ -65,6 +66,11 @@ export class Policy {
     @JoinColumn({ name: 'policynumber', referencedColumnName: 'policynumber'})
     @IsOptional()
     public vehicle?: Vehicle;
+
+    @OneToOne(type => Guarantee, entity => entity.policynumber)
+    @JoinColumn({ name: 'policynumber', referencedColumnName: 'policynumber'})
+    @IsOptional()
+    public guarantee?: Guarantee;
 
     @Column({
         nullable: true,

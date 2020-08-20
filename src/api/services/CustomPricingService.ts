@@ -3,14 +3,15 @@ import { OrmRepository } from 'typeorm-typedi-extensions';
 
 import { Logger, LoggerInterface } from '../../decorators/Logger';
 // import { CustomPricing } from '../models/CustomPricing';
-import { CustomPricingRepository } from '../repositories/CustomPricingRepository';
-import { CustomPricing } from '../models/CustomPricing';
+import { CustomPricingRepository, CustomPricingRulesRepository } from '../repositories/CustomPricingRepository';
+import { CustomPricing, CustomPricingRules } from '../models/CustomPricing';
 
 @Service()
 export class CustomPricingService {
 
     constructor(
         @OrmRepository() private customPricingRepository: CustomPricingRepository,
+        @OrmRepository() private customPricingRulesRepository: CustomPricingRulesRepository,
         @Logger(__filename) private log: LoggerInterface
     ) { }
 
@@ -39,6 +40,19 @@ export class CustomPricingService {
     public async delete(dealerid: number): Promise<void> {
         this.log.info('Delete a customPricing');
         await this.customPricingRepository.delete({dealerid});
+        return;
+    }
+
+    public async updateRules(customPricingRules: CustomPricingRules[]): Promise<CustomPricingRules[]> {
+        this.log.info('Update a customPricingRules =>');
+        const updateCustomPricings = await this.customPricingRulesRepository.save(customPricingRules);
+
+        return updateCustomPricings;
+    }
+
+    public async deleteRules(dealerid: number): Promise<void> {
+        this.log.info('Delete a customPricingRules');
+        await this.customPricingRulesRepository.delete({dealerid});
         return;
     }
 }

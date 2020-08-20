@@ -1,6 +1,6 @@
 import { EntityRepository, Repository } from 'typeorm';
 
-import { CustomPricing } from '../models/CustomPricing';
+import { CustomPricing, CustomPricingRules } from '../models/CustomPricing';
 
 @EntityRepository(CustomPricing)
 export class CustomPricingRepository extends Repository<CustomPricing>  {
@@ -20,5 +20,10 @@ export class CustomPricingRepository extends Repository<CustomPricing>  {
     public findCustomPricingByUserId(userid: number): Promise<any> {
         return this.query(`select * from custompricing where dealerid = ${userid}`);
     }
+
+}
+
+@EntityRepository(CustomPricingRules)
+export class CustomPricingRulesRepository extends Repository<CustomPricingRules>  {
 
 }

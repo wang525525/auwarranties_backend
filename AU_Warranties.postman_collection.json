@@ -3939,6 +3939,236 @@
 			"protocolProfileBehavior": {}
 		},
 		{
+			"name": "CustomPricing",
+			"item": [
+				{
+					"name": "CustomPricingRuleByUserId",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNkYXJiYXIiLCJwYXNzd29yZCI6IkFVMTIzISIsInNlc3Npb25faWQiOiIzMGY2NmY4Mi03YzgwLTQ1NmUtOWRhMS1jZTY4ODgxZjNiNTYiLCJpYXQiOjE1OTcxNTI0MDh9.CIZUqBAnEf7ym3SXFZr-4J9sFASmoJRt4qtXAEcs_Jo"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/api/custompricing/rule/23",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"custompricing",
+								"rule",
+								"23"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CustomPricingMatrixByUserId",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNkYXJiYXIiLCJwYXNzd29yZCI6IkFVMTIzISIsInNlc3Npb25faWQiOiIzMGY2NmY4Mi03YzgwLTQ1NmUtOWRhMS1jZTY4ODgxZjNiNTYiLCJpYXQiOjE1OTcxNTI0MDh9.CIZUqBAnEf7ym3SXFZr-4J9sFASmoJRt4qtXAEcs_Jo"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/api/custompricing/matrix/23",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"custompricing",
+								"matrix",
+								"23"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create / Update CustomPricing",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNkYXJiYXIiLCJwYXNzd29yZCI6IkFVMTIzISIsInNlc3Npb25faWQiOiIzMGY2NmY4Mi03YzgwLTQ1NmUtOWRhMS1jZTY4ODgxZjNiNTYiLCJpYXQiOjE1OTcxNTI0MDh9.CIZUqBAnEf7ym3SXFZr-4J9sFASmoJRt4qtXAEcs_Jo"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n    {\r\n        \"custompriceid\": 18,\r\n        \"coverid\": 12,\r\n        \"dealerid\": 23,\r\n        \"durationtype\": \"Months\",\r\n        \"durationvalue\": 9,\r\n        \"coveramt\": 888\r\n    },\r\n    {\r\n        \"custompriceid\": 21,\r\n        \"coverid\": 12,\r\n        \"dealerid\": 23,\r\n        \"durationtype\": \"Months\",\r\n        \"durationvalue\": 9,\r\n        \"coveramt\": 7878\r\n    }\r\n]"
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/custompricing/save",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"custompricing",
+								"save"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete CustomPricing",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNkYXJiYXIiLCJwYXNzd29yZCI6IkFVMTIzISIsInNlc3Npb25faWQiOiIzMGY2NmY4Mi03YzgwLTQ1NmUtOWRhMS1jZTY4ODgxZjNiNTYiLCJpYXQiOjE1OTcxNTI0MDh9.CIZUqBAnEf7ym3SXFZr-4J9sFASmoJRt4qtXAEcs_Jo"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n    {\r\n        \"custompriceid\": 18,\r\n        \"coverid\": 12,\r\n        \"dealerid\": 23,\r\n        \"durationtype\": \"Months\",\r\n        \"durationvalue\": 9,\r\n        \"coveramt\": 888\r\n    },\r\n    {\r\n        \"custompriceid\": 21,\r\n        \"coverid\": 12,\r\n        \"dealerid\": 23,\r\n        \"durationtype\": \"Months\",\r\n        \"durationvalue\": 9,\r\n        \"coveramt\": 7878\r\n    }\r\n]"
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/custompricing/23",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"custompricing",
+								"23"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create / Update CustomPricingRules",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNkYXJiYXIiLCJwYXNzd29yZCI6IkFVMTIzISIsInNlc3Npb25faWQiOiIzMGY2NmY4Mi03YzgwLTQ1NmUtOWRhMS1jZTY4ODgxZjNiNTYiLCJpYXQiOjE1OTcxNTI0MDh9.CIZUqBAnEf7ym3SXFZr-4J9sFASmoJRt4qtXAEcs_Jo"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n    {\r\n        \"custompricingruleid\": 132,\r\n        \"dealerid\": 23,\r\n        \"settingtype\": 0,\r\n        \"settingchecked\": true,\r\n        \"settingcondition\": 0,\r\n        \"settingval\": 2,\r\n        \"settingrule\": 2,\r\n        \"settingruleval\": 30\r\n    },\r\n    {\r\n        \"custompricingruleid\": 133,\r\n        \"dealerid\": 23,\r\n        \"settingtype\": 1,\r\n        \"settingchecked\": true,\r\n        \"settingcondition\": 0,\r\n        \"settingval\": 2,\r\n        \"settingrule\": 2,\r\n        \"settingruleval\": 440\r\n    }\r\n]"
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/custompricing/rules/save",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"custompricing",
+								"rules",
+								"save"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteCustomPricingRules",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNkYXJiYXIiLCJwYXNzd29yZCI6IkFVMTIzISIsInNlc3Npb25faWQiOiIzMGY2NmY4Mi03YzgwLTQ1NmUtOWRhMS1jZTY4ODgxZjNiNTYiLCJpYXQiOjE1OTcxNTI0MDh9.CIZUqBAnEf7ym3SXFZr-4J9sFASmoJRt4qtXAEcs_Jo"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n    {\r\n        \"custompricingruleid\": 132,\r\n        \"dealerid\": 23,\r\n        \"settingtype\": 0,\r\n        \"settingchecked\": true,\r\n        \"settingcondition\": 0,\r\n        \"settingval\": 2,\r\n        \"settingrule\": 2,\r\n        \"settingruleval\": 30\r\n    },\r\n    {\r\n        \"custompricingruleid\": 133,\r\n        \"dealerid\": 23,\r\n        \"settingtype\": 1,\r\n        \"settingchecked\": true,\r\n        \"settingcondition\": 0,\r\n        \"settingval\": 2,\r\n        \"settingrule\": 2,\r\n        \"settingruleval\": 440\r\n    }\r\n]"
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/custompricing/rules/23",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"custompricing",
+								"rules",
+								"23"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
 			"name": "Register",
 			"request": {
 				"method": "POST",

@@ -11,7 +11,7 @@ import { CustomPricingService } from '../services/CustomPricingService';
 import { ResponseMessage } from '../Common';
 import { GeneralResponse, StatusResponse } from './responses/CommonResponse';
 import { DurationService } from '../services/DurationService';
-import { CustomPricing } from '../models/CustomPricing';
+import { CustomPricing, CustomPricingRules } from '../models/CustomPricing';
 
 @Authorized()
 @JsonController('/custompricing')
@@ -98,4 +98,19 @@ export class CustomPricingController {
         return {status: ResponseMessage.SUCCEEDED };
     }
 
+    @Post('/rules/save')
+    @ResponseSchema(GeneralResponse)
+    public async saveRules(@Body() body: CustomPricingRules[]): Promise<GeneralResponse> {
+        const newCustomPricingRules = body as CustomPricingRules[];
+        const savedCustomPricingRules = await this.customPricingService.updateRules(newCustomPricingRules);
+
+        return {status: ResponseMessage.SUCCEEDED, res: savedCustomPricingRules};
+    }
+
+    @Delete('/rules/:dealerid')
+    @ResponseSchema(StatusResponse)
+    public async deleteRules(@Param('dealerid') dealerid: string): Promise<StatusResponse> {
+        await this.customPricingService.deleteRules(parseInt(dealerid, 10));
+        return {status: ResponseMessage.SUCCEEDED };
+    }
 }

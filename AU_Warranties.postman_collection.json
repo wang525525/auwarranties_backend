@@ -2841,7 +2841,7 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:3000/api/policy",
+							"raw": "http://localhost:3000/api/policy/all/250",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -2849,7 +2849,9 @@
 							"port": "3000",
 							"path": [
 								"api",
-								"policy"
+								"policy",
+								"all",
+								"250"
 							]
 						}
 					},

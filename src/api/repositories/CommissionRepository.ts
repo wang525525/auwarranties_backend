@@ -12,6 +12,7 @@ export class CommissionRepository extends Repository<CommissionRules>  {
     public groupAssociatsByUserId(userid: number): Promise<any> {
         const query = `\
             SELECT companyname, users.userid, groupassociation.groupid, \
+            (select comruleid from commissionrules where accountid = ${userid} and dealerid = users.userid) as comruleid, \
             coalesce((select distinct(commissionpaytype) from commissionrules where accountid = ${userid} and dealerid = users.userid), \
                 coalesce(k.commissionpaid, 0)) as commissionpaytype, \
             coalesce((select distinct(commissiontype) from commissionrules where accountid = ${userid} and dealerid = users.userid), \
@@ -34,6 +35,94 @@ export class CommissionRepository extends Repository<CommissionRules>  {
             where userid = ${userid}) k \
             where groupassociation.accountid = ${userid} and groupassociation.groupid = groupmembers.groupid and \
                 groupmembers.dealerid = users.userid order by companyname`;
+        return this.query(query);
+    }
+
+    // the value of "Invoice Paid" is 0.
+    public paidInvoice(fromDate: string, toDate: string, accountId: number): Promise<any> {
+        const query = `\
+            SELECT USERS.COMPANYNAME,  K.DEALERID, SUM(NETT) AS TOTAL, \
+            SUM(K.COMMISSION) AS COMMISSION FROM \
+            (SELECT INVOICES.INVOICEID, INVOICES.INVOICENUMBER, INVOICES.DEALERID AS DEALERID, POLICYID, POLICYCOMMISSIONTYPE, NETT, \
+                CASE  \
+                WHEN (policycommissiontype = 1) THEN (nett * (policycommissioncent / 100))  \
+                WHEN (policycommissiontype = 2) THEN (policycommissionamt) \
+                END AS COMMISSION \
+            FROM POLICY, INVOICES \
+            WHERE POLICY.INVOICEID = INVOICES.INVOICEID AND POLICYCOMMISSIONACCOUNT = ${accountId} \
+                AND POLICYCOMMISSIONPAYTYPE = 0 AND INVOICES.STATE = 10 \
+                AND INVOICES.PAIDDATE BETWEEN '${fromDate}' AND '${toDate}' \
+            ) K \
+            LEFT JOIN USERS ON K.DEALERID = USERS.USERID \
+            WHERE COMMISSION > 0 GROUP BY K.DEALERID , USERS.COMPANYNAME \
+            ORDER BY COMPANYNAME \
+        `;
+        return this.query(query);
+    }
+
+    // the value of policy invoiced is 1.
+    public productInvoiced(fromDate: string, toDate: string, accountId: number): Promise<any> {
+        const query = `\
+            SELECT USERS.COMPANYNAME,  K.DEALERID, SUM(NETT) AS TOTAL, \
+            SUM(K.COMMISSION) AS COMMISSION FROM \
+            (SELECT INVOICES.INVOICEID, INVOICES.INVOICENUMBER, INVOICES.DEALERID AS DEALERID, POLICYID, POLICYCOMMISSIONTYPE, NETT, \
+                CASE  \
+                WHEN (policycommissiontype = 1) THEN (nett * (policycommissioncent / 100))  \
+                WHEN (policycommissiontype = 2) THEN (policycommissionamt) \
+                END AS COMMISSION \
+            FROM POLICY, INVOICES \
+            WHERE POLICY.INVOICEID = INVOICES.INVOICEID AND POLICYCOMMISSIONACCOUNT = ${accountId} \
+                AND POLICYCOMMISSIONPAYTYPE = 1 \
+                AND INVOICES.INVOICEDATE BETWEEN '${fromDate}' AND '${toDate}' \
+            ) K \
+            LEFT JOIN USERS ON K.DEALERID = USERS.USERID \
+            WHERE COMMISSION > 0 GROUP BY K.DEALERID , USERS.COMPANYNAME \
+            ORDER BY COMPANYNAME \
+        `;
+        return this.query(query);
+    }
+
+    // the value of Product sold is 3.
+    public productSold(fromDate: string, toDate: string, accountId: number): Promise<any> {
+        const query = `\
+            SELECT USERS.COMPANYNAME,  K.DEALERID, SUM(NETT) AS TOTAL, \
+            SUM(K.COMMISSION) AS COMMISSION FROM \
+            (SELECT policy.branchid as DEALERID, POLICYID, POLICYCOMMISSIONTYPE, NETT, \
+                CASE  \
+                WHEN (policycommissiontype = 1) THEN (nett * (policycommissioncent / 100))  \
+                WHEN (policycommissiontype = 2) THEN (policycommissionamt) \
+                END AS COMMISSION \
+            FROM POLICY \
+            WHERE POLICYCOMMISSIONACCOUNT = ${accountId} \
+                AND POLICYCOMMISSIONPAYTYPE = 3 \
+                AND POLICY.DATEPOLICY BETWEEN '${fromDate}' AND '${toDate}' \
+            ) K \
+            LEFT JOIN USERS ON K.DEALERID = USERS.USERID \
+            WHERE COMMISSION > 0 GROUP BY K.DEALERID , USERS.COMPANYNAME \
+            ORDER BY COMPANYNAME \
+        `;
+        return this.query(query);
+    }
+
+    // the value of "Invoice Paid" is 0.
+    public potentialCommission(fromDate: string, toDate: string, accountId: number): Promise<any> {
+        const query = `\
+            SELECT USERS.COMPANYNAME,  K.DEALERID, SUM(NETT) AS TOTAL, \
+            SUM(K.COMMISSION) AS COMMISSION FROM \
+            (SELECT INVOICES.INVOICEID, INVOICES.INVOICENUMBER, INVOICES.DEALERID AS DEALERID, POLICYID, POLICYCOMMISSIONTYPE, NETT, \
+                CASE  \
+                WHEN (policycommissiontype = 1) THEN (nett * (policycommissioncent / 100))  \
+                WHEN (policycommissiontype = 2) THEN (policycommissionamt) \
+                END AS COMMISSION \
+            FROM POLICY, INVOICES \
+            WHERE POLICY.INVOICEID = INVOICES.INVOICEID AND POLICYCOMMISSIONACCOUNT = ${accountId} \
+                AND POLICYCOMMISSIONPAYTYPE = 0 \
+                AND INVOICES.INVOICEDATE BETWEEN '${fromDate}' AND '${toDate}' \
+            ) K \
+            LEFT JOIN USERS ON K.DEALERID = USERS.USERID \
+            WHERE COMMISSION > 0 GROUP BY K.DEALERID , USERS.COMPANYNAME \
+            ORDER BY COMPANYNAME \
+        `;
         return this.query(query);
     }
 }

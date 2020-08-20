@@ -30,4 +30,28 @@ export class CommissionService {
 
         return savedComRules;
     }
+
+    // Commission on Paid Invoices
+    public paidInvoice(fromDate: string, toDate: string, accountId: number): Promise<any> {
+        this.log.info('Find Commission on Paid Invoices');
+        return this.commissionRepository.paidInvoice(fromDate, toDate, accountId);
+    }
+
+    // Commission on Invoiced Products
+    public productInvoiced(fromDate: string, toDate: string, accountId: number): Promise<any> {
+        this.log.info('Find Commission on Invoiced Products');
+        return this.commissionRepository.productInvoiced(fromDate, toDate, accountId);
+    }
+
+    // Commission on Sold Products
+    public productSold(fromDate: string, toDate: string, accountId: number): Promise<any> {
+        this.log.info('Find Commission on Sold Products');
+        return this.commissionRepository.productSold(fromDate, toDate, accountId);
+    }
+
+    // Potential commission
+    public potentialCommission(fromDate: string, toDate: string, accountId: number): Promise<any> {
+        this.log.info('Find Potential commission');
+        return this.commissionRepository.potentialCommission(fromDate, toDate, accountId);
+    }
 }

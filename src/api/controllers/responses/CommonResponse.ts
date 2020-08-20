@@ -6,3 +6,12 @@ export class StatusResponse {
     public status: string;
 
 }
+
+export class GeneralResponse {
+
+    @IsString()
+    public status: string;
+
+    public res: any;
+
+}

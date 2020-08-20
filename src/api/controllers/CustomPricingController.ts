@@ -1,6 +1,6 @@
 
 import {
-    Authorized, Get, JsonController, Param
+    Authorized, Get, JsonController, Param, Post, Body, Delete
 } from 'routing-controllers';
 import { OpenAPI, ResponseSchema } from 'routing-controllers-openapi';
 
@@ -9,8 +9,9 @@ import { OpenAPI, ResponseSchema } from 'routing-controllers-openapi';
 import { CustomPricingService } from '../services/CustomPricingService';
 
 import { ResponseMessage } from '../Common';
-import { GeneralResponse } from './responses/CommonResponse';
+import { GeneralResponse, StatusResponse } from './responses/CommonResponse';
 import { DurationService } from '../services/DurationService';
+import { CustomPricing } from '../models/CustomPricing';
 
 @Authorized()
 @JsonController('/custompricing')
@@ -81,54 +82,20 @@ export class CustomPricingController {
         }
     }
 
-    // @Get('/:id')
-    // @ResponseSchema(CustomPricingResponse)
-    // public async one(@Param('id') id: string): Promise<CustomPricingResponse> {
-    //     const CustomPricing = await this.customPricingService.findOneById(parseInt(id, 10)) as CustomPricingDetail;
-    //     if (CustomPricing) {
-    //         return {status: ResponseMessage.SUCCEEDED, res: CustomPricing};
-    //     } else {
-    //         return {status: ResponseMessage.NOT_FOUND_DURATION, res: undefined};
-    //     }
-    // }
+    @Post('/save')
+    @ResponseSchema(GeneralResponse)
+    public async create(@Body() body: CustomPricing[]): Promise<GeneralResponse> {
+        const newCustomPricings = body as CustomPricing[];
+        const savedCustomPricing = await this.customPricingService.update(newCustomPricings);
 
-    // @Post('/create')
-    // @ResponseSchema(CustomPricingResponse)
-    // public async create(@Body() body: CustomPricingRegisterRequest): Promise<CustomPricingResponse> {
-    //     let newCustomPricing = new CustomPricing();
-    //     newCustomPricing = body as CustomPricing;
-    //     const createdCustomPricing = await this.customPricingService.create(newCustomPricing) as CustomPricingDetail;
+        return {status: ResponseMessage.SUCCEEDED, res: savedCustomPricing};
+    }
 
-    //     return {status: ResponseMessage.SUCCEEDED, res: createdCustomPricing};
-    // }
-
-    // @Post('/update')
-    // @ResponseSchema(CustomPricingResponse)
-    // public async update(@Body() body: CustomPricingUpdateRequest): Promise<CustomPricingResponse> {
-    //     const CustomPricing = await this.customPricingService.findOneById(body.CustomPricingid);
-
-    //     if (CustomPricing) {
-    //         let updateCustomPricing = new CustomPricing();
-    //         updateCustomPricing = body as CustomPricing;
-    //         const updatedCustomPricing = await this.customPricingService.update(updateCustomPricing) as CustomPricingDetail;
-
-    //         return {status: ResponseMessage.SUCCEEDED, res: updatedCustomPricing };
-    //     } else {
-    //         return {status: ResponseMessage.NOT_FOUND_DURATION, res: undefined};
-    //     }
-    // }
-
-    // @Delete('/:id')
-    // @ResponseSchema(StatusResponse)
-    // public async delete(@Param('id') id: string): Promise<StatusResponse> {
-    //     const CustomPricingId = parseInt(id, 10);
-    //     const CustomPricing = await this.customPricingService.findOneById(CustomPricingId);
-    //     if (CustomPricing) {
-    //         await this.customPricingService.delete(CustomPricingId);
-    //         return {status: ResponseMessage.SUCCEEDED };
-    //     } else {
-    //         return {status: ResponseMessage.NOT_FOUND_DURATION };
-    //     }
-    // }
+    @Delete('/:dealerid')
+    @ResponseSchema(StatusResponse)
+    public async delete(@Param('dealerid') dealerid: string): Promise<StatusResponse> {
+        await this.customPricingService.delete(parseInt(dealerid, 10));
+        return {status: ResponseMessage.SUCCEEDED };
+    }
 
 }

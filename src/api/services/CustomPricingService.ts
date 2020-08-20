@@ -4,6 +4,7 @@ import { OrmRepository } from 'typeorm-typedi-extensions';
 import { Logger, LoggerInterface } from '../../decorators/Logger';
 // import { CustomPricing } from '../models/CustomPricing';
 import { CustomPricingRepository } from '../repositories/CustomPricingRepository';
+import { CustomPricing } from '../models/CustomPricing';
 
 @Service()
 export class CustomPricingService {
@@ -28,34 +29,16 @@ export class CustomPricingService {
         return this.customPricingRepository.findCustomPricingByUserId(userid);
     }
 
-    // public find(): Promise<CustomPricing[]> {
-    //     this.log.info('Find all customPricings');
-    //     return this.customPricingRepository.find();
-    // }
+    public async update(customPricings: CustomPricing[]): Promise<CustomPricing[]> {
+        this.log.info('Update a customPricing =>');
+        const updateCustomPricings = await this.customPricingRepository.save(customPricings);
 
-    // public async create(customPricing: CustomPricing): Promise<CustomPricing> {
-    //     this.log.info('Create a new customPricing => ');
+        return updateCustomPricings;
+    }
 
-    //     const newCustomPricing = await this.customPricingRepository.save(customPricing);
-
-    //     return newCustomPricing;
-    // }
-
-    // public async update(customPricing: CustomPricing): Promise<CustomPricing> {
-    //     this.log.info('Update a customPricing =>');
-
-    //     const updateCustomPricing = await this.customPricingRepository.save(customPricing);
-
-    //     return updateCustomPricing;
-    // }
-
-    // public findOneById(customPricingid: number): Promise<CustomPricing | undefined> {
-    //     return this.customPricingRepository.findOne({customPricingid});
-    // }
-
-    // public async delete(customPricingid: number): Promise<void> {
-    //     this.log.info('Delete a customPricing');
-    //     await this.customPricingRepository.delete(customPricingid);
-    //     return;
-    // }
+    public async delete(dealerid: number): Promise<void> {
+        this.log.info('Delete a customPricing');
+        await this.customPricingRepository.delete({dealerid});
+        return;
+    }
 }

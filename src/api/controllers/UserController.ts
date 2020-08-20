@@ -57,6 +57,18 @@ export class UserController {
     public async statement(@Param('id') id: string): Promise<any> {
         const statement = await this.userService.statementByUserId(parseInt(id, 10));
         if (statement) {
+
+            if (statement && statement.length > 0) {
+                let balance = 0;
+                statement.map(item => {
+                    if (item.transtype === 'IN') {
+                        balance = balance + item.amount;
+                    } else {
+                        balance = balance - item.amount;
+                    }
+                    item.balance = balance;
+                });
+            }
             return {status: ResponseMessage.SUCCEEDED, res: statement};
         } else {
             return {status: ResponseMessage.NOT_FOUND_USER, res: undefined};

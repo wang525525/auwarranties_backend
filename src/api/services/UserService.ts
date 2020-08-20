@@ -62,7 +62,7 @@ export class UserService {
         return this.userRepository.statusByUserId(userid);
     }
 
-    public statementByUserId(userid: number): Promise<User | undefined> {
+    public statementByUserId(userid: number): Promise<any | undefined> {
         return this.userRepository.statementByUserId(userid);
     }
 

@@ -100,4 +100,7 @@ export class ResponseMessage {
 
     // custom pricing status comment
     public static readonly NOT_FOUND_CUSTOM_PRICING = 'Not found custom pricing';
+
+    // fuel type status comment
+    public static readonly NOT_FOUND_FUELTYPE = 'Not found fueltype';
 }

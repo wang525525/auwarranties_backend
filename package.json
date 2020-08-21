@@ -58,6 +58,7 @@
     "glob": "^7.1.2",
     "graphql": "14.0.2",
     "helmet": "^3.9.0",
+    "html-pdf": "^2.2.0",
     "jsonfile": "5.0.0",
     "jsonwebtoken": "^8.5.1",
     "microframework-w3tec": "^0.6.3",

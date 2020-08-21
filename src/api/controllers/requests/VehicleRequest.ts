@@ -51,6 +51,12 @@ export class VehicleRegisterRequest {
     public regdate: number;
 
     @IsString()
+    public purchasedateDate: string;
+
+    @IsString()
+    public regdateDate: string;
+
+    @IsString()
     public policynumber: string;
 
     @IsString()

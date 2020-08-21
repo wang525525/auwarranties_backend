@@ -1,4 +1,4 @@
-import { IsString, IsNumber, IsArray, IsBoolean, IsJSON, ValidateNested } from 'class-validator';
+import { IsString, IsNumber, IsArray, IsBoolean, IsJSON, ValidateNested, IsDate } from 'class-validator';
 import { Type } from 'class-transformer';
 
 export class VehicleDetail {
@@ -51,8 +51,14 @@ export class VehicleDetail {
     @IsNumber()
     public purchasedate: number;
 
+    @IsDate()
+    public purchasedateDate: Date;
+
     @IsNumber()
     public regdate: number;
+
+    @IsDate()
+    public regdateDate: Date;
 
     @IsString()
     public policynumber: string;

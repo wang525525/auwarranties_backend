@@ -1,10 +1,12 @@
 import { PrimaryGeneratedColumn, Column, Entity } from 'typeorm';
+import { IsOptional } from 'class-validator';
 
 @Entity('vehicle')
 export class Vehicle {
 
     @PrimaryGeneratedColumn()
-    public vehicleid: number;
+    @IsOptional()
+    public vehicleid?: number;
 
     @Column({
         nullable: true,

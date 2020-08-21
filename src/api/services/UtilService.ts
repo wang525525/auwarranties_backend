@@ -21,6 +21,29 @@ const utilService = {
         return data;
     },
 
+    // custom timestamp used for only this app.
+    convertTimestampToDate: (timestamp: number): Date => {
+        if (timestamp) {
+            const date = new Date(1904, 0, 1);
+            date.setSeconds(timestamp);
+
+            return date;
+        }
+        return undefined;
+    },
+
+    // custom timestamp used for only this app.
+    convertDateToTimestamp: (date: string): number => {
+        if (date) {
+            const epochDate = new Date(1904, 0, 1);
+            const toDate = new Date(date);
+            const seconds = toDate.getTime() / 1000 - epochDate.getTime() / 1000;
+
+            return seconds;
+        }
+        return undefined;
+    },
+
 };
 
 export default utilService;

@@ -36,10 +36,8 @@ export class VehicleController {
     public async one(@Param('id') id: string): Promise<VehicleResponse> {
         const vehicle = await this.vehicleService.findOneById(parseInt(id, 10)) as VehicleDetail;
         if (vehicle) {
-            if (vehicle.purchasedate) {
-                vehicle.purchasedateDate = utilService.convertTimestampToDate(vehicle.purchasedate);
-                vehicle.regdateDate = utilService.convertTimestampToDate(vehicle.regdate);
-            }
+            vehicle.purchasedateDate = utilService.convertTimestampToDate(vehicle.purchasedate);
+            vehicle.regdateDate = utilService.convertTimestampToDate(vehicle.regdate);
             return {status: ResponseMessage.SUCCEEDED, res: vehicle};
         } else {
             return {status: ResponseMessage.NOT_FOUND_DURATION, res: undefined};

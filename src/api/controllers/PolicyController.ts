@@ -7,6 +7,7 @@ import { OpenAPI, ResponseSchema } from 'routing-controllers-openapi';
 import { Policy } from '../models/Policy';
 
 import { PolicyService } from '../services/PolicyService';
+import utilService from '../services/UtilService';
 
 import { ResponseMessage } from '../Common';
 import { PolicyRegisterRequest, PolicyUpdateRequest } from './requests/PolicyRequest';
@@ -46,6 +47,10 @@ export class PolicyController {
     public async policyOne(@Param('id') id: string): Promise<PolicyResponse> {
         const policy = await this.policyService.findOneById(parseInt(id, 10)) as PolicyDetail;
         if (policy) {
+            if (policy.vehicle) {
+                policy.vehicle.purchasedateDate = utilService.convertTimestampToDate(policy.vehicle.purchasedate);
+                policy.vehicle.regdateDate = utilService.convertTimestampToDate(policy.vehicle.regdate);
+            }
             return {status: ResponseMessage.SUCCEEDED, res: policy};
         } else {
             return {status: ResponseMessage.NOT_FOUND_DURATION, res: undefined};

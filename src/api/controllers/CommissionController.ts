@@ -35,6 +35,18 @@ export class UserController {
         return { status: ResponseMessage.SUCCEEDED, res: users };
     }
 
+    @Get('/paytype')
+    @ResponseSchema(GeneralResponse)
+    public async getPayType(): Promise<GeneralResponse> {
+        const paytype = await this.commissionService.getPayType();
+        const type = await this.commissionService.getType();
+        const res = {
+            paytype: paytype,
+            type: type,
+        };
+        return { status: ResponseMessage.SUCCEEDED, res: res };
+    }
+
     @Post('/save')
     @ResponseSchema(GeneralResponse)
     public async saveRules(@Body() body: CommissionRules): Promise<GeneralResponse> {

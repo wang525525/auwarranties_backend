@@ -9,6 +9,14 @@ export class CommissionRepository extends Repository<CommissionRules>  {
         return this.query(`select userid, companyname from users where userid in (select distinct(accountid) from groupassociation) order by companyname`);
     }
 
+    public getPayType(): Promise<any> {
+        return this.query(`select * from commissionpaytype`);
+    }
+
+    public getType(): Promise<any> {
+        return this.query(`select * from commissiontype`);
+    }
+
     public groupAssociatsByUserId(userid: number): Promise<any> {
         const query = `\
             SELECT companyname, users.userid, groupassociation.groupid, \

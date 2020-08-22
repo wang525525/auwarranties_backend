@@ -23,6 +23,16 @@ export class CommissionService {
         return this.commissionRepository.groupAssociatsByUserId(commissionid);
     }
 
+    public getPayType(): Promise<any> {
+        this.log.info('Find commission pay type.');
+        return this.commissionRepository.getPayType();
+    }
+
+    public getType(): Promise<any> {
+        this.log.info('Find commission type.');
+        return this.commissionRepository.getType();
+    }
+
     public async save(commissionRules: CommissionRules): Promise<CommissionRules> {
         this.log.info('Save commission rules');
 

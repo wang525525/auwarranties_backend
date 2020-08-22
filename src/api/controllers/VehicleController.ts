@@ -62,6 +62,8 @@ export class VehicleController {
         const vehicle = await this.vehicleService.findOneById(body.vehicleid);
 
         if (vehicle) {
+            body.purchasedate = utilService.convertDateToTimestamp(body.purchasedateDate);
+            body.regdate = utilService.convertDateToTimestamp(body.regdateDate);
             let updateVehicle = new Vehicle();
             updateVehicle = body as Vehicle;
             const updatedVehicle = await this.vehicleService.update(updateVehicle) as VehicleDetail;

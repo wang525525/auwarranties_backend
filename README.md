@@ -124,7 +124,7 @@ yarn start serve
 ```
 
 > This starts a local server using `nodemon`, which will watch for any file changes and will restart the server according to these changes.
-> The server address will be displayed to you as `http://0.0.0.0:3000`.
+> The server address will be displayed to you as `http://0.0.0.0:5000`.
 
 ![divider](./w3tec-divider.png)
 
@@ -150,7 +150,7 @@ All script are defined in the `package-scripts.js` file, but the most important 
 ### Running in dev mode
 
 - Run `yarn start serve` to start nodemon with ts-node, to serve the app.
-- The server address will be displayed to you as `http://0.0.0.0:3000`
+- The server address will be displayed to you as `http://0.0.0.0:5000`
 
 ### Building the project and run it
 
@@ -457,7 +457,7 @@ docker build -t <your-image-name> .
 
 ### Run Docker image in container and map port
 
-The port which runs your application inside Docker container is either configured as `PORT` property in your `.env` configuration file or passed to Docker container via environment variable `PORT`. Default port is `3000`.
+The port which runs your application inside Docker container is either configured as `PORT` property in your `.env` configuration file or passed to Docker container via environment variable `PORT`. Default port is `5000`.
 
 #### Run image in detached mode
 

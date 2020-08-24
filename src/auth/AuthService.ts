@@ -5,7 +5,7 @@ import { OrmRepository } from 'typeorm-typedi-extensions';
 import { User } from '../api/models/User';
 import { UserRepository } from '../api/repositories/UserRepository';
 import { Logger, LoggerInterface } from '../decorators/Logger';
-import utilService from '../api/services/utilService';
+import utilService from '../api/services/UtilService';
 
 @Service()
 export class AuthService {

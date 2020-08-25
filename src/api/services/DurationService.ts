@@ -15,7 +15,7 @@ export class DurationService {
 
     public find(): Promise<Duration[]> {
         this.log.info('Find all durations');
-        return this.durationRepository.find();
+        return this.durationRepository.find({order: {durationvalue: 'ASC'}});
     }
 
     public async create(duration: Duration): Promise<Duration> {

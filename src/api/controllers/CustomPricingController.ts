@@ -29,7 +29,30 @@ export class CustomPricingController {
         const res = await this.customPricingService.findRuleByUserId(parseInt(userid, 10));
 
         if (res) {
-            return { status: ResponseMessage.SUCCEEDED, res: res };
+            const result = [];
+            // adding -1 value for non-existing fields.
+            for (let i = 0; i < 12; i++) {
+                let rule: any = undefined;
+                const idx = res.findIndex(item => {
+                    return parseInt(item.settingtype, 10) === i;
+                });
+                if (idx > -1) {
+                    rule = res[idx];
+                } else {
+                    rule = {
+                        custompricingruleid: -1,
+                        dealerid: parseInt(userid, 10),
+                        settingtype: i.toString(),
+                        settingchecked: false,
+                        settingcondition: -1,
+                        settingval: -1,
+                        settingrule: -1,
+                        settingruleval: -1,
+                    };
+                }
+                result.push(rule);
+            }
+            return { status: ResponseMessage.SUCCEEDED, res: result };
         } else {
             return {status: ResponseMessage.NOT_FOUND_CUSTOM_PRICING, res: undefined};
         }

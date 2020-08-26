@@ -101,7 +101,8 @@ export class ClaimRepository extends Repository<Claim>  {
                                      'claims.repairsrequired', 'claims.claimvatamt', 'claims.claimnotifyemail', 'claims.state',
                                      'policy.policyid', 'policy.dateseconds', 'policy.policynumber', 'policy.title', 'policy.forename', 'policy.surname',
                                      'policy.address1', 'policy.address2', 'policy.address3', 'policy.town', 'policy.postcode',
-                                     'vehicle.vehicleid', 'vehicle.regdate', 'vehicle.carmodel', 'vehicle.cartype', 'vehicle.fueltype', 'vehicle.carcolour',
+                                     'vehicle.vehicleid', 'vehicle.regdate', 'vehicle.carmake', 'vehicle.carmodel', 'vehicle.cartype', 'vehicle.fueltype',
+                                     'vehicle.carcolour',
                                      'covertype.coverid', 'covertype.covername',
                                      'purchaseduration.durationid', 'purchaseduration.durationvalue', 'purchaseduration.durationtype',
                                      'guarantee.guaranteeid', 'guarantee.claimlimitamount'])

@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "1565a3c8-6f49-46e2-be72-df73079d9fb2",
+		"_postman_id": "b5656178-6569-4dfc-abf0-a75ce3d2744f",
 		"name": "AU_Warranties",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -259,7 +259,8 @@
 					},
 					"response": []
 				}
-			]
+			],
+			"protocolProfileBehavior": {}
 		},
 		{
 			"name": "Pricing",
@@ -445,7 +446,8 @@
 					},
 					"response": []
 				}
-			]
+			],
+			"protocolProfileBehavior": {}
 		},
 		{
 			"name": "Setting",
@@ -631,7 +633,8 @@
 					},
 					"response": []
 				}
-			]
+			],
+			"protocolProfileBehavior": {}
 		},
 		{
 			"name": "Permission",
@@ -813,7 +816,8 @@
 					},
 					"response": []
 				}
-			]
+			],
+			"protocolProfileBehavior": {}
 		},
 		{
 			"name": "Payment",
@@ -1180,7 +1184,8 @@
 					},
 					"response": []
 				}
-			]
+			],
+			"protocolProfileBehavior": {}
 		},
 		{
 			"name": "Cover Type",
@@ -3039,6 +3044,87 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "PolicyByUserIdAndSearch",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNkYXJiYXIiLCJwYXNzd29yZCI6IkFVMTIzISIsInNlc3Npb25faWQiOiIzMGY2NmY4Mi03YzgwLTQ1NmUtOWRhMS1jZTY4ODgxZjNiNTYiLCJpYXQiOjE1OTcxNTI0MDh9.CIZUqBAnEf7ym3SXFZr-4J9sFASmoJRt4qtXAEcs_Jo"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:5000/api/policy/50?search=ee",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"policy",
+								"50"
+							],
+							"query": [
+								{
+									"key": "search",
+									"value": "ee"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PolicyAllBySearch",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNkYXJiYXIiLCJwYXNzd29yZCI6IkFVMTIzISIsInNlc3Npb25faWQiOiIzMGY2NmY4Mi03YzgwLTQ1NmUtOWRhMS1jZTY4ODgxZjNiNTYiLCJpYXQiOjE1OTcxNTI0MDh9.CIZUqBAnEf7ym3SXFZr-4J9sFASmoJRt4qtXAEcs_Jo"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:5000/api/policy/all/250?search=ee",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"policy",
+								"all",
+								"250"
+							],
+							"query": [
+								{
+									"key": "search",
+									"value": "ee"
+								}
+							]
+						}
+					},
+					"response": []
 				}
 			],
 			"protocolProfileBehavior": {}
@@ -4819,5 +4905,6 @@
 			},
 			"response": []
 		}
-	]
+	],
+	"protocolProfileBehavior": {}
 }

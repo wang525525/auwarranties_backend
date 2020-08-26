@@ -94,4 +94,11 @@ export class GroupService {
 
         return nonGroupUsers;
     }
+
+    public async findNonGroupMembersBySearch(search: string): Promise<User[] | undefined> {
+        this.log.info('find non group members by search');
+        const nonGroupUsers = await this.userRepository.findNonGroupMembersBySearch(search);
+
+        return nonGroupUsers;
+    }
 }

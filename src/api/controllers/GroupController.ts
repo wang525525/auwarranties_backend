@@ -1,6 +1,6 @@
 
 import {
-    Authorized, Get, Post, JsonController, Param, Body, Delete
+    Authorized, Get, Post, JsonController, Param, Body, Delete, QueryParam
 } from 'routing-controllers';
 import { OpenAPI, ResponseSchema } from 'routing-controllers-openapi';
 
@@ -132,9 +132,13 @@ export class GroupController {
 
     @Get('/none/members')
     @ResponseSchema(UsersResponse)
-    public async findNonGroupMembers(): Promise<UsersResponse> {
-        console.log('non group members in controller.=');
-        const nonGroupUsers = await this.groupService.findNonGroupMembers() as UserDetail[];
+    public async findNonGroupMembers(@QueryParam('search', {required: false}) search: string): Promise<UsersResponse> {
+        let nonGroupUsers;
+        if (search) {
+            nonGroupUsers = await this.groupService.findNonGroupMembersBySearch(search) as UserDetail[];
+        } else {
+            nonGroupUsers = await this.groupService.findNonGroupMembers() as UserDetail[];
+        }
 
         if (nonGroupUsers.length) {
             return { status: ResponseMessage.SUCCEEDED, res: nonGroupUsers };

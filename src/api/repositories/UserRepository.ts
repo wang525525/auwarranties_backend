@@ -22,12 +22,22 @@ export class UserRepository extends Repository<User>  {
     }
 
     /**
-     * Find users included to the groupmembers by groupid
+     * Find users not-included to the groupmembers by groupid
      */
     public findNonGroupMembers(): Promise<any> {
         return this.createQueryBuilder('users')
                             .select(['users.usertype', 'users.userid', 'users.companyname', 'users.town'])
                             .where('userid not in (select dealerid from groupmembers)')
+                            .getMany();
+    }
+
+    /**
+     * Find users not-included to the groupmembers by groupid
+     */
+    public findNonGroupMembersBySearch(search: string): Promise<any> {
+        return this.createQueryBuilder('users')
+                            .select(['users.usertype', 'users.userid', 'users.companyname', 'users.town'])
+                            .where(`userid not in (select dealerid from groupmembers) and (${this.searchText(search)})`)
                             .getMany();
     }
 

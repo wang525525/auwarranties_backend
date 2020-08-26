@@ -5,6 +5,22 @@ import { User } from '../models/User';
 @EntityRepository(User)
 export class UserRepository extends Repository<User>  {
 
+    public findBySearch(search: string): Promise<any> {
+        return this.createQueryBuilder('users')
+                            .where(this.searchText(search))
+                            .getMany();
+    }
+
+    public searchText(search: string): any {
+        return `\
+            companyname ilike '%${search}%' or username ilike '%${search}%' or email ilike '%${search}%' or \
+            address1 ilike '%${search}%' or address2 ilike '%${search}%' or address3 ilike '%${search}%' or \
+            county ilike '%${search}%' or town ilike '%${search}%' or postcode ilike '%${search}%' or \
+            firstname ilike '%${search}%' or lastname ilike '%${search}%' or phonelandline ilike '%${search}%' or \
+            phonemobile ilike '%${search}%' \
+        `;
+    }
+
     /**
      * Find users included to the groupmembers by groupid
      */

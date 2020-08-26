@@ -1,6 +1,6 @@
 
 import {
-    Authorized, Get, Post, JsonController, Param, Body, Delete
+    Authorized, Get, Post, JsonController, Param, Body, Delete, QueryParam
 } from 'routing-controllers';
 import { OpenAPI, ResponseSchema } from 'routing-controllers-openapi';
 
@@ -24,8 +24,13 @@ export class UserController {
 
     @Get('')
     @ResponseSchema(UsersResponse)
-    public async find(): Promise<UsersResponse> {
-        const users = await this.userService.find() as UserDetail[];
+    public async find(@QueryParam('search', {required: false}) search: string): Promise<UsersResponse> {
+        let users;
+        if (search) {
+            users = await this.userService.findBySearch(search) as UserDetail[];
+        } else {
+            users = await this.userService.find() as UserDetail[];
+        }
 
         return { status: ResponseMessage.SUCCEEDED, res: users };
     }

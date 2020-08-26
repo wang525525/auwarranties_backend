@@ -24,6 +24,11 @@ export class UserService {
         return this.userRepository.find();
     }
 
+    public findBySearch(search: string): Promise<User[]> {
+        this.log.info('Find all users by search');
+        return this.userRepository.findBySearch(search);
+    }
+
     public checkDuplicated(username: string): Promise<User | undefined> {
         this.log.info('check duplicated user.');
         // const role = UserRole.USER_CUSTOMER;

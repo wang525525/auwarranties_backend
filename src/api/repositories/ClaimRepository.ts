@@ -61,7 +61,7 @@ export class ClaimRepository extends Repository<Claim>  {
     public getSelectArrayForList(): any {
         return ['claims.claimid', 'claims.state', 'claims.adminresponded', 'claims.claimnumber', 'claims.dateclaim',
                 'claims.claimdateseconds', 'claims.failedpart', 'claims.failurecause', 'claims.repairsrequired',
-                'claims.claimtotal', 'claims.represponded',
+                'claims.claimtotal', 'claims.represponded', 'claims.paiddate',
                 'policy.policyid', 'policy.policynumber',
                 'users.companyname', 'users.userid',
                 'state.stateid', 'state.statename'];

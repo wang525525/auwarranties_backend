@@ -54,6 +54,9 @@ export class ClaimDetail {
     @IsNumber()
     public claimdateseconds: number;
 
+    @IsDate()
+    public claimdateDate: Date;
+
     @IsString()
     public claimnumber: string;
 

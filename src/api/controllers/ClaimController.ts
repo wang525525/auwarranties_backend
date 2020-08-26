@@ -12,6 +12,7 @@ import { ResponseMessage } from '../Common';
 import { ClaimRegisterRequest, ClaimUpdateRequest } from './requests/ClaimRequest';
 import { ClaimsResponse, ClaimResponse, ClaimDetail } from './responses/ClaimResponse';
 import { StatusResponse } from './responses/CommonResponse';
+import utilService from '../services/UtilService';
 
 @Authorized()
 @JsonController('/claim')
@@ -55,6 +56,8 @@ export class ClaimController {
     @ResponseSchema(ClaimResponse)
     public async policyOne(@Param('id') id: string): Promise<ClaimResponse> {
         const policy = await this.claimService.findOneById(parseInt(id, 10)) as ClaimDetail;
+        policy.claimdateDate = utilService.convertTimestampToDate(policy.claimdateseconds);
+
         if (policy) {
             return {status: ResponseMessage.SUCCEEDED, res: policy};
         } else {

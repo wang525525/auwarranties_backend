@@ -79,6 +79,8 @@ export class CustomPricingController {
                                 durationtype: durationitem.durationtype,
                                 durationvalue: durationitem.durationvalue,
                                 coveramt: undefined,
+                                dealerid: undefined,
+                                custompriceid: undefined,
                             };
                             const idx = pricing.findIndex(item => {
                                 return  item.durationtype === durationitem.durationtype &&
@@ -88,6 +90,8 @@ export class CustomPricingController {
 
                             if (idx > -1) {
                                 secondDuration.coveramt = pricing[idx].coveramt;
+                                secondDuration.dealerid = pricing[idx].dealerid;
+                                secondDuration.custompriceid = pricing[idx].custompriceid;
                             }
                             durationItems.push(secondDuration);
                         });

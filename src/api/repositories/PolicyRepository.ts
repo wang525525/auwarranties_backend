@@ -4,48 +4,68 @@ import { Policy } from '../models/Policy';
 
 @EntityRepository(Policy)
 export class PolicyRepository extends Repository<Policy>  {
+    public getBaseQuery(): any {
+        return this.createQueryBuilder('policy')
+                    .leftJoinAndSelect('policy.branchuser', 'users')
+                    .leftJoinAndSelect('policy.policystate', 'state')
+                    .leftJoinAndSelect('policy.cover', 'covertype')
+                    .leftJoinAndSelect('policy.vehicle', 'vehicle')
+                    .leftJoinAndSelect('policy.guarantee', 'guarantee')
+                    .leftJoinAndSelect('guarantee.duration', 'purchaseduration');
+    }
+
     /**
-     * Find All Pricing Address, 'address', 'user.addressId = address.id'
+     * Find All Policy by limit count
      */
     public findAll(limit: number): Promise<any> {
-        return this.createQueryBuilder('policy')
-                            .leftJoinAndSelect('policy.branchuser', 'users')
-                            .leftJoinAndSelect('policy.policystate', 'state')
-                            .leftJoinAndSelect('policy.cover', 'covertype')
-                            .leftJoinAndSelect('policy.vehicle', 'vehicle')
-                            .leftJoinAndSelect('policy.guarantee', 'guarantee')
-                            .leftJoinAndSelect('guarantee.duration', 'purchaseduration')
-                            .take(limit)
-                            .getMany();
+        return this.getBaseQuery().take(limit)
+                                  .getMany();
+    }
+
+    /**
+     * Find All Policy by search text and limit count
+     */
+    public findAllBySearch(limit: number, search: string): Promise<any> {
+        return this.getBaseQuery().where(this.searchText(search))
+                                  .take(limit)
+                                  .getMany();
     }
 
     /**
      * Find Policies By userid
      */
     public findByUserId(branchid: number): Promise<any> {
-        return this.createQueryBuilder('policy')
-                            .leftJoinAndSelect('policy.branchuser', 'users')
-                            .leftJoinAndSelect('policy.policystate', 'state')
-                            .leftJoinAndSelect('policy.cover', 'covertype')
-                            .leftJoinAndSelect('policy.vehicle', 'vehicle')
-                            .leftJoinAndSelect('policy.guarantee', 'guarantee')
-                            .leftJoinAndSelect('guarantee.duration', 'purchaseduration')
-                            .where(`branchid=${branchid}`)
+        return this.getBaseQuery().where(`branchid=${branchid}`)
                             .getMany();
+    }
+
+    /**
+     * Find Policies By userid and search text
+     */
+    public findByUserIdSearch(branchid: number, search: string): Promise<any> {
+        return this.getBaseQuery().where(`branchid=${branchid} and (${this.searchText(search)})`)
+                            .getMany();
+    }
+
+    public searchText(search: string): any {
+        return `\
+            policy.address1 ilike '%${search}%' or policy.address2 ilike '%${search}%' or policy.address3 ilike '%${search}%' or \
+            policy.company ilike '%${search}%' or policy.country ilike '%${search}%' or policy.email ilike '%${search}%' or \
+            policy.forename ilike '%${search}%' or policy.mobile ilike '%${search}%' or policy.policynumber ilike '%${search}%' or \
+            policy.postcode ilike '%${search}%' or policy.surname ilike '%${search}%' or policy.title ilike '%${search}%' or \
+            policy.town ilike '%${search}%' or \
+            vehicle.carmake ilike '%${search}%' or vehicle.carmodel ilike '%${search}%' or vehicle.cartype ilike '%${search}%' or \
+            vehicle.fueltype ilike '%${search}%' or vehicle.transmission ilike '%${search}%' or vehicle.vin ilike '%${search}%' or \
+            vehicle.extranum ilike '%${search}%' or \
+            guarantee.covertype ilike '%${search}%' or guarantee.vehiclecategory ilike '%${search}%' or \
+            purchaseduration.durationtype ilike '%${search}%'`;
     }
 
     /**
      * Find Policies By userid
      */
     public findOneById(id: number): Promise<any> {
-        return this.createQueryBuilder('policy')
-                            .leftJoinAndSelect('policy.branchuser', 'users')
-                            .leftJoinAndSelect('policy.policystate', 'state')
-                            .leftJoinAndSelect('policy.cover', 'covertype')
-                            .leftJoinAndSelect('policy.vehicle', 'vehicle')
-                            .leftJoinAndSelect('policy.guarantee', 'guarantee')
-                            .leftJoinAndSelect('guarantee.duration', 'purchaseduration')
-                            .where(`policyid=${id}`)
+        return this.getBaseQuery().where(`policyid=${id}`)
                             .getOne();
     }
 

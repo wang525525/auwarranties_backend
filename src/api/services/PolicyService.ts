@@ -18,6 +18,11 @@ export class PolicyService {
         return this.policyRepository.findAll(limit);
     }
 
+    public findAllBySearch(limit: number, search: string): Promise<Policy[]> {
+        this.log.info('Find all policys');
+        return this.policyRepository.findAllBySearch(limit, search);
+    }
+
     public async create(policy: Policy): Promise<Policy> {
         this.log.info('Create a new policy => ');
 
@@ -36,6 +41,10 @@ export class PolicyService {
 
     public findByUserId(branchid: number): Promise<Policy[]> {
         return this.policyRepository.findByUserId(branchid);
+    }
+
+    public findByUserIdSearch(branchid: number, search: string): Promise<Policy[]> {
+        return this.policyRepository.findByUserIdSearch(branchid, search);
     }
 
     public findOneById(policyid: number): Promise<Policy | undefined> {

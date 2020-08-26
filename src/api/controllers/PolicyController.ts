@@ -1,6 +1,6 @@
 
 import {
-    Authorized, Get, Post, JsonController, Param, Body, Delete
+    Authorized, Get, Post, JsonController, Param, Body, Delete, QueryParam
 } from 'routing-controllers';
 import { OpenAPI, ResponseSchema } from 'routing-controllers-openapi';
 
@@ -25,8 +25,13 @@ export class PolicyController {
 
     @Get('/:branchid')
     @ResponseSchema(PolicysResponse)
-    public async one(@Param('branchid') branchid: string): Promise<PolicysResponse> {
-        const policy = await this.policyService.findByUserId(parseInt(branchid, 10)) as PolicyDetail[];
+    public async one(@Param('branchid') branchid: string, @QueryParam('search', {required: false}) search: string): Promise<PolicysResponse> {
+        let policy;
+        if (search) {
+            policy = await this.policyService.findByUserIdSearch(parseInt(branchid, 10), search) as PolicyDetail[];
+        } else {
+            policy = await this.policyService.findByUserId(parseInt(branchid, 10)) as PolicyDetail[];
+        }
         if (policy) {
             return {status: ResponseMessage.SUCCEEDED, res: policy};
         } else {
@@ -36,8 +41,13 @@ export class PolicyController {
 
     @Get('/all/:limit')
     @ResponseSchema(PolicysResponse)
-    public async find(@Param('limit') limit: string): Promise<PolicysResponse> {
-        const policys = await this.policyService.findAll(parseInt(limit, 10)) as PolicyDetail[];
+    public async find(@Param('limit') limit: string, @QueryParam('search', {required: false}) search: string): Promise<PolicysResponse> {
+        let policys;
+        if (search) {
+            policys = await this.policyService.findAllBySearch(parseInt(limit, 10), search) as PolicyDetail[];
+        } else {
+            policys = await this.policyService.findAll(parseInt(limit, 10)) as PolicyDetail[];
+        }
 
         return { status: ResponseMessage.SUCCEEDED, res: policys };
     }

@@ -18,6 +18,11 @@ export class InvoiceService {
         return this.invoiceRepository.findAll(limit);
     }
 
+    public findAllBySearch(limit: number, search: string): Promise<Invoice[]> {
+        this.log.info('Find all invoices');
+        return this.invoiceRepository.findAllBySearch(limit, search);
+    }
+
     public async create(invoice: Invoice): Promise<Invoice> {
         this.log.info('Create a new invoice => ');
 
@@ -36,6 +41,10 @@ export class InvoiceService {
 
     public findByUserId(dealerid: number): Promise<Invoice[]> {
         return this.invoiceRepository.findByUserId(dealerid);
+    }
+
+    public findByUserIdSearch(dealerid: number, search: string): Promise<Invoice[]> {
+        return this.invoiceRepository.findByUserIdSearch(dealerid, search);
     }
 
     public findOneById(invoiceid: number): Promise<Invoice | undefined> {

@@ -1,6 +1,6 @@
 
 import {
-    Authorized, Get, Post, JsonController, Param, Body, Delete
+    Authorized, Get, Post, JsonController, Param, Body, Delete, QueryParam
 } from 'routing-controllers';
 import { OpenAPI, ResponseSchema } from 'routing-controllers-openapi';
 
@@ -24,8 +24,14 @@ export class InvoiceController {
 
     @Get('/:userid')
     @ResponseSchema(InvoicesResponse)
-    public async one(@Param('userid') userid: string): Promise<InvoicesResponse> {
-        const invoice = await this.invoiceService.findByUserId(parseInt(userid, 10)) as InvoiceDetail[];
+    public async one(@Param('userid') userid: string, @QueryParam('search', {required: false}) search: string): Promise<InvoicesResponse> {
+        let invoice;
+        if (search) {
+            invoice = await this.invoiceService.findByUserIdSearch(parseInt(userid, 10), search) as InvoiceDetail[];
+        } else {
+            invoice = await this.invoiceService.findByUserId(parseInt(userid, 10)) as InvoiceDetail[];
+        }
+
         if (invoice) {
             return {status: ResponseMessage.SUCCEEDED, res: invoice};
         } else {
@@ -35,8 +41,13 @@ export class InvoiceController {
 
     @Get('/all/:limit')
     @ResponseSchema(InvoicesResponse)
-    public async find(@Param('limit') limit: string): Promise<InvoicesResponse> {
-        const invoices = await this.invoiceService.findAll(parseInt(limit, 10)) as InvoiceDetail[];
+    public async find(@Param('limit') limit: string, @QueryParam('search', {required: false}) search: string): Promise<InvoicesResponse> {
+        let invoices;
+        if (search) {
+            invoices = await this.invoiceService.findAllBySearch(parseInt(limit, 10), search) as InvoiceDetail[];
+        } else {
+            invoices = await this.invoiceService.findAll(parseInt(limit, 10)) as InvoiceDetail[];
+        }
 
         return { status: ResponseMessage.SUCCEEDED, res: invoices };
     }

@@ -52,7 +52,7 @@ export class DownloadController {
     @Get('/docs/:filename')
     public async downloadDocument(@Param('filename') filename: string, @Res() response: Response): Promise<any> {
         const dir = path.dirname(require.main.filename);
-        const file = dir + '\\public\\docs\\' + filename;
+        const file = dir + '//public//docs//' + filename;
         await promisify<string, void>(response.download.bind(response))(file);
         return response;
     }

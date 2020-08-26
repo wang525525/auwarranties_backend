@@ -18,6 +18,11 @@ export class ClaimService {
         return this.claimRepository.findAll(limit);
     }
 
+    public findAllBySearch(limit: number, search: string): Promise<Claim[]> {
+        this.log.info('Find all claims');
+        return this.claimRepository.findAllBySearch(limit, search);
+    }
+
     public async create(claim: Claim): Promise<Claim> {
         this.log.info('Create a new claim => ');
 
@@ -36,6 +41,10 @@ export class ClaimService {
 
     public findByUserId(branchid: number): Promise<Claim[]> {
         return this.claimRepository.findByUserId(branchid);
+    }
+
+    public findByUserIdSearch(branchid: number, search: string): Promise<Claim[]> {
+        return this.claimRepository.findByUserIdSearch(branchid, search);
     }
 
     public findOneById(claimid: number): Promise<Claim | undefined> {

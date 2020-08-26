@@ -5,19 +5,22 @@ import { Claim } from '../models/Claim';
 @EntityRepository(Claim)
 export class ClaimRepository extends Repository<Claim>  {
     /**
-     * Find All Pricing Address, 'address', 'user.addressId = address.id'
+     * Find All Claims By limit count
      */
     public findAll(limit: number): Promise<any> {
-        return this.createQueryBuilder('claims')
-                            .leftJoinAndSelect('claims.policy', 'policy')
-                            .leftJoinAndSelect('policy.branchuser', 'users')
-                            .leftJoinAndSelect('claims.claimstate', 'state')
-                            .select(['claims.claimid', 'claims.state', 'claims.adminresponded', 'claims.claimnumber', 'claims.dateclaim',
-                                     'claims.claimdateseconds', 'claims.failedpart', 'claims.failurecause', 'claims.repairsrequired',
-                                     'claims.claimtotal', 'claims.represponded',
-                                     'policy.policyid', 'policy.policynumber',
-                                     'users.companyname', 'users.userid',
-                                     'state.stateid', 'state.statename'])
+        return this.getBaseQueryForList()
+                            .select(this.getSelectArrayForList())
+                            .take(limit)
+                            .getMany();
+    }
+
+    /**
+     * Find All Claims By Search and limit count
+     */
+    public findAllBySearch(limit: number, search: string): Promise<any> {
+        return this.getBaseQueryForList()
+                            .where(this.searchText(search))
+                            .select(this.getSelectArrayForList())
                             .take(limit)
                             .getMany();
     }
@@ -26,20 +29,57 @@ export class ClaimRepository extends Repository<Claim>  {
      * Find Policies By userid
      */
     public findByUserId(branchid: number): Promise<any> {
-        return this.createQueryBuilder('claims')
-                            .leftJoinAndSelect('claims.policy', 'policy')
-                            .leftJoinAndSelect('policy.branchuser', 'users')
-                            .leftJoinAndSelect('claims.claimstate', 'state')
+        return this.getBaseQueryForList()
                             .where(`policy.branchid=${branchid}`)
-                            .select(['claims.claimid', 'claims.state', 'claims.adminresponded', 'claims.claimnumber', 'claims.dateclaim',
-                                     'claims.claimdateseconds', 'claims.failedpart', 'claims.failurecause', 'claims.repairsrequired',
-                                     'claims.claimtotal', 'claims.represponded',
-                                     'policy.policyid', 'policy.policynumber',
-                                     'users.companyname', 'users.userid',
-                                     'state.stateid', 'state.statename'])
+                            .select(this.getSelectArrayForList())
                             .getMany();
     }
 
+    /**
+     * Find Policies By userid
+     */
+    public findByUserIdSearch(branchid: number, search: string): Promise<any> {
+        return this.getBaseQueryForList()
+                            .where(`policy.branchid=${branchid} and (${this.searchText(search)})`)
+                            .select(this.getSelectArrayForList())
+                            .getMany();
+    }
+
+    /**
+     * Get base Query for User Id.
+     */
+    public getBaseQueryForList(): any {
+        return this.createQueryBuilder('claims')
+                    .leftJoinAndSelect('claims.policy', 'policy')
+                    .leftJoinAndSelect('policy.branchuser', 'users')
+                    .leftJoinAndSelect('claims.claimstate', 'state');
+    }
+
+    /**
+     * Get select array for User Id.
+     */
+    public getSelectArrayForList(): any {
+        return ['claims.claimid', 'claims.state', 'claims.adminresponded', 'claims.claimnumber', 'claims.dateclaim',
+                'claims.claimdateseconds', 'claims.failedpart', 'claims.failurecause', 'claims.repairsrequired',
+                'claims.claimtotal', 'claims.represponded',
+                'policy.policyid', 'policy.policynumber',
+                'users.companyname', 'users.userid',
+                'state.stateid', 'state.statename'];
+    }
+
+    /**
+     * Get search query
+     */
+    public searchText(search: string): any {
+        return `\
+            claims.failedpart ilike '%${search}%' or claims.failedarea ilike '%${search}%' or claims.failurecause ilike '%${search}%' or \
+            claims.repairsrequired ilike '%${search}%' or claims.claimnumber ilike '%${search}%' or \
+            state.statename ilike '%${search}%' or \
+            policy.policynumber ilike '%${search}%' or policy.address1 ilike '%${search}%' or policy.address2 ilike '%${search}%' or \
+            policy.address3 ilike '%${search}%' or policy.email ilike '%${search}%' or policy.forename ilike '%${search}%' or \
+            policy.surname ilike '%${search}%' or policy.postcode ilike '%${search}%' or policy.town ilike '%${search}%' or \
+            users.companyname ilike '%${search}%'`;
+    }
     /**
      * Find Policies By userid
      */

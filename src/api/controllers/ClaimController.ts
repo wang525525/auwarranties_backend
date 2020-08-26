@@ -1,6 +1,6 @@
 
 import {
-    Authorized, Get, Post, JsonController, Param, Body, Delete
+    Authorized, Get, Post, JsonController, Param, Body, Delete, QueryParam,
 } from 'routing-controllers';
 import { OpenAPI, ResponseSchema } from 'routing-controllers-openapi';
 
@@ -24,8 +24,13 @@ export class ClaimController {
 
     @Get('/:branchid')
     @ResponseSchema(ClaimsResponse)
-    public async one(@Param('branchid') branchid: string): Promise<ClaimsResponse> {
-        const policy = await this.claimService.findByUserId(parseInt(branchid, 10)) as ClaimDetail[];
+    public async one(@Param('branchid') branchid: string, @QueryParam('search', {required: false}) search: string): Promise<ClaimsResponse> {
+        let policy;
+        if (search) {
+            policy = await this.claimService.findByUserIdSearch(parseInt(branchid, 10), search) as ClaimDetail[];
+        } else {
+            policy = await this.claimService.findByUserId(parseInt(branchid, 10)) as ClaimDetail[];
+        }
         if (policy) {
             return {status: ResponseMessage.SUCCEEDED, res: policy};
         } else {
@@ -35,8 +40,13 @@ export class ClaimController {
 
     @Get('/all/:limit')
     @ResponseSchema(ClaimsResponse)
-    public async find(@Param('limit') limit: string): Promise<ClaimsResponse> {
-        const claims = await this.claimService.findAll(parseInt(limit, 10)) as ClaimDetail[];
+    public async find(@Param('limit') limit: string, @QueryParam('search', {required: false}) search: string): Promise<ClaimsResponse> {
+        let claims;
+        if (search) {
+            claims = await this.claimService.findAllBySearch(parseInt(limit, 10), search) as ClaimDetail[];
+        } else {
+            claims = await this.claimService.findAll(parseInt(limit, 10)) as ClaimDetail[];
+        }
 
         return { status: ResponseMessage.SUCCEEDED, res: claims };
     }

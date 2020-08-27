@@ -103,4 +103,7 @@ export class ResponseMessage {
 
     // fuel type status comment
     public static readonly NOT_FOUND_FUELTYPE = 'Not found fueltype';
+
+    // claim parts status comment
+    public static readonly NOT_FOUND_CLAIMPARTS = 'Not found claim parts';
 }

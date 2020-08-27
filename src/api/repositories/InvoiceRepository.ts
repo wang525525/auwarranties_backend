@@ -16,6 +16,7 @@ export class InvoiceRepository extends Repository<Invoice>  {
      */
     public findAll(limit: number): Promise<any> {
         return this.getBaseQuery()
+                            .orderBy({'invoices.invoicedate': 'DESC'})
                             .take(limit)
                             .getMany();
     }
@@ -26,6 +27,7 @@ export class InvoiceRepository extends Repository<Invoice>  {
     public findAllBySearch(limit: number, search: string): Promise<any> {
         return this.getBaseQuery()
                             .where(this.searchText(search))
+                            .orderBy({'invoices.invoicedate': 'DESC'})
                             .take(limit)
                             .getMany();
     }
@@ -36,6 +38,7 @@ export class InvoiceRepository extends Repository<Invoice>  {
     public findByUserId(dealerid: number): Promise<any> {
         return this.getBaseQuery()
                             .where(`invoices.dealerid=${dealerid}`)
+                            .orderBy({'invoices.invoicedate': 'DESC'})
                             .getMany();
     }
 
@@ -45,6 +48,7 @@ export class InvoiceRepository extends Repository<Invoice>  {
     public findByUserIdSearch(dealerid: number, search: string): Promise<any> {
         return this.getBaseQuery()
                             .where(`invoices.dealerid=${dealerid} and (${this.searchText(search)})`)
+                            .orderBy({'invoices.invoicedate': 'DESC'})
                             .getMany();
     }
 

@@ -15,7 +15,7 @@ export class StateService {
 
     public find(): Promise<State[]> {
         this.log.info('Find all states');
-        return this.stateRepository.find();
+        return this.stateRepository.find({order: {statename: 'ASC'}});
     }
 
     public async create(state: State): Promise<State> {
@@ -36,6 +36,10 @@ export class StateService {
 
     public findOneById(stateid: number): Promise<State | undefined> {
         return this.stateRepository.findOne(stateid);
+    }
+
+    public findOneByName(type: string): Promise<State | undefined> {
+        return this.stateRepository.findOneByName(type);
     }
 
     public async delete(stateid: number): Promise<void> {

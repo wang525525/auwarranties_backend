@@ -41,6 +41,17 @@ export class StateController {
         }
     }
 
+    @Get('/type/:name')
+    @ResponseSchema(StateResponse)
+    public async oneByType(@Param('name') name: string): Promise<StateResponse> {
+        const state = await this.stateService.findOneByName(name) as StateDetail;
+        if (state) {
+            return {status: ResponseMessage.SUCCEEDED, res: state};
+        } else {
+            return {status: ResponseMessage.NOT_FOUND_DURATION, res: undefined};
+        }
+    }
+
     @Post('/create')
     @ResponseSchema(StateResponse)
     public async create(@Body() body: StateRegisterRequest): Promise<StateResponse> {

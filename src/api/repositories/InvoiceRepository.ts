@@ -62,4 +62,13 @@ export class InvoiceRepository extends Repository<Invoice>  {
                             .where(`invoiceid=${id}`)
                             .getOne();
     }
+
+    /**
+     * Find Policies By userid
+     */
+    public getFilterDate(userid: number = undefined): Promise<any> {
+        const sqlUserFilter = (userid) ? `where dealerid = ${userid}` : ``;
+        return this.query(`select distinct(invoicedate) As invoicedate, invdateseconds  from invoices ${sqlUserFilter} \
+                            order by invoicedate DESC`);
+    }
 }

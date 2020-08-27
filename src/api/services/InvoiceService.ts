@@ -51,6 +51,10 @@ export class InvoiceService {
         return this.invoiceRepository.findOneById(invoiceid);
     }
 
+    public getFilterDate(userId: number = undefined): Promise<any> {
+        return this.invoiceRepository.getFilterDate(userId);
+    }
+
     public async delete(invoiceid: number): Promise<void> {
         this.log.info('Delete a invoice');
         await this.invoiceRepository.delete(invoiceid);

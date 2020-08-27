@@ -11,7 +11,8 @@ import { InvoiceService } from '../services/InvoiceService';
 import { ResponseMessage } from '../Common';
 import { InvoiceRegisterRequest, InvoiceUpdateRequest } from './requests/InvoiceRequest';
 import { InvoicesResponse, InvoiceResponse, InvoiceDetail } from './responses/InvoiceResponse';
-import { StatusResponse } from './responses/CommonResponse';
+import { StatusResponse, GeneralResponse } from './responses/CommonResponse';
+// import utilService from '../services/UtilService';
 
 @Authorized()
 @JsonController('/invoice')
@@ -58,6 +59,18 @@ export class InvoiceController {
         const invoice = await this.invoiceService.findOneById(parseInt(id, 10)) as InvoiceDetail;
         if (invoice) {
             return {status: ResponseMessage.SUCCEEDED, res: invoice};
+        } else {
+            return {status: ResponseMessage.NOT_FOUND_DURATION, res: undefined};
+        }
+    }
+
+    @Get('/filter/date')
+    @ResponseSchema(InvoicesResponse)
+    public async getFilterDate(@QueryParam('userid') userid: string): Promise<GeneralResponse> {
+        const userId = (userid) ? parseInt(userid, 10) : undefined;
+        const dates = await this.invoiceService.getFilterDate(userId);
+        if (dates) {
+            return {status: ResponseMessage.SUCCEEDED, res: dates};
         } else {
             return {status: ResponseMessage.NOT_FOUND_DURATION, res: undefined};
         }

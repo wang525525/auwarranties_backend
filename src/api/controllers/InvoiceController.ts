@@ -12,6 +12,7 @@ import { ResponseMessage } from '../Common';
 import { InvoiceRegisterRequest, InvoiceUpdateRequest } from './requests/InvoiceRequest';
 import { InvoicesResponse, InvoiceResponse, InvoiceDetail } from './responses/InvoiceResponse';
 import { StatusResponse, GeneralResponse } from './responses/CommonResponse';
+import utilService from '../services/UtilService';
 // import utilService from '../services/UtilService';
 
 @Authorized()
@@ -25,16 +26,14 @@ export class InvoiceController {
 
     @Get('/:userid')
     @ResponseSchema(InvoicesResponse)
-    public async one(@Param('userid') userid: string, @QueryParam('search', {required: false}) search: string): Promise<InvoicesResponse> {
-        let invoice;
-        if (search) {
-            invoice = await this.invoiceService.findByUserIdSearch(parseInt(userid, 10), search) as InvoiceDetail[];
-        } else {
-            invoice = await this.invoiceService.findByUserId(parseInt(userid, 10)) as InvoiceDetail[];
-        }
+    public async one(@Param('userid') userid: string,
+                     @QueryParam('search', {required: false}) search: string,
+                     @QueryParam('date', {required: false}) date: string): Promise<InvoicesResponse> {
+        let invoices;
+        invoices = await this.invoiceService.findByUserIdSearch(parseInt(userid, 10), search, utilService.formatDateWithYYYYMMDD(date)) as InvoiceDetail[];
 
-        if (invoice) {
-            return {status: ResponseMessage.SUCCEEDED, res: invoice};
+        if (invoices) {
+            return {status: ResponseMessage.SUCCEEDED, res: invoices};
         } else {
             return {status: ResponseMessage.NOT_FOUND_DURATION, res: undefined};
         }
@@ -42,13 +41,11 @@ export class InvoiceController {
 
     @Get('/all/:limit')
     @ResponseSchema(InvoicesResponse)
-    public async find(@Param('limit') limit: string, @QueryParam('search', {required: false}) search: string): Promise<InvoicesResponse> {
+    public async find(@Param('limit') limit: string,
+                      @QueryParam('search', {required: false}) search: string,
+                      @QueryParam('date', {required: false}) date: string): Promise<InvoicesResponse> {
         let invoices;
-        if (search) {
-            invoices = await this.invoiceService.findAllBySearch(parseInt(limit, 10), search) as InvoiceDetail[];
-        } else {
-            invoices = await this.invoiceService.findAll(parseInt(limit, 10)) as InvoiceDetail[];
-        }
+        invoices = await this.invoiceService.findAllBySearch(parseInt(limit, 10), search, utilService.formatDateWithYYYYMMDD(date)) as InvoiceDetail[];
 
         return { status: ResponseMessage.SUCCEEDED, res: invoices };
     }

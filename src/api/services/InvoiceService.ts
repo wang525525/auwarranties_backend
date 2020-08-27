@@ -13,14 +13,9 @@ export class InvoiceService {
         @Logger(__filename) private log: LoggerInterface
     ) { }
 
-    public findAll(limit: number): Promise<Invoice[]> {
+    public findAllBySearch(limit: number, search: string, date: string): Promise<Invoice[]> {
         this.log.info('Find all invoices');
-        return this.invoiceRepository.findAll(limit);
-    }
-
-    public findAllBySearch(limit: number, search: string): Promise<Invoice[]> {
-        this.log.info('Find all invoices');
-        return this.invoiceRepository.findAllBySearch(limit, search);
+        return this.invoiceRepository.findAllBySearch(limit, search, date);
     }
 
     public async create(invoice: Invoice): Promise<Invoice> {
@@ -39,12 +34,8 @@ export class InvoiceService {
         return updateInvoice;
     }
 
-    public findByUserId(dealerid: number): Promise<Invoice[]> {
-        return this.invoiceRepository.findByUserId(dealerid);
-    }
-
-    public findByUserIdSearch(dealerid: number, search: string): Promise<Invoice[]> {
-        return this.invoiceRepository.findByUserIdSearch(dealerid, search);
+    public findByUserIdSearch(dealerid: number, search: string, date: string): Promise<Invoice[]> {
+        return this.invoiceRepository.findByUserIdSearch(dealerid, search, date);
     }
 
     public findOneById(invoiceid: number): Promise<Invoice | undefined> {

@@ -12,42 +12,33 @@ export class InvoiceRepository extends Repository<Invoice>  {
     }
 
     /**
-     * Find All Invoices by limit count
-     */
-    public findAll(limit: number): Promise<any> {
-        return this.getBaseQuery()
-                            .orderBy({'invoices.invoicedate': 'DESC'})
-                            .take(limit)
-                            .getMany();
-    }
-
-    /**
      * Find All Invoices by search and limit count
      */
-    public findAllBySearch(limit: number, search: string): Promise<any> {
+    public findAllBySearch(limit: number, search: string, date: string): Promise<any> {
         return this.getBaseQuery()
-                            .where(this.searchText(search))
+                            .where(this.searchAAA())
                             .orderBy({'invoices.invoicedate': 'DESC'})
                             .take(limit)
                             .getMany();
     }
 
-    /**
-     * Find Policies By userid
-     */
-    public findByUserId(dealerid: number): Promise<any> {
-        return this.getBaseQuery()
-                            .where(`invoices.dealerid=${dealerid}`)
-                            .orderBy({'invoices.invoicedate': 'DESC'})
-                            .getMany();
+    public searchAll(search: string, date: string): string {
+        const res = ` ${search ? this.searchText(search) : ''} \
+                    ${date ? (search ? `and (${this.searchDate(date)})` : this.searchDate(date)) : ``}`;
+        return res;
     }
 
+    public searchAAA(): any {
+        return '';
+    }
     /**
      * Find Invoices By userid and search
      */
-    public findByUserIdSearch(dealerid: number, search: string): Promise<any> {
+    public findByUserIdSearch(dealerid: number, search: string, date: string): Promise<any> {
         return this.getBaseQuery()
-                            .where(`invoices.dealerid=${dealerid} and (${this.searchText(search)})`)
+                            .where(`invoices.dealerid=${dealerid} \
+                                    ${search ? `and (${this.searchText(search)})` : ``} \
+                                    ${date ? `and (${this.searchDate(date)})` : ``}`)
                             .orderBy({'invoices.invoicedate': 'DESC'})
                             .getMany();
     }
@@ -55,6 +46,12 @@ export class InvoiceRepository extends Repository<Invoice>  {
     public searchText(search: string): any {
         return `\
             invoices.invoicenumber ilike '%${search}%' \
+        `;
+    }
+
+    public searchDate(date: string): any {
+        return `\
+            invoices.invoicedate = '${date}'
         `;
     }
 

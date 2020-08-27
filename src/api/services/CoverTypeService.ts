@@ -15,7 +15,7 @@ export class CoverTypeService {
 
     public find(): Promise<CoverType[]> {
         this.log.info('Find all coverTypes');
-        return this.coverTypeRepository.find();
+        return this.coverTypeRepository.find({order: {covername: 'ASC'}});
     }
 
     public checkDuplicated(covername: string): Promise<CoverType | undefined> {

@@ -21,7 +21,7 @@ export class UserService {
 
     public find(): Promise<User[]> {
         this.log.info('Find all users');
-        return this.userRepository.find();
+        return this.userRepository.find({order: {companyname: 'ASC'}});
     }
 
     public findBySearch(search: string): Promise<User[]> {

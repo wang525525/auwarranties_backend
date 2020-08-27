@@ -8,6 +8,7 @@ export class UserRepository extends Repository<User>  {
     public findBySearch(search: string): Promise<any> {
         return this.createQueryBuilder('users')
                             .where(this.searchText(search))
+                            .orderBy({'users.companyname': 'ASC'})
                             .getMany();
     }
 

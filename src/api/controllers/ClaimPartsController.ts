@@ -37,7 +37,7 @@ export class ClaimPartsController {
         if (claimParts) {
             return {status: ResponseMessage.SUCCEEDED, res: claimParts};
         } else {
-            return {status: ResponseMessage.NOT_FOUND_DURATION, res: undefined};
+            return {status: ResponseMessage.NOT_FOUND_CLAIMPARTS, res: undefined};
         }
     }
 
@@ -48,7 +48,7 @@ export class ClaimPartsController {
         if (claimParts) {
             return {status: ResponseMessage.SUCCEEDED, res: claimParts};
         } else {
-            return {status: ResponseMessage.NOT_FOUND_DURATION, res: undefined};
+            return {status: ResponseMessage.NOT_FOUND_CLAIMPARTS, res: undefined};
         }
     }
 
@@ -74,7 +74,7 @@ export class ClaimPartsController {
 
             return {status: ResponseMessage.SUCCEEDED, res: updatedClaimParts };
         } else {
-            return {status: ResponseMessage.NOT_FOUND_DURATION, res: undefined};
+            return {status: ResponseMessage.NOT_FOUND_CLAIMPARTS, res: undefined};
         }
     }
 
@@ -87,7 +87,7 @@ export class ClaimPartsController {
             await this.claimPartsService.delete(claimPartsId);
             return {status: ResponseMessage.SUCCEEDED };
         } else {
-            return {status: ResponseMessage.NOT_FOUND_DURATION };
+            return {status: ResponseMessage.NOT_FOUND_CLAIMPARTS };
         }
     }
 

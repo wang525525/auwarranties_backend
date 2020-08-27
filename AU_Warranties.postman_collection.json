@@ -5121,6 +5121,492 @@
 			"protocolProfileBehavior": {}
 		},
 		{
+			"name": "ClaimParts",
+			"item": [
+				{
+					"name": "FindAll",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNkYXJiYXIiLCJwYXNzd29yZCI6IkFVMTIzISIsInNlc3Npb25faWQiOiIzMGY2NmY4Mi03YzgwLTQ1NmUtOWRhMS1jZTY4ODgxZjNiNTYiLCJpYXQiOjE1OTcxNTI0MDh9.CIZUqBAnEf7ym3SXFZr-4J9sFASmoJRt4qtXAEcs_Jo"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/claimparts",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"claimparts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "FindAllByPartId",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNkYXJiYXIiLCJwYXNzd29yZCI6IkFVMTIzISIsInNlc3Npb25faWQiOiIzMGY2NmY4Mi03YzgwLTQ1NmUtOWRhMS1jZTY4ODgxZjNiNTYiLCJpYXQiOjE1OTcxNTI0MDh9.CIZUqBAnEf7ym3SXFZr-4J9sFASmoJRt4qtXAEcs_Jo"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/claimparts/318",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"claimparts",
+								"318"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "FindAllByClaimId",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNkYXJiYXIiLCJwYXNzd29yZCI6IkFVMTIzISIsInNlc3Npb25faWQiOiIzMGY2NmY4Mi03YzgwLTQ1NmUtOWRhMS1jZTY4ODgxZjNiNTYiLCJpYXQiOjE1OTcxNTI0MDh9.CIZUqBAnEf7ym3SXFZr-4J9sFASmoJRt4qtXAEcs_Jo"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/claimparts/claim/195",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"claimparts",
+								"claim",
+								"195"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNkYXJiYXIiLCJwYXNzd29yZCI6IkFVMTIzISIsInNlc3Npb25faWQiOiIzMGY2NmY4Mi03YzgwLTQ1NmUtOWRhMS1jZTY4ODgxZjNiNTYiLCJpYXQiOjE1OTcxNTI0MDh9.CIZUqBAnEf7ym3SXFZr-4J9sFASmoJRt4qtXAEcs_Jo"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"partnumber\": \"14710ad20b\",\r\n    \"qty\": 1,\r\n    \"partprice\": 431.42,\r\n    \"claimid\": 55,\r\n    \"partdesc\": \"egr valve\",\r\n    \"claimnumber\": \"AUCLM40\"\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/claimparts/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"claimparts",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNkYXJiYXIiLCJwYXNzd29yZCI6IkFVMTIzISIsInNlc3Npb25faWQiOiIzMGY2NmY4Mi03YzgwLTQ1NmUtOWRhMS1jZTY4ODgxZjNiNTYiLCJpYXQiOjE1OTcxNTI0MDh9.CIZUqBAnEf7ym3SXFZr-4J9sFASmoJRt4qtXAEcs_Jo"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"partid\": 7569,\r\n    \"partnumber\": \"14710ad20b\",\r\n    \"qty\": 1,\r\n    \"partprice\": 431.42,\r\n    \"claimid\": 55,\r\n    \"partdesc\": \"egr valve 33333\",\r\n    \"claimnumber\": \"AUCLM40\"\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/claimparts/update",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"claimparts",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNkYXJiYXIiLCJwYXNzd29yZCI6IkFVMTIzISIsInNlc3Npb25faWQiOiIzMGY2NmY4Mi03YzgwLTQ1NmUtOWRhMS1jZTY4ODgxZjNiNTYiLCJpYXQiOjE1OTcxNTI0MDh9.CIZUqBAnEf7ym3SXFZr-4J9sFASmoJRt4qtXAEcs_Jo"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"partid\": 7569,\r\n    \"partnumber\": \"14710ad20b\",\r\n    \"qty\": 1,\r\n    \"partprice\": 431.42,\r\n    \"claimid\": 55,\r\n    \"partdesc\": \"egr valve 33333\",\r\n    \"claimnumber\": \"AUCLM40\"\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/claimparts/7569",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"claimparts",
+								"7569"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "ClaimLabour",
+			"item": [
+				{
+					"name": "FindAll",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNkYXJiYXIiLCJwYXNzd29yZCI6IkFVMTIzISIsInNlc3Npb25faWQiOiIzMGY2NmY4Mi03YzgwLTQ1NmUtOWRhMS1jZTY4ODgxZjNiNTYiLCJpYXQiOjE1OTcxNTI0MDh9.CIZUqBAnEf7ym3SXFZr-4J9sFASmoJRt4qtXAEcs_Jo"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/claimlabour",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"claimlabour"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "FindOneById",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNkYXJiYXIiLCJwYXNzd29yZCI6IkFVMTIzISIsInNlc3Npb25faWQiOiIzMGY2NmY4Mi03YzgwLTQ1NmUtOWRhMS1jZTY4ODgxZjNiNTYiLCJpYXQiOjE1OTcxNTI0MDh9.CIZUqBAnEf7ym3SXFZr-4J9sFASmoJRt4qtXAEcs_Jo"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/claimlabour/72",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"claimlabour",
+								"72"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "FindOneByClaimId",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNkYXJiYXIiLCJwYXNzd29yZCI6IkFVMTIzISIsInNlc3Npb25faWQiOiIzMGY2NmY4Mi03YzgwLTQ1NmUtOWRhMS1jZTY4ODgxZjNiNTYiLCJpYXQiOjE1OTcxNTI0MDh9.CIZUqBAnEf7ym3SXFZr-4J9sFASmoJRt4qtXAEcs_Jo"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/claimlabour/claim/55",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"claimlabour",
+								"claim",
+								"55"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNkYXJiYXIiLCJwYXNzd29yZCI6IkFVMTIzISIsInNlc3Npb25faWQiOiIzMGY2NmY4Mi03YzgwLTQ1NmUtOWRhMS1jZTY4ODgxZjNiNTYiLCJpYXQiOjE1OTcxNTI0MDh9.CIZUqBAnEf7ym3SXFZr-4J9sFASmoJRt4qtXAEcs_Jo"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"labourqty\": 1.6,\r\n    \"labourprice\": 40,\r\n    \"labourdesc\": \"to remove and refit egr valve\",\r\n    \"claimid\": 55,\r\n    \"claimnumber\": \"AUCLM40\"\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/claimlabour/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"claimlabour",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNkYXJiYXIiLCJwYXNzd29yZCI6IkFVMTIzISIsInNlc3Npb25faWQiOiIzMGY2NmY4Mi03YzgwLTQ1NmUtOWRhMS1jZTY4ODgxZjNiNTYiLCJpYXQiOjE1OTcxNTI0MDh9.CIZUqBAnEf7ym3SXFZr-4J9sFASmoJRt4qtXAEcs_Jo"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"labourid\": 3674,\r\n    \"labourqty\": 1.6,\r\n    \"labourprice\": 40,\r\n    \"labourdesc\": \"to remove and refit egr valveddddd\",\r\n    \"claimid\": 55,\r\n    \"claimnumber\": \"AUCLM40\"\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/claimlabour/update",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"claimlabour",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNkYXJiYXIiLCJwYXNzd29yZCI6IkFVMTIzISIsInNlc3Npb25faWQiOiIzMGY2NmY4Mi03YzgwLTQ1NmUtOWRhMS1jZTY4ODgxZjNiNTYiLCJpYXQiOjE1OTcxNTI0MDh9.CIZUqBAnEf7ym3SXFZr-4J9sFASmoJRt4qtXAEcs_Jo"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"labourid\": 3674,\r\n    \"labourqty\": 1.6,\r\n    \"labourprice\": 40,\r\n    \"labourdesc\": \"to remove and refit egr valveddddd\",\r\n    \"claimid\": 55,\r\n    \"claimnumber\": \"AUCLM40\"\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/claimlabour/3674",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"claimlabour",
+								"3674"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
 			"name": "Register",
 			"request": {
 				"method": "POST",

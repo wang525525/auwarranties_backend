@@ -106,4 +106,7 @@ export class ResponseMessage {
 
     // claim parts status comment
     public static readonly NOT_FOUND_CLAIMPARTS = 'Not found claim parts';
+
+    // claim labour status comment
+    public static readonly NOT_FOUND_CLAIMLABOUR = 'Not found claim labour';
 }

@@ -4,6 +4,7 @@ import { UserDetail } from './UserResponse';
 import { StateDetail } from './StateResponse';
 import { CoverTypeDetail } from './CoverTypeResponse';
 import { VehicleDetail } from './VehicleResponse';
+import { GuaranteeDetail } from './GuaranteeResponse';
 
 export class PolicyDetail {
 
@@ -45,6 +46,11 @@ export class PolicyDetail {
     @Type(() => VehicleDetail)
     public vehicle: VehicleDetail;
 
+    @ValidateNested({ each: true })
+    @IsJSON()
+    @Type(() => GuaranteeDetail)
+    public guarantee?: GuaranteeDetail;
+
     @IsString()
     public postcode: string;
 
@@ -73,6 +79,12 @@ export class PolicyDetail {
 
     @IsNumber()
     public dateseconds: number;
+
+    @IsDate()
+    public datesecondsDate: Date;
+
+    @IsString()
+    public validation: string;
 
     @IsNumber()
     public coverid: number;

@@ -1,4 +1,10 @@
-import { IsString, IsNumber, IsBoolean, IsDate } from 'class-validator';
+import { IsString, IsNumber, IsBoolean, IsDate, ValidateNested, IsJSON } from 'class-validator';
+import { Type } from 'class-transformer';
+import { VehicleDetail } from '../responses/VehicleResponse';
+import { GuaranteeDetail } from '../responses/GuaranteeResponse';
+import { UserDetail } from '../responses/UserResponse';
+import { CoverTypeDetail } from '../responses/CoverTypeResponse';
+import { StateDetail } from '../responses/StateResponse';
 
 export class PolicyRegisterRequest {
 
@@ -32,6 +38,16 @@ export class PolicyRegisterRequest {
     @IsString()
     public policynumber: string;
 
+    @ValidateNested({ each: true })
+    @IsJSON()
+    @Type(() => VehicleDetail)
+    public vehicle: VehicleDetail;
+
+    @ValidateNested({ each: true })
+    @IsJSON()
+    @Type(() => GuaranteeDetail)
+    public guarantee?: GuaranteeDetail;
+
     @IsString()
     public postcode: string;
 
@@ -50,20 +66,41 @@ export class PolicyRegisterRequest {
     @IsNumber()
     public branchid: number;
 
+    @ValidateNested({ each: true })
+    @IsJSON()
+    @Type(() => UserDetail)
+    public branchuser: UserDetail;
+
     @IsString()
     public branchname: string;
 
     @IsNumber()
     public dateseconds: number;
 
+    @IsString()
+    public datesecondsDate: string;
+
+    @IsString()
+    public validation: string;
+
     @IsNumber()
     public coverid: number;
+
+    @ValidateNested({ each: true })
+    @IsJSON()
+    @Type(() => CoverTypeDetail)
+    public cover: CoverTypeDetail;
 
     @IsNumber()
     public operator: number;
 
     @IsNumber()
     public state: number;
+
+    @ValidateNested({ each: true })
+    @IsJSON()
+    @Type(() => StateDetail)
+    public policystate: StateDetail;
 
     @IsDate()
     public datepolicy: Date;

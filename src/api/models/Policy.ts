@@ -10,7 +10,8 @@ import { Guarantee } from './Guarantee';
 export class Policy {
 
     @PrimaryGeneratedColumn()
-    public policyid: number;
+    @IsOptional()
+    public policyid?: number;
 
     @Column({
         nullable: true,

@@ -44,6 +44,15 @@ const utilService = {
         return undefined;
     },
 
+    // get difference in months between two dates.
+    monthDiff: (d1, d2): number => {
+        let months;
+        months = (d2.getFullYear() - d1.getFullYear()) * 12;
+        months -= d1.getMonth();
+        months += d2.getMonth();
+        return months <= 0 ? 0 : months;
+    },
+
 };
 
 export default utilService;

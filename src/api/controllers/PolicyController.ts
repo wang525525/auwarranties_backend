@@ -70,6 +70,7 @@ export class PolicyController {
     @Post('/create')
     @ResponseSchema(PolicyResponse)
     public async create(@Body() body: PolicyRegisterRequest): Promise<PolicyResponse> {
+        body.dateseconds = utilService.convertDateToTimestamp(body.datesecondsDate);
         let newPolicy = new Policy();
         newPolicy = body as Policy;
         const createdPolicy = await this.policyService.create(newPolicy) as PolicyDetail;
@@ -80,6 +81,7 @@ export class PolicyController {
     @Post('/update')
     @ResponseSchema(PolicyResponse)
     public async update(@Body() body: PolicyUpdateRequest): Promise<PolicyResponse> {
+        body.dateseconds = utilService.convertDateToTimestamp(body.datesecondsDate);
         const policy = await this.policyService.findOneById(body.policyid);
 
         if (policy) {

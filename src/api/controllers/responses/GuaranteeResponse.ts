@@ -1,5 +1,6 @@
 import { IsString, IsNumber, IsArray, IsDate, IsBoolean, IsJSON, ValidateNested } from 'class-validator';
 import { Type } from 'class-transformer';
+import { DurationDetail } from './DurationResponse';
 
 export class GuaranteeDetail {
 
@@ -17,6 +18,11 @@ export class GuaranteeDetail {
 
     @IsNumber()
     public durationid: number;
+
+    @ValidateNested({ each: true })
+    @IsJSON()
+    @Type(() => DurationDetail)
+    public duration?: DurationDetail;
 
     @IsNumber()
     public mileageband: number;

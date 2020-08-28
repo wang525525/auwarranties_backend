@@ -21,6 +21,16 @@ export class PaymentsService {
     public async create(payments: Payments): Promise<Payments> {
         this.log.info('Create a new payments => ');
 
+        const paynumId = await this.paymentsRepository.getPaymentNumber();
+
+        let paynum = 'AUPAY';
+        if (paynumId[0] && paynumId[0].k) {
+            paynum = paynum + (paynumId[0].k + 1);
+        } else {
+            paynum = 'AUPAYIN1';
+        }
+        payments.paymentnumber = paynum;
+
         const newPayments = await this.paymentsRepository.save(payments);
 
         return newPayments;

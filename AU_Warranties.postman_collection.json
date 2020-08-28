@@ -986,7 +986,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n\t\"dealerid\": 502,\r\n    \"paymentamount\": 2504.24,\r\n    \"comment\": \"wwwwwwww\",\r\n    \"paymentnumber\": \"AUPAYIN1\",\r\n    \"datepayment\": \"2019-02-12T16:00:00.000Z\",\r\n    \"receivedbyoperator\": null\r\n}"
+							"raw": "{\r\n\t\"dealerid\": 502,\r\n    \"paymentamount\": 2504.24,\r\n    \"comment\": \"wwwwwwww\",\r\n    \"datepayment\": \"2019-02-12T16:00:00.000Z\",\r\n    \"receivedbyoperator\": null\r\n}"
 						},
 						"url": {
 							"raw": "http://localhost:5000/api/paymentin/create",
@@ -1000,12 +1000,13 @@
 								"paymentin",
 								"create"
 							]
-						}
+						},
+						"description": "There is no need to send the paymentnumber"
 					},
 					"response": []
 				},
 				{
-					"name": "CreatePaymentIn",
+					"name": "UpdatePaymentIn",
 					"request": {
 						"method": "POST",
 						"header": [
@@ -1038,7 +1039,8 @@
 								"paymentin",
 								"update"
 							]
-						}
+						},
+						"description": "You have to send the paymentnumber when you update"
 					},
 					"response": []
 				},
@@ -1143,7 +1145,8 @@
 								"payments",
 								"create"
 							]
-						}
+						},
+						"description": "There is no need to send the paymentnumber."
 					},
 					"response": []
 				},
@@ -1181,7 +1184,8 @@
 								"payments",
 								"update"
 							]
-						}
+						},
+						"description": "you have to send the paymentnumber when you update."
 					},
 					"response": []
 				},

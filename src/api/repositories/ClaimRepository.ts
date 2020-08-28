@@ -100,7 +100,7 @@ export class ClaimRepository extends Repository<Claim>  {
                                      'claims.repairinggarage', 'claims.labourtotal', 'claims.mileageatclaim', 'claims.partstotal', 'claims.payvat',
                                      'claims.repairsrequired', 'claims.claimvatamt', 'claims.claimnotifyemail', 'claims.state',
                                      'policy.policyid', 'policy.dateseconds', 'policy.policynumber', 'policy.title', 'policy.forename', 'policy.surname',
-                                     'policy.address1', 'policy.address2', 'policy.address3', 'policy.town', 'policy.postcode',
+                                     'policy.address1', 'policy.address2', 'policy.address3', 'policy.town', 'policy.postcode', 'policy.branchname',
                                      'vehicle.vehicleid', 'vehicle.regdate', 'vehicle.carmake', 'vehicle.carmodel', 'vehicle.cartype', 'vehicle.fueltype',
                                      'vehicle.carcolour',
                                      'covertype.coverid', 'covertype.covername',

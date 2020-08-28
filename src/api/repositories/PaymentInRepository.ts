@@ -24,4 +24,11 @@ export class PaymentInRepository extends Repository<PaymentIn>  {
                             .orderBy({'users.username': 'ASC'})
                             .getMany();
     }
+
+    /**
+     * Find One payment by paymentId
+     */
+    public getPaymentNumber(): Promise<any> {
+        return this.query(`select max(regexp_replace(paymentnumber, 'AUPAYIN','')::int) as k from paymentsin`);
+    }
 }

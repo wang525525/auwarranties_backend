@@ -104,6 +104,7 @@ export class ClaimRepository extends Repository<Claim>  {
                                      'vehicle.vehicleid', 'vehicle.regdate', 'vehicle.carmake', 'vehicle.carmodel', 'vehicle.cartype', 'vehicle.fueltype',
                                      'vehicle.carcolour',
                                      'covertype.coverid', 'covertype.covername',
+                                     'state.stateid', 'state.statename', 'state.statetype',
                                      'purchaseduration.durationid', 'purchaseduration.durationvalue', 'purchaseduration.durationtype',
                                      'guarantee.guaranteeid', 'guarantee.claimlimitamount'])
                             .getOne();

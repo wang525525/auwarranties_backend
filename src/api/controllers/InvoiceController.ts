@@ -25,29 +25,36 @@ export class InvoiceController {
     ) { }
 
     @Get('/:userid')
-    @ResponseSchema(InvoicesResponse)
+    @ResponseSchema(GeneralResponse)
     public async one(@Param('userid') userid: string,
                      @QueryParam('search', {required: false}) search: string,
-                     @QueryParam('date', {required: false}) date: string): Promise<InvoicesResponse> {
+                     @QueryParam('date', {required: false}) date: string): Promise<GeneralResponse> {
         let invoices;
         invoices = await this.invoiceService.findByUserIdSearch(parseInt(userid, 10), search, utilService.formatDateWithYYYYMMDD(date)) as InvoiceDetail[];
 
         if (invoices) {
-            return {status: ResponseMessage.SUCCEEDED, res: invoices};
+            const res = {
+                total: this.getTotalValues(invoices),
+                invoices: invoices,
+            };
+            return {status: ResponseMessage.SUCCEEDED, res: res};
         } else {
             return {status: ResponseMessage.NOT_FOUND_DURATION, res: undefined};
         }
     }
 
     @Get('/all/:limit')
-    @ResponseSchema(InvoicesResponse)
+    @ResponseSchema(GeneralResponse)
     public async find(@Param('limit') limit: string,
                       @QueryParam('search', {required: false}) search: string,
-                      @QueryParam('date', {required: false}) date: string): Promise<InvoicesResponse> {
+                      @QueryParam('date', {required: false}) date: string): Promise<GeneralResponse> {
         let invoices;
         invoices = await this.invoiceService.findAllBySearch(parseInt(limit, 10), search, utilService.formatDateWithYYYYMMDD(date)) as InvoiceDetail[];
-
-        return { status: ResponseMessage.SUCCEEDED, res: invoices };
+        const res = {
+            total: this.getTotalValues(invoices),
+            invoices: invoices,
+        };
+        return { status: ResponseMessage.SUCCEEDED, res: res };
     }
 
     @Get('/one/:id')
@@ -110,6 +117,34 @@ export class InvoiceController {
         } else {
             return {status: ResponseMessage.NOT_FOUND_DURATION };
         }
+    }
+
+    // Non API functions here.
+    public getTotalValues(invoices: InvoiceDetail[]): any {
+        let res = ``;
+        let ttl = 0;
+        let ttlvat = 0;
+        let ttlpaid = 0;
+        let ttlvatpaid = 0;
+        let ttlpending = 0;
+        let ttlvatpending = 0;
+        if (invoices && invoices.length > 0) {
+            invoices.map(invoice => {
+                ttl = ttl + invoice.gross;
+                ttlvat = ttlvat + invoice.tax + invoice.taxadmin;
+                if (invoice.invoicestate && invoice.invoicestate.statename) {
+                    if (invoice.invoicestate.statename === 'Paid') {
+                        ttlpaid = ttlpaid + invoice.gross;
+                        ttlvatpaid = ttlvatpaid + invoice.tax + invoice.taxadmin;
+                    } else if (invoice.invoicestate.statename === 'Pending') {
+                        ttlpending = ttlpending + invoice.gross;
+                        ttlvatpending = ttlvatpending + invoice.tax;
+                    }
+                }
+            });
+        }
+        res = `Total Invoiced: £ ${ttl} (vat: £ ${ttlvat}), Paid: £ ${ttlpaid} (vat: £ ${ttlvatpaid}), Pending: £ ${ttlpending} (vat: £ ${ttlvatpending})`;
+        return res;
     }
 
 }

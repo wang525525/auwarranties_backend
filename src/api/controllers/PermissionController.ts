@@ -12,6 +12,7 @@ import { ResponseMessage } from '../Common';
 import { PermissionRegisterRequest, PermissionUpdateRequest, PermissionItemDetail } from './requests/PermissionRequest';
 import { PermissionsResponse, PermissionResponse, PermissionDetail } from './responses/PermissionResponse';
 import { StatusResponse } from './responses/CommonResponse';
+import { PermissionItemsEnum } from '../special/PermissionItems';
 
 @Authorized()
 @JsonController('/permission')
@@ -33,13 +34,20 @@ export class PermissionController {
     @Get('/:id')
     @ResponseSchema(PermissionResponse)
     public async one(@Param('id') id: string): Promise<PermissionResponse> {
-        const permission = await this.permissionService.findOneById(parseInt(id, 10)) as PermissionDetail;
+        let permission = await this.permissionService.findOneById(parseInt(id, 10)) as PermissionDetail;
         if (permission) {
             const items = await this.permissionService.findItems(permission.permissionid) as PermissionItemDetail[];
-            permission.items = items;
+            permission.items = this.addItemsToPermission(permission, items);
             return {status: ResponseMessage.SUCCEEDED, res: permission};
         } else {
-            return {status: ResponseMessage.NOT_FOUND_PERMISSION, res: undefined};
+            permission = {
+                permissionid: -1,
+                permissionname: undefined,
+                active: false,
+                items: [],
+            };
+            permission.items = this.addItemsToPermission(undefined, undefined);
+            return {status: ResponseMessage.SUCCEEDED, res: permission};
         }
     }
 
@@ -104,4 +112,32 @@ export class PermissionController {
         return {status: ResponseMessage.SUCCEEDED };
     }
 
+    // Non API functions here.
+    public addItemsToPermission(permission: any, items: any): any {
+        const res = [];
+        PermissionItemsEnum.values.map(item => {
+            let permissiontype = {
+                permissionitemid: -1,
+                permissionid: (permission && permission.permissionid) || undefined,
+                permissionvalue: false,
+                permissiontype: undefined,
+            };
+
+            if (items) {
+                const idx = items.findIndex(elem => {
+                    return elem.permissiontype === item;
+                });
+                if (idx > -1) {
+                    permissiontype = {
+                        permissionitemid: items[idx].permissionitemid,
+                        permissionid: items[idx].permissionid,
+                        permissionvalue: items[idx].permissionvalue,
+                        permissiontype: items[idx].permissiontype,
+                    };
+                }
+            }
+            res.push(permissiontype);
+        });
+        return res;
+    }
 }

@@ -16,7 +16,7 @@ export class InvoiceRepository extends Repository<Invoice>  {
      */
     public findAllBySearch(limit: number, search: string, date: string): Promise<any> {
         return this.getBaseQuery()
-                            .where(this.searchAAA())
+                            .where(this.searchAll(search, date))
                             .orderBy({'invoices.invoicedate': 'DESC'})
                             .take(limit)
                             .getMany();
@@ -28,9 +28,6 @@ export class InvoiceRepository extends Repository<Invoice>  {
         return res;
     }
 
-    public searchAAA(): any {
-        return '';
-    }
     /**
      * Find Invoices By userid and search
      */

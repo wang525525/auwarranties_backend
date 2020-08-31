@@ -13,7 +13,7 @@ export class DownloadService {
         @Logger(__filename) private log: LoggerInterface
     ) { }
 
-    public printQuote(data: Policy): string {
+    public printQuote(data: Policy = undefined): string {
         this.log.info('Make the pdf file.');
         const dir = path.dirname(require.main.filename);
         const html = fs.readFileSync(dir + '/public/template/pdf.html', 'utf8');

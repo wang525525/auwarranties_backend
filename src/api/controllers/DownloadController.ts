@@ -9,7 +9,7 @@ import * as path from 'path';
 
 import * as pdf from 'html-pdf';
 import { DownloadService } from '../services/DownloadService';
-import { PolicyService } from '../services/PolicyService';
+// import { PolicyService } from '../services/PolicyService';
 import { promisify } from 'util';
 
 // @Authorized()
@@ -18,8 +18,8 @@ import { promisify } from 'util';
 export class DownloadController {
 
     constructor(
-        private downloadService: DownloadService,
-        private policyService: PolicyService
+        private downloadService: DownloadService
+        // private policyService: PolicyService
     ) { }
 
     @Get('/agreement/:id')
@@ -28,14 +28,13 @@ export class DownloadController {
             format: 'Letter',
         };
 
-        const data = await this.policyService.findOneById(parseInt(id, 10));
-        const html = this.downloadService.printQuote(data);
-        console.log('#######');
+        // const data = await this.policyService.findOneById(parseInt(id, 10));
+        const html = this.downloadService.printQuote();
         res.setHeader('Content-Type', 'application/pdf');
         res.writeHead(200, { 'Content-Type': 'application/pdf' });
         const fut = new Promise((resolve, reject) => {
             console.log('@@@@@@@');
-            
+
             pdf.create(html, option).toStream((err, stream) => {
                 if (err) {
                     reject();

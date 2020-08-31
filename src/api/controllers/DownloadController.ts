@@ -43,12 +43,14 @@ export class DownloadController {
                     //     resolve();
                     // });
                     stream.pipe(res);
+                    console.log('&&&&&&&&&&');
                 }
             });
         });
 
         await fut;
         res.end();
+        console.log('===========>');
         return res;
     }
 

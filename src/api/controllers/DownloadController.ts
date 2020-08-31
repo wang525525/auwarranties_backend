@@ -27,8 +27,8 @@ export class DownloadController {
         const option = {
             format: 'Letter',
         };
-        res.setHeader('Content-Type', 'application/pdf');
-        // res.writeHead(200, { 'Content-Type': 'application/pdf' });
+        // res.setHeader('Content-Type', 'application/pdf');
+        res.writeHead(200, { 'Content-Type': 'application/pdf' });
         // const data = await this.policyService.findOneById(parseInt(id, 10));
         const html = this.downloadService.printQuote();
         console.log('#######');

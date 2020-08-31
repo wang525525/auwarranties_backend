@@ -24,8 +24,10 @@ export class DownloadController {
 
     @Get('/agreement/:id')
     public async downloadAsPdf(@Req() req: Request, @Res() res: Response, @Param('id') id: string): Promise<Response> {
-
-        const option = { format: 'Letter' };
+        const option = {
+            format: 'Letter',
+            base: 'file:///' + __dirname + '\\public\\src\\',
+        };
 
         const data = await this.policyService.findOneById(parseInt(id, 10));
         const html = this.downloadService.printQuote(data);

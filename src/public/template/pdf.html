@@ -7,62 +7,214 @@
     .container {
         max-width: 800px;
         margin: auto;
-        padding: 5px;
+        padding: 25px;
         font-size: 16px;
         line-height: 24px;
         font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
-        color: #555;
-    }
-    
-    .invoice-box table {
-        width: 100%;
-        line-height: inherit;
-        text-align: left;
-    }
-    
-    .invoice-box table td {
-        padding: 5px;
-        vertical-align: top;
-    }
-    
-    .invoice-box .top table tr td:nth-child(2) {
-        text-align: right;
-    }
-    
-    .invoice-box table tr.top table td {
-        padding-bottom: 20px;
-    }
-    
-    .invoice-box table tr.top table td.title {
-        font-size: 35px;
-        line-height: 35px;
         color: #333;
     }
-
+    
     .table-border {
-        border: 0px;
+        border: 0;
     }
 
     table, tr, td {
-        border: 0px;
+        border: 0;
+        width: 100%;
+    }
+    .d-flex {
+        display: flex;
+    }
+    .text-right {
+        text-align: right;
+    }
+    .mt-0 {
+        margin-top: 0px;
+    }
+    .w-50 {
+        width: 50%;
+    }
+
+    .logo {
+        background-image: url('src/public/img/main-logo.png'); 
     }
     </style>
 </head>
 
 <body>
     <div class="container">
-        <table cellpadding="0" cellspacing="0">
+        <table cellpadding="0" cellspacing="0" style="padding: 40px 0 0 0;">
             <!-- LOGO And business details -->
             <tr>
-                <td style="width:60%;">
-                    Chester Car Supermarket LTD
+                <td style="width:60%;" valign="top">
+                    <h2 class="mt-0">Chester Car Supermarket LTD</h2>
+                    <div class="d-flex">
+                        <span class="w-50">Unit 2 Euroway Leisure</span>
+                    </div>
+                    <div class="d-flex">
+                        <span class="w-50">Euroway Estate Wharfedale Road</span>
+                    </div>
+                    <div class="d-flex">
+                        <span class="w-50">BD46SG</span>
+                    </div>
                 </td>
-                <td style="width:40%;">
-                    asdf
+                <td class="text-right">
+                    <div><span>Date: 29-08-2020</span></div>
+                    <div><span><b>No: AV12FRU1</b></span></div>
+                    <img src="main-logo.png" alt="logo" width="160" />
+                </td>
+            </tr>
+        </table>
+        <!-- table body -->
+        <table cellpadding="0" cellspacing="0" style="padding: 30px 0 0 0;">
+            <tr>
+                <td style="width:50%;" valign="top">
+                    <h2 class="mt-0">Custom Details</h2>
+                    <div class="d-flex">
+                        <span class="w-50">Ms LAYLA DURRANI</span>
+                    </div>
+                    <div class="d-flex">
+                        <span class="w-50">10 Hammerton Street</span>
+                    </div>
+                    <div class="d-flex">
+                        <span class="w-50">Pudsey</span>
+                    </div>
+                    <div class="d-flex">
+                        <span class="w-50">West Yorkshire</span>
+                    </div>
+                    <div class="d-flex">
+                        <span class="w-50">LS28 7DD</span>
+                    </div>
+                    <div class="d-flex">
+                        <span class="w-50">07856347769</span>
+                    </div>
+                </td>
+                <td valign="top" rowspan="2">
+                    <h2 class="mt-0">Vehicle Details</h2>
+                    <div class="d-flex">
+                        <span class="w-50">VRM:</span>
+                        <span class="w-50">AV12FRU</span>
+                    </div>
+                    <div class="d-flex">
+                        <span class="w-50">VIN:</span>
+                        <span class="w-50">XXXX</span>
+                    </div>
+                    <div class="d-flex">
+                        <span class="w-50">Make:</span>
+                        <span class="w-50">SEAT</span>
+                    </div>
+                    <div class="d-flex">
+                        <span class="w-50">Model:</span>
+                        <span class="w-50">LEON</span>
+                    </div>
+                    <div class="d-flex">
+                        <span class="w-50">Car Type:</span>
+                        <span class="w-50">BLACK</span>
+                    </div>
+                    <div class="d-flex">
+                        <span class="w-50">Engine Capacity(cc):</span>
+                        <span class="w-50">1698</span>
+                    </div>
+                    <div class="d-flex">
+                        <span class="w-50">Trasmission:</span>
+                        <span class="w-50">XXXX</span>
+                    </div>
+                    <div class="d-flex">
+                        <span class="w-50">Fuel Type:</span>
+                        <span class="w-50">DIESEL</span>
+                    </div>
+                    <div class="d-flex">
+                        <span class="w-50">Registration Date:</span>
+                        <span class="w-50">19-03-2012</span>
+                    </div>
+                    <div class="d-flex">
+                        <span class="w-50">Purchase Date:</span>
+                        <span class="w-50">29-08-2020</span>
+                    </div>
+                    <div class="d-flex">
+                        <span class="w-50">Mileage:</span>
+                        <span class="w-50">102302</span>
+                    </div>
+                    <div class="d-flex">
+                        <span class="w-50">Purchase Price:</span>
+                        <span class="w-50">3400</span>
+                    </div>
+                    <div class="d-flex">
+                        <span class="w-50">4 x 4:</span>
+                        <span class="w-50">no</span>
+                    </div>
+                    <div class="d-flex">
+                        <span class="w-50">Luxury:</span>
+                        <span class="w-50">No</span>
+                    </div>
+                    <div class="d-flex">
+                        <span class="w-50">Specialist:</span>
+                        <span class="w-50">NO</span>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td style="width:50%;" valign="bottom">
+                    <h2 class="mt-0">Custom Details</h2>
+                    <div class="d-flex">
+                        <span class="w-50">Start Date:</span>
+                        <span class="w-50">29-08-2020</span>
+                    </div>
+                    <div class="d-flex">
+                        <span class="w-50">Cover Type:</span>
+                        <span class="w-50">BASIC</span>
+                    </div>
+                    <div class="d-flex">
+                        <span class="w-50">Vehicle Category:</span>
+                        <span class="w-50">HATCHBACK</span>
+                    </div>
+                    <div class="d-flex">
+                        <span class="w-50">Duration:</span>
+                        <span class="w-50">12 MONTHS</span>
+                    </div>
+                    <div class="d-flex">
+                        <span class="w-50">Claim Limit:</span>
+                        <span class="w-50">500</span>
+                    </div>
+                    <div class="d-flex">
+                        <span class="w-50">Retail Price:</span>
+                        <span class="w-50">0</span>
+                    </div>
                 </td>
             </tr>
             
         </table>
+
+        <!-- table footer -->
+        <table cellpadding="0" cellspacing="0" style="padding: 40px 0 0 0;">
+            <tr>
+                <td style="width:50%;" valign="top">
+                    <div class="d-flex">
+                        <span>Dealer Signature:</span>
+                        <span>_________________________</span>
+                    </div>
+                </td>
+                <td style="width:50%;" valign="top">
+                    <div class="d-flex">
+                        <span>Customer Signature:</span>
+                        <span>_______________________</span>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td style="width:50%;" valign="top">
+                    <div class="d-flex">
+                        <span>Date (dd-mm-yyyy):</span>
+                        <span>_______________________</span>
+                    </div>
+                </td>
+                <td style="width:50%;" valign="top">
+                    <div class="d-flex">
+                        <span>Date(dd-mm-yyyy):</span>
+                        <span>________________________</span>
+                    </div>
+                </td>
+            </tr>
     </div>
 </body>
 </html>

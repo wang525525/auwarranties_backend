@@ -31,10 +31,11 @@ export class DownloadController {
         const data = await this.policyService.findOneById(parseInt(id, 10));
         const html = this.downloadService.printQuote(data);
         console.log('#######');
+        res.setHeader('Content-Type', 'application/pdf');
+        res.writeHead(200, { 'Content-Type': 'application/pdf' });
         const fut = new Promise((resolve, reject) => {
             console.log('@@@@@@@');
-            res.setHeader('Content-Type', 'application/pdf');
-            res.writeHead(200, { 'Content-Type': 'application/pdf' });
+            
             pdf.create(html, option).toStream((err, stream) => {
                 if (err) {
                     reject();

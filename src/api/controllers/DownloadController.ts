@@ -39,11 +39,11 @@ export class DownloadController {
                 if (err) {
                     reject();
                 } else {
+                    console.log('&&&&&&&&&&');
                     // stream.on('end', () => {
                     //     resolve();
                     // });
                     stream.pipe(res);
-                    console.log('&&&&&&&&&&');
                 }
             });
         });

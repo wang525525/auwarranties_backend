@@ -14,14 +14,6 @@ export class PolicyRepository extends Repository<Policy>  {
                     .leftJoinAndSelect('guarantee.duration', 'purchaseduration');
     }
 
-    // /**
-    //  * Find All Policy by limit count
-    //  */
-    // public findAll(limit: number): Promise<any> {
-    //     return this.getBaseQuery().take(limit)
-    //                               .getMany();
-    // }
-
     /**
      * Find All Policy by search text and limit count
      */
@@ -30,14 +22,6 @@ export class PolicyRepository extends Repository<Policy>  {
                                   .take(limit)
                                   .getMany();
     }
-
-    // /**
-    //  * Find Policies By userid
-    //  */
-    // public findByUserId(branchid: number): Promise<any> {
-    //     return this.getBaseQuery().where(`branchid=${branchid}`)
-    //                         .getMany();
-    // }
 
     /**
      * Find Policies By userid and search text

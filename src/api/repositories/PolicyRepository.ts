@@ -14,37 +14,38 @@ export class PolicyRepository extends Repository<Policy>  {
                     .leftJoinAndSelect('guarantee.duration', 'purchaseduration');
     }
 
-    /**
-     * Find All Policy by limit count
-     */
-    public findAll(limit: number): Promise<any> {
-        return this.getBaseQuery().take(limit)
-                                  .getMany();
-    }
+    // /**
+    //  * Find All Policy by limit count
+    //  */
+    // public findAll(limit: number): Promise<any> {
+    //     return this.getBaseQuery().take(limit)
+    //                               .getMany();
+    // }
 
     /**
      * Find All Policy by search text and limit count
      */
     public findAllBySearch(limit: number, search: string): Promise<any> {
-        return this.getBaseQuery().where(this.searchText(search))
+        return this.getBaseQuery().where(search ? this.searchText(search) : ``)
                                   .take(limit)
                                   .getMany();
     }
 
-    /**
-     * Find Policies By userid
-     */
-    public findByUserId(branchid: number): Promise<any> {
-        return this.getBaseQuery().where(`branchid=${branchid}`)
-                            .getMany();
-    }
+    // /**
+    //  * Find Policies By userid
+    //  */
+    // public findByUserId(branchid: number): Promise<any> {
+    //     return this.getBaseQuery().where(`branchid=${branchid}`)
+    //                         .getMany();
+    // }
 
     /**
      * Find Policies By userid and search text
      */
     public findByUserIdSearch(branchid: number, search: string): Promise<any> {
-        return this.getBaseQuery().where(`branchid=${branchid} and (${this.searchText(search)})`)
-                            .getMany();
+        return this.getBaseQuery().where(`branchid=${branchid} \
+                                    ${search ? `and (${this.searchText(search)})` : ``}`)
+                                  .getMany();
     }
 
     public searchText(search: string): any {

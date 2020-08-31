@@ -12,7 +12,7 @@ import utilService from '../services/UtilService';
 import { ResponseMessage } from '../Common';
 import { PolicyRegisterRequest, PolicyUpdateRequest } from './requests/PolicyRequest';
 import { PolicysResponse, PolicyResponse, PolicyDetail } from './responses/PolicyResponse';
-import { StatusResponse } from './responses/CommonResponse';
+import { StatusResponse, GeneralResponse } from './responses/CommonResponse';
 
 @Authorized()
 @JsonController('/policy')
@@ -24,32 +24,32 @@ export class PolicyController {
     ) { }
 
     @Get('/:branchid')
-    @ResponseSchema(PolicysResponse)
-    public async one(@Param('branchid') branchid: string, @QueryParam('search', {required: false}) search: string): Promise<PolicysResponse> {
-        let policy;
-        if (search) {
-            policy = await this.policyService.findByUserIdSearch(parseInt(branchid, 10), search) as PolicyDetail[];
-        } else {
-            policy = await this.policyService.findByUserId(parseInt(branchid, 10)) as PolicyDetail[];
-        }
-        if (policy) {
-            return {status: ResponseMessage.SUCCEEDED, res: policy};
+    @ResponseSchema(GeneralResponse)
+    public async one(@Param('branchid') branchid: string, @QueryParam('search', {required: false}) search: string): Promise<GeneralResponse> {
+        let policies;
+        policies = await this.policyService.findByUserIdSearch(parseInt(branchid, 10), search) as PolicyDetail[];
+
+        if (policies) {
+            const res = {
+                total: this.getTotalValues(policies),
+                policies: policies,
+            };
+            return {status: ResponseMessage.SUCCEEDED, res: res};
         } else {
             return {status: ResponseMessage.NOT_FOUND_DURATION, res: undefined};
         }
     }
 
     @Get('/all/:limit')
-    @ResponseSchema(PolicysResponse)
-    public async find(@Param('limit') limit: string, @QueryParam('search', {required: false}) search: string): Promise<PolicysResponse> {
-        let policys;
-        if (search) {
-            policys = await this.policyService.findAllBySearch(parseInt(limit, 10), search) as PolicyDetail[];
-        } else {
-            policys = await this.policyService.findAll(parseInt(limit, 10)) as PolicyDetail[];
-        }
-
-        return { status: ResponseMessage.SUCCEEDED, res: policys };
+    @ResponseSchema(GeneralResponse)
+    public async find(@Param('limit') limit: string, @QueryParam('search', {required: false}) search: string): Promise<GeneralResponse> {
+        let policies;
+        policies = await this.policyService.findAllBySearch(parseInt(limit, 10), search) as PolicyDetail[];
+        const res = {
+            total: this.getTotalValues(policies),
+            policies: policies,
+        };
+        return { status: ResponseMessage.SUCCEEDED, res: res };
     }
 
     @Get('/one/:id')
@@ -106,6 +106,32 @@ export class PolicyController {
         } else {
             return {status: ResponseMessage.NOT_FOUND_DURATION };
         }
+    }
+
+    // Non API functions here.
+    public getTotalValues(policies: PolicyDetail[]): any {
+        let res = ``;
+        let notinvoiced = 0;
+        let grosspending = 0;
+        let pendingcount = 0;
+        let grosspaid = 0;
+        let paidcount = 0;
+        if (policies && policies.length > 0) {
+            policies.map(policy => {
+                if (policy.policystate && policy.policystate.stateid === 10) {
+                    grosspaid = grosspaid + policy.gross;
+                    paidcount = paidcount + 1;
+                } else if (policy.policystate && policy.policystate.stateid === 11) {
+                    grosspending = grosspending + policy.gross;
+                    pendingcount = pendingcount + 1;
+                } else if (policy.policystate && policy.policystate.stateid === 0) {
+                    notinvoiced = notinvoiced + 1;
+                }
+            });
+        }
+        res = `Total: ${policies.length}, Not Invoiced: ${notinvoiced}, Payment Pending: ${pendingcount} \
+                (£ ${grosspending}), Paid: ${paidcount} (£ ${grosspaid})`;
+        return res;
     }
 
 }

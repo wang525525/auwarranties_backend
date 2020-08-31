@@ -13,10 +13,10 @@ export class PolicyService {
         @Logger(__filename) private log: LoggerInterface
     ) { }
 
-    public findAll(limit: number): Promise<Policy[]> {
-        this.log.info('Find all policys');
-        return this.policyRepository.findAll(limit);
-    }
+    // public findAll(limit: number): Promise<Policy[]> {
+    //     this.log.info('Find all policys');
+    //     return this.policyRepository.findAll(limit);
+    // }
 
     public findAllBySearch(limit: number, search: string): Promise<Policy[]> {
         this.log.info('Find all policys');
@@ -39,9 +39,9 @@ export class PolicyService {
         return updatePolicy;
     }
 
-    public findByUserId(branchid: number): Promise<Policy[]> {
-        return this.policyRepository.findByUserId(branchid);
-    }
+    // public findByUserId(branchid: number): Promise<Policy[]> {
+    //     return this.policyRepository.findByUserId(branchid);
+    // }
 
     public findByUserIdSearch(branchid: number, search: string): Promise<Policy[]> {
         return this.policyRepository.findByUserIdSearch(branchid, search);

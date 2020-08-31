@@ -24,21 +24,16 @@ export class DownloadController {
 
     @Get('/agreement/:id')
     public async downloadAsPdf(@Req() req: Request, @Res() res: Response, @Param('id') id: string): Promise<Response> {
-        const option = {
-            format: 'Letter',
-        };
-
+        const option = { format: 'Letter' };
         const data = await this.policyService.findOneById(parseInt(id, 10));
         const html = this.downloadService.printQuote(data);
         const fut = new Promise((resolve, reject) => {
             res.setHeader('Content-Type', 'application/pdf');
             res.writeHead(200, { 'Content-Type': 'application/pdf' });
             pdf.create(html, option).toStream((err, stream) => {
-                console.log('err======>', err);
                 if (err) {
                     reject();
                 } else {
-                    console.log('&&&&&&&&&&');
                     stream.on('end', () => {
                         resolve();
                     });
@@ -49,7 +44,6 @@ export class DownloadController {
 
         await fut;
         res.end();
-        console.log('===========>');
         return res;
     }
 

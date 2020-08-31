@@ -35,6 +35,7 @@ export class DownloadController {
         const fut = new Promise((resolve, reject) => {
             console.log('@@@@@@@');
             pdf.create(html, option).toStream((err, stream) => {
+                console.log('err======>', err);
                 if (err) {
                     reject();
                 } else {

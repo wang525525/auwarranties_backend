@@ -5107,7 +5107,7 @@
 			"name": "Download",
 			"item": [
 				{
-					"name": "Agreement Download By Id",
+					"name": "Agreement Download By Policy Number",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},

@@ -51,6 +51,10 @@ export class ClaimService {
         return this.claimRepository.findOneById(claimid);
     }
 
+    public findOneForPdfById(claimid: number): Promise<Claim | undefined> {
+        return this.claimRepository.findOneForPdfById(claimid);
+    }
+
     public async delete(claimid: number): Promise<void> {
         this.log.info('Delete a claim');
         await this.claimRepository.delete(claimid);

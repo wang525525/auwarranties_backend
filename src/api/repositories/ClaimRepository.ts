@@ -109,4 +109,25 @@ export class ClaimRepository extends Repository<Claim>  {
                                      'guarantee.guaranteeid', 'guarantee.claimlimitamount'])
                             .getOne();
     }
+
+    public findOneForPdfById(claimid: number): Promise<any> {
+        const query = `\
+            select  claimid, adjustedclaim, calculatedtotal, claimnumber, claimtotal, dateseconds, claimdateseconds, failedarea, \
+            failedpart, notes, failurecause, labourperhour, lastservicedates, faultdiagnosed, confirmedwarrantyclaim,  advicedtodiagnosefault, \
+            advicedtosenddiagnostic,hasbooklet, repairinggarage, labourtotal, mileageatclaim, partstotal, payvat,  policy.policyid, \
+            repairsrequired, claimvatamt, claimnotifyemail, claims.state as state, \
+            policy.policynumber, regdate, carmake, carmodel, cartype, fueltype, carcolour, covername, durationvalue, \
+            durationtype, claimlimitamount, title, forename, surname, policy.address1, policy.address2, policy.address3, \
+            policy.town, policy.postcode, mileageatclaim, failedarea, failedpart, labourperhour, failurecause, \
+            repairsrequired, claimid, payvat, partstotal, claimvatamt, labourtotal, calculatedtotal, adjustedclaim, claimtotal, claimnumber \
+            from claims left join policy on policy.policyid = claims.policyid left join users on policy.branchid = users.userid \
+            left join vehicle on policy.policynumber = vehicle.policynumber \
+            left join state on policy.state = state.stateid \
+            left join guarantee on policy.policynumber = guarantee.policynumber \
+            left join covertype on guarantee.coverid = covertype.coverid \
+            left join purchaseduration on guarantee.durationid = purchaseduration.durationid \
+            where claims.claimid = '${claimid}' \
+        `;
+        return this.query(query);
+    }
 }

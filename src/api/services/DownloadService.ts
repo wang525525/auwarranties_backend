@@ -13,8 +13,9 @@ export class DownloadService {
         @Logger(__filename) private log: LoggerInterface
     ) { }
 
-    public printQuote(data: any = undefined): string {
-        this.log.info('Make the pdf file.');
+    // for agreement
+    public printQuoteForPolicy(data: any = undefined): string {
+        this.log.info('Make the pdf file for Policy.');
         const dir = path.dirname(require.main.filename);
         let html = fs.readFileSync(dir + '/public/template/policy_pdf.html', 'utf8');
 
@@ -71,6 +72,15 @@ export class DownloadService {
         html = html.replace('{{fourbyfour}}', data.fourbyfour ? 'Yes' : 'No');
         html = html.replace('{{luxury}}', data.luxury ? 'Yes' : 'No');
         html = html.replace('{{specialist}}', data.specialist ? 'Yes' : 'No');
+
+        return html;
+    }
+
+    // for claim
+    public printQuoteForClaim(data: any = undefined): string {
+        this.log.info('Make the pdf file for Claim.');
+        const dir = path.dirname(require.main.filename);
+        let html = fs.readFileSync(dir + '/public/template/claim_pdf.html', 'utf8');
 
         return html;
     }

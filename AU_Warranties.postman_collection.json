@@ -5107,7 +5107,7 @@
 			"name": "Download",
 			"item": [
 				{
-					"name": "Agreement Download By Policy Number",
+					"name": "Agreement Download By PolicyId",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -5132,17 +5132,20 @@
 							"raw": "[\r\n    {\r\n        \"custompricingruleid\": 132,\r\n        \"dealerid\": 23,\r\n        \"settingtype\": 0,\r\n        \"settingchecked\": true,\r\n        \"settingcondition\": 0,\r\n        \"settingval\": 2,\r\n        \"settingrule\": 2,\r\n        \"settingruleval\": 30\r\n    },\r\n    {\r\n        \"custompricingruleid\": 133,\r\n        \"dealerid\": 23,\r\n        \"settingtype\": 1,\r\n        \"settingchecked\": true,\r\n        \"settingcondition\": 0,\r\n        \"settingval\": 2,\r\n        \"settingrule\": 2,\r\n        \"settingruleval\": 440\r\n    }\r\n]"
 						},
 						"url": {
-							"raw": "http://localhost:5000/api/download/agreement/1",
+							"raw": "http://35.176.66.97:5000/api/download/agreement/24417",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"35",
+								"176",
+								"66",
+								"97"
 							],
 							"port": "5000",
 							"path": [
 								"api",
 								"download",
 								"agreement",
-								"1"
+								"24417"
 							]
 						}
 					},

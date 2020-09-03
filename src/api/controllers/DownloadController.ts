@@ -52,7 +52,7 @@ export class DownloadController {
 
     @Get('/claim/:id')
     public async downloadAsPdfForClaim(@Req() req: Request, @Res() res: Response, @Param('id') id: string): Promise<Response> {
-        const option = { format: 'Letter' };
+        const option = { format: 'Letter', zoomFactor: 0.7 };
         const data = await this.claimService.findOneForPdfById(4435);
         const html = this.downloadService.printQuoteForClaim(data[0]);
         const fut = new Promise((resolve, reject) => {

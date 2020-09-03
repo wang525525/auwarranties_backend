@@ -42,6 +42,10 @@ export class PolicyService {
         return this.policyRepository.findOneById(policyid);
     }
 
+    public findOneForPdfById(policyid: number): Promise<Policy | undefined> {
+        return this.policyRepository.findOneForPdfById(policyid);
+    }
+
     public async delete(policyid: number): Promise<void> {
         this.log.info('Delete a policy');
         await this.policyRepository.delete(policyid);

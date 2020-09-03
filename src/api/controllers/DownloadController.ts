@@ -25,10 +25,11 @@ export class DownloadController {
     @Get('/agreement/:id')
     public async downloadAsPdf(@Req() req: Request, @Res() res: Response, @Param('id') id: string): Promise<Response> {
         const option = { format: 'Letter' };
-        const data = await this.policyService.findOneById(parseInt(id, 10));
-        const html = this.downloadService.printQuote(data);
+        const data = await this.policyService.findOneForPdfById(parseInt(id, 10));
+        const html = this.downloadService.printQuote(data[0]);
         const fut = new Promise((resolve, reject) => {
             res.setHeader('Content-Type', 'application/pdf');
+            res.setHeader('Content-Disposition', `attachment; filename=AU Warranties Agreement ${data[0].policynumber}.pdf;`);
             res.writeHead(200, { 'Content-Type': 'application/pdf' });
             pdf.create(html, option).toStream((err, stream) => {
                 if (err) {

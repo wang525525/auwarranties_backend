@@ -294,19 +294,20 @@ export class DownloadService {
                             ${invoice.policynumber}\
                         </td>\
                         <td style="width:10%;" align="center">\
-                            ${invoice.carmake}\
+                            ${(invoice.carmake.length > 10) ? invoice.carmake.substr(0, 9) + '..' : invoice.carmake}\
                         </td>\
                         <td style="width:8%;" align="center">\
-                            ${invoice.carmodel}\
+                            ${(invoice.carmodel.length > 8) ? invoice.carmodel.substr(0, 7) + '..' : invoice.carmodel}\
                         </td>\
                         <td style="width:8%;" align="center">\
-                            ${invoice.enginecapacity.toString()}\
+                            ${(invoice.enginecapacity.toString().length > 8) ?
+                                invoice.enginecapacity.toString().substr(0, 7) + '..' : invoice.enginecapacity.toString()}\
                         </td>\
                         <td style="width:8%;" align="center">\
-                            ${invoice.custlastname}\
+                            ${(invoice.custlastname.length > 8) ? invoice.custlastname.substr(0, 7) + '..' : invoice.custlastname}\
                         </td>\
                         <td style="width:8%;" align="center">\
-                            ${invoice.covertype}\
+                            ${(invoice.covertype.length > 8) ? invoice.covertype.substr(0, 7) + '..' : invoice.covertype}\
                         </td>\
                         <td style="width:8%;" align="center">\
                             ${invoice.claimlimitamount.toString()}\

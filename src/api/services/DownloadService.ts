@@ -173,6 +173,6 @@ export class DownloadService {
             });
         }
 
-        return html + html + html;
+        return html;
     }
 }

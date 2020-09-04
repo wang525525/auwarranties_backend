@@ -42,6 +42,18 @@ export class InvoiceService {
         return this.invoiceRepository.findOneById(invoiceid);
     }
 
+    public findOneForPdfByIds(invoiceids: number[]): Promise<Invoice[] | undefined> {
+        return this.invoiceRepository.findOneForPdfByIds(invoiceids);
+    }
+
+    public findUsersAllByLimit(lim: number): Promise<any | undefined> {
+        return this.invoiceRepository.findUsersAllByLimit(lim);
+    }
+
+    public findUsersByInvoiceIds(invoiceids: number[]): Promise<any | undefined> {
+        return this.invoiceRepository.findUsersByInvoiceIds(invoiceids);
+    }
+
     public getFilterDate(userId: number = undefined): Promise<any> {
         return this.invoiceRepository.getFilterDate(userId);
     }

@@ -160,4 +160,19 @@ export class DownloadService {
         html = html.replace('{{claimtotal}}', data.claimtotal);
         return html;
     }
+
+    // for invoice
+    public printQuoteForInvoice(data: any = undefined, userData: any = undefined, invoiceIds: number[] = undefined): string {
+        this.log.info('Make the pdf file for Invoice.');
+        const dir = path.dirname(require.main.filename);
+        const html = fs.readFileSync(dir + '/public/template/invoice_pdf.html', 'utf8');
+
+        if (invoiceIds && invoiceIds.length > 0) {
+            invoiceIds.map(invoiceid => {
+                
+            });
+        }
+
+        return html + html + html;
+    }
 }

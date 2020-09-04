@@ -78,9 +78,18 @@ const utilService = {
         if (str !== '') {
             const sentence = str.toLowerCase().split(' ');
             for (let i = 0; i < sentence.length; i++) {
-               sentence[i] = sentence[i][0].toUpperCase() + sentence[i].slice(1);
+               sentence[i] = sentence[i].charAt(0).toUpperCase() + sentence[i].slice(1);
             }
             res = sentence.join(' ');
+        }
+        return res;
+    },
+
+    // convert string to title case
+    toUpperCase: (str: string): string => {
+        const res = '';
+        if (str !== '') {
+            return str.toUpperCase();
         }
         return res;
     },

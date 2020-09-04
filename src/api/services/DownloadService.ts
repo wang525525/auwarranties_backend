@@ -46,19 +46,19 @@ export class DownloadService {
         html = html.replace('{{startdate}}', utilService.formatDateWithYYYYMMDD(data.startdate));
         html = html.replace('{{covertype}}', data.covertype);
         html = html.replace('{{vehiclecategory}}', data.vehiclecategory);
-        html = html.replace('{{duration}}', `${utilService.toTitleCase(data.durationvalue.toString())} ${data.durationtype.toUpperCase()}`);
+        html = html.replace('{{duration}}', `${utilService.toTitleCase(data.durationvalue.toString())} ${utilService.toUpperCase(data.durationtype)}`);
         html = html.replace('{{claimlimitamount}}', data.claimlimitamount);
         html = html.replace('{{retailprice}}', data.retailprice);
 
         // vehicle details
-        html = html.replace('{{vrm}}', data.vrm.toUpperCase());
-        html = html.replace('{{vin}}', data.vin.toUpperCase());
-        html = html.replace('{{carmake}}', data.carmake.toUpperCase());
+        html = html.replace('{{vrm}}', utilService.toUpperCase(data.vrm));
+        html = html.replace('{{vin}}', utilService.toUpperCase(data.vin));
+        html = html.replace('{{carmake}}', utilService.toUpperCase(data.carmake));
         html = html.replace('{{carmodel}}', data.carmodel);
-        html = html.replace('{{cartype}}', `${data.cartype.toUpperCase()} ${data.carcolour.toUpperCase()}`);
-        html = html.replace('{{enginecapacity}}', data.enginecapacity.toString().toUpperCase());
-        html = html.replace('{{transmission}}', data.transmission.toUpperCase());
-        html = html.replace('{{fueltype}}', data.fueltype.toUpperCase());
+        html = html.replace('{{cartype}}', `${utilService.toUpperCase(data.cartype)} ${utilService.toUpperCase(data.carcolour)}`);
+        html = html.replace('{{enginecapacity}}', utilService.toUpperCase(data.enginecapacity.toString()));
+        html = html.replace('{{transmission}}', utilService.toUpperCase(data.transmission));
+        html = html.replace('{{fueltype}}', utilService.toUpperCase(data.fueltype));
         html = html.replace('{{regdate}}',
                             utilService.formatDateWithYYYYMMDD(
                                 (utilService.convertTimestampToDate(parseInt(data.regdate, 10))).toString()
@@ -67,8 +67,8 @@ export class DownloadService {
                             utilService.formatDateWithYYYYMMDD(
                                 (utilService.convertTimestampToDate(parseInt(data.purchasedate, 10))).toString()
                             ));
-        html = html.replace('{{mileage}}', data.mileage.toString().toUpperCase());
-        html = html.replace('{{purchaseprice}}', data.purchaseprice.toString().toUpperCase());
+        html = html.replace('{{mileage}}', utilService.toUpperCase(data.mileage.toString()));
+        html = html.replace('{{purchaseprice}}', utilService.toUpperCase(data.purchaseprice.toString()));
         html = html.replace('{{fourbyfour}}', data.fourbyfour ? 'Yes' : 'No');
         html = html.replace('{{luxury}}', data.luxury ? 'Yes' : 'No');
         html = html.replace('{{specialist}}', data.specialist ? 'Yes' : 'No');
@@ -92,12 +92,15 @@ export class DownloadService {
                                     (utilService.convertTimestampToDate(parseInt(data.claimdateseconds, 10))).toString()
                                 )})`
                             );
-        html = html.replace('{{claimname}}', `${data.title.toUpperCase()} ${data.forename.toUpperCase()} ${data.surname.toUpperCase()}`);
+        html = html.replace('{{claimname}}', `${utilService.toUpperCase(data.title)} \
+                                            ${utilService.toUpperCase(data.forename)} \
+                                            ${utilService.toUpperCase(data.surname)}`);
         const regYear = new Date(utilService.convertTimestampToDate(data.regdate)).getFullYear();
         html = html.replace('{{vehicleinfo}}', `${data.carmake} ${data.carmodel} ${data.cartype} ${regYear} ${data.fueltype} ${data.carcolour} \
                                                 ${data.covername} ${data.durationvalue} ${data.durationtype} Claim Limit: ${data.claimlimitamount}`);
         html = html.replace('{{claimaddr}}', `${utilService.toTitleCase(data.address1)} ${utilService.toTitleCase(data.address2)} \
-                                                ${utilService.toTitleCase(data.address3)} ${data.town.toUpperCase()} ${data.postcode.toUpperCase()}`);
+                                                ${utilService.toTitleCase(data.address3)} \
+                                                ${utilService.toUpperCase(data.town)} ${utilService.toUpperCase(data.postcode)}`);
 
         html = html.replace('{{mileage}}', data.mileageatclaim);
         html = html.replace('{{failedarea}}', utilService.toTitleCase(data.failedarea));

@@ -23,8 +23,17 @@ export class InvoiceRepository extends Repository<Invoice>  {
     }
 
     public searchAll(search: string, date: string): string {
-        const res = ` ${search ? this.searchText(search) : ''} \
-                    ${date ? (search ? `and (${this.searchDate(date)})` : this.searchDate(date)) : ``}`;
+        let res = '';
+        if (search && !date) {
+            res = this.searchText(search);
+        } else if (search && date) {
+            res = this.searchText(search) + 'and (' + this.searchDate(date) + ')';
+        } else if (!search && date) {
+            res = this.searchDate(date);
+        } else {
+            res = '';
+        }
+        console.log('res ==', res);
         return res;
     }
 

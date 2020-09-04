@@ -15,7 +15,7 @@
     }
     .container {
         max-width: 1000px;
-        height: 700px;
+        /* height: 700px; */
         margin: auto;
     }
     
@@ -47,14 +47,19 @@
     .w-50 {
         width: 50%;
     }
+    @media print {
+        .new-page {
+            page-break-before: always;
+        }
+    }
 
     </style>
 </head>
 
 <body>
     <div class="container">
-        <table cellpadding="0" cellspacing="0" style="padding: 40px 0 0 0;">
-            <!-- LOGO And business details -->
+        {{body}}
+        <!-- <table class="new-page" cellpadding="0" cellspacing="0" style="padding: 40px 0 0 0;">
             <tr>
                 <td style="width:35%;" valign="top">
                     <h2 class="mt-0" style="margin-bottom: 0px;">213automotive</h2>
@@ -89,7 +94,6 @@
                 </td>
             </tr>
         </table>
-        <!-- table body -->
         
         <table class="table-border" cellpadding="4" cellspacing="4" style="margin: 20px 0 0 0;">
             <tr>
@@ -172,27 +176,31 @@
         <table cellpadding="4" cellspacing="4" style="padding: 8px 0 0 0;">
             <tr>
                 <td style="width:100%;" align="right">
-                    VAT on Admin 20.00%
+                    VAT on Admin 20.00%<br>
+                </td>
+            </tr>
+        </table> -->
+
+    </div>
+    
+    <div id="pageFooter">
+        <table cellpadding="0" cellspacing="0">
+            <tr>
+                <td style="width:100%;" align="center">
+                    Cheques payable to Auto Union Warranties Ltd, to be paid within 14 days of the date of this invoice.
+                </td>
+            </tr>
+            <tr>
+                <td style="width:100%;" align="center">
+                    Bank Details- Sort Code: 30-95-96 Account Number: 20888260
+                </td>
+            </tr>
+            <tr>
+                <td style="width:100%;" align="center">
+                    Company Reg No: 10332077, VAT Registration Number: 249273287
                 </td>
             </tr>
         </table>
     </div>
-    <table cellpadding="0" cellspacing="0" style="position: relative; bottom: 20px;">
-        <tr>
-            <td style="width:100%;" align="center">
-                Cheques payable to Auto Union Warranties Ltd, to be paid within 14 days of the date of this invoice.
-            </td>
-        </tr>
-        <tr>
-            <td style="width:100%;" align="center">
-                Bank Details- Sort Code: 30-95-96 Account Number: 20888260
-            </td>
-        </tr>
-        <tr>
-            <td style="width:100%;" align="center">
-                Company Reg No: 10332077, VAT Registration Number: 249273287
-            </td>
-        </tr>
-    </table>
 </body>
 </html>

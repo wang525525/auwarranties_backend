@@ -165,14 +165,209 @@ export class DownloadService {
     public printQuoteForInvoice(data: any = undefined, userData: any = undefined, invoiceIds: number[] = undefined): string {
         this.log.info('Make the pdf file for Invoice.');
         const dir = path.dirname(require.main.filename);
-        const html = fs.readFileSync(dir + '/public/template/invoice_pdf.html', 'utf8');
+        let html = fs.readFileSync(dir + '/public/template/invoice_pdf.html', 'utf8');
 
+        let body = '';
         if (invoiceIds && invoiceIds.length > 0) {
-            invoiceIds.map(invoiceid => {
-                
+            invoiceIds.map((invoiceid, idx) => {
+                const userIdx = userData.findIndex(user => {
+                    return user.invoiceid === invoiceid;
+                });
+                const invoices = [];
+                data.map(invoice => {
+                    if (invoice.invoiceid === invoiceid) {
+                        invoices.push(invoice);
+                    }
+                });
+
+                body += this.getInvoiceBody(userData[userIdx], invoices, idx);
             });
         }
-
+        html = html.replace('{{body}}', body);
         return html;
     }
+
+    // non service function here.
+    public getInvoiceBody(user: any, invoices: any[], idx: number): string {
+        let res = '';
+
+        // invoice header part
+        res += `\
+            <table class="${idx === 0 ? '' : 'new-page'}" cellpadding="0" cellspacing="0" style="padding: 40px 0 0 0;">\
+                <tr>\
+                    <td style="width:35%;" valign="top">\
+                        <h2 class="mt-0" style="margin-bottom: 0px;">${user.companyname}</h2>\
+                    </td>\
+                    <td style="width:35%;" valign="top" align="center">\
+                        <h2 class="mt-0" style="margin-bottom: 0px;">\
+                            Auto Union Warranties Ltd.\
+                        </h2>\
+                    </td>\
+                    <td style="width:30%;" valign="top" align="center">\
+                        <h2 class="mt-0" style="margin-bottom: 0px;">Invoice No: ${user.invoicenumber}</h2>\
+                    </td>\
+                </tr>
+                <tr>\
+                    <td style="width:35%;" valign="top">\
+                        ${user.address1 === '' ? '' : utilService.toTitleCase(user.address1) + ', '}\
+                        ${user.address2 === '' ? '' : utilService.toTitleCase(user.address2) + ', '}\
+                        ${utilService.toTitleCase(user.address3)}\
+                    </td>\
+                    <td style="width:35%;" valign="top" align="center">\
+                        Bumpers Lane, Sealand Industrial Estate,\
+                    </td>\
+                    <td style="width:30%;" valign="top"></td>\
+                </tr>\
+                <tr>\
+                    <td style="width:35%;" valign="top">\
+                        ${user.county === '' ? '' : utilService.toTitleCase(user.county) + ', '}\
+                        ${user.town === '' ? '' : utilService.toTitleCase(user.town) + ', '}\
+                        ${utilService.toUpperCase(user.postcode)}\
+                    </td>\
+                    <td style="width:35%;" valign="top" align="center">\
+                        Chester, CH1 4LT\
+                    </td>\
+                    <td style="width:30%;" valign="top" align="center">\
+                        <b>Date: ${utilService.formatDateWithYYYYMMDD(
+                            (utilService.convertTimestampToDate(parseInt(user.invdateseconds, 10))).toString()
+                        )}</b>\
+                    </td>\
+                </tr>\
+            </table>\
+        `;
+
+        // invoice body part
+        res += `\
+            <table class="table-border" cellpadding="4" cellspacing="4" style="margin: 20px 0 0 0;">\
+                <tr>\
+                    <td style="width:10%;" align="center">\
+                        <b>Agreement</b>\
+                    </td>\
+                    <td style="width:10%;" align="center">\
+                        <b>Make</b>\
+                    </td>\
+                    <td style="width:8%;" align="center">\
+                        <b>Model</b>\
+                    </td>\
+                    <td style="width:8%;" align="center">\
+                        <b>CC</b>\
+                    </td>\
+                    <td style="width:8%;" align="center">\
+                        <b>Surname</b>\
+                    </td>\
+                    <td style="width:8%;" align="center">\
+                        <b>Cover</b>\
+                    </td>\
+                    <td style="width:8%;" align="center">\
+                        <b>Claim</b>\
+                    </td>\
+                    <td style="width:8%;" align="center">\
+                        <b>Months</b>\
+                    </td>\
+                    <td style="width:8%;" align="center">\
+                        <b>Net</b>\
+                    </td>\
+                    <td style="width:8%;" align="center">\
+                        <b>Admin</b>\
+                    </td>\
+                    <td style="width:8%;" align="center">\
+                        <b>Vat</b>\
+                    </td>\
+                    <td style="width:8%;" align="center">\
+                        <b>Gross</b>\
+                    </td>\
+                </tr>\
+        `;
+        if (invoices && invoices.length > 0) {
+            invoices.map(invoice => {
+                let adminstr;
+                if (invoice.poladmincosttype === 0) {
+                    adminstr = '0';
+                } else if (invoice.poladmincosttype === 1) {
+                    adminstr = invoice.poladmincostcent.toString() + '%';
+                } else if (invoice.poladmincosttype === 2) {
+                    adminstr = '£' + invoice.poladmincostamt.toString();
+                }
+                res += `\
+                    <tr>\
+                        <td style="width:10%;" align="center">\
+                            ${invoice.policynumber}\
+                        </td>\
+                        <td style="width:10%;" align="center">\
+                            ${invoice.carmake}\
+                        </td>\
+                        <td style="width:8%;" align="center">\
+                            ${invoice.carmodel}\
+                        </td>\
+                        <td style="width:8%;" align="center">\
+                            ${invoice.enginecapacity.toString()}\
+                        </td>\
+                        <td style="width:8%;" align="center">\
+                            ${invoice.custlastname}\
+                        </td>\
+                        <td style="width:8%;" align="center">\
+                            ${invoice.covertype}\
+                        </td>\
+                        <td style="width:8%;" align="center">\
+                            ${invoice.claimlimitamount.toString()}\
+                        </td>\
+                        <td style="width:8%;" align="center">\
+                            ${invoice.durationvalue.toString()}\
+                        </td>\
+                        <td style="width:8%;" align="center">\
+                            ${invoice.nett.toString()}\
+                        </td>\
+                        <td style="width:8%;" align="center">\
+                            ${adminstr}\
+                        </td>\
+                        <td style="width:8%;" align="center">\
+                            ${(invoice.tax + invoice.taxadmin).toString()}\
+                        </td>\
+                        <td style="width:8%;" align="center">\
+                            ${(invoice.gross + invoice.taxadmin + invoice.poladmincostamt).toString()}\
+                        </td>\
+                    </tr>\
+                `;
+            });
+            res += `\
+                <tr>\
+                    <td style="width:10%;" align="center"></td>\
+                    <td style="width:10%;" align="center"></td>\
+                    <td style="width:8%;" align="center"></td>\
+                    <td style="width:8%;" align="center"></td>\
+                    <td style="width:8%;" align="center"></td>\
+                    <td style="width:8%;" align="center"></td>\
+                    <td style="width:8%;" align="center"></td>\
+                    <td style="width:8%;" align="center"></td>\
+                    <td style="width:8%;" align="center">\
+                        ${user.net.toString()}\
+                    </td>\
+                    <td style="width:8%;" align="center">\
+                        ${user.totaladmin.toString()}\
+                    </td>\
+                    <td style="width:8%;" align="center">\
+                        <b>${(user.tax + user.taxadmin).toString()}</b>\
+                    </td>\
+                    <td style="width:8%;" align="center">\
+                        <b>${(user.gross).toString()}</b>\
+                    </td>\
+                </tr>\
+            `;
+        }
+        res += `\
+            </table>\
+        `;
+        res += `\
+            <table cellpadding="4" cellspacing="4" style="padding: 8px 0 0 0;">
+                <tr>
+                    <td style="width:100%;" align="right">
+                        VAT on Admin ${user.invvatcent}%<br>
+                    </td>
+                </tr>
+            </table>
+        `;
+
+        return res;
+    }
+
 }

@@ -92,10 +92,10 @@ export class DownloadController {
             orientation: 'landscape',
             border: {
                 top: '25px',
-                bottom: '25px',
+                bottom: '5px',
                 left: '25px',
-                right: '25px'
-            }
+                right: '25px',
+            },
         };
         const lim = parseInt(limit, 10);
 

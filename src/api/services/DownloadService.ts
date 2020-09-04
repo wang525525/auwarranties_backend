@@ -77,11 +77,84 @@ export class DownloadService {
     }
 
     // for claim
-    public printQuoteForClaim(data: any = undefined): string {
+    public printQuoteForClaim(data: any = undefined, claimparts: any = undefined, claimlabours: any = undefined): string {
         this.log.info('Make the pdf file for Claim.');
         const dir = path.dirname(require.main.filename);
         let html = fs.readFileSync(dir + '/public/template/claim_pdf.html', 'utf8');
 
+        html = html.replace('{{claimdate}}',
+                                utilService.formatDateWithYYYYMMDD(
+                                    (utilService.convertTimestampToDate(parseInt(data.claimdateseconds, 10))).toString()
+                            ));
+        html = html.replace('{{claimnumber}}', data.claimnumber);
+        html = html.replace('{{agreement}}', `${data.policynumber} (${
+                                utilService.formatDateWithYYYYMMDD(
+                                    (utilService.convertTimestampToDate(parseInt(data.claimdateseconds, 10))).toString()
+                                )})`
+                            );
+        html = html.replace('{{claimname}}', `${data.title.toUpperCase()} ${data.forename.toUpperCase()} ${data.surname.toUpperCase()}`);
+        const regYear = new Date(utilService.convertTimestampToDate(data.regdate)).getFullYear();
+        html = html.replace('{{vehicleinfo}}', `${data.carmake} ${data.carmodel} ${data.cartype} ${regYear} ${data.fueltype} ${data.carcolour} \
+                                                ${data.covername} ${data.durationvalue} ${data.durationtype} Claim Limit: ${data.claimlimitamount}`);
+        html = html.replace('{{claimaddr}}', `${utilService.toTitleCase(data.address1)} ${utilService.toTitleCase(data.address2)} \
+                                                ${utilService.toTitleCase(data.address3)} ${data.town.toUpperCase()} ${data.postcode.toUpperCase()}`);
+
+        html = html.replace('{{mileage}}', data.mileageatclaim);
+        html = html.replace('{{failedarea}}', utilService.toTitleCase(data.failedarea));
+        html = html.replace('{{failedpart}}', utilService.toTitleCase(data.failedpart));
+        html = html.replace('{{labourperhour}}', data.labourperhour);
+        html = html.replace('{{failurecause}}', data.failurecause);
+
+        let parts = '';
+        if (claimparts && claimparts.length > 0) {
+            claimparts.map(part => {
+                parts += `\
+                    <tr>\
+                        <td style="width: 20%;">\
+                            ${part.partnumber}\
+                        </td>\
+                        <td style="width: 10%;">\
+                            ${part.qty}\
+                        </td>\
+                        <td style="width: 10%;">\
+                            ${part.partprice}\
+                        </td>\
+                        <td style="width: 60%;">\
+                            ${part.partdesc}\
+                        </td>\
+                    </tr>\
+                `;
+            });
+        }
+        html = html.replace('{{claimparts}}', parts);
+
+        let labours = '';
+        if (claimlabours && claimlabours.length > 0) {
+            claimlabours.map(labour => {
+                labours += `\
+                    <tr>\
+                        <td style="width: 20%;">\
+                            ${labour.labourqty}\
+                        </td>\
+                        <td style="width: 10%;">\
+                            ${labour.labourprice}\
+                        </td>\
+                        <td style="width: 70%;">\
+                            ${labour.labourdesc}\
+                        </td>\
+                    </tr>\
+                `;
+            });
+        }
+        html = html.replace('{{claimlabours}}', labours);
+
+        html = html.replace('{{vat}}', data.payvat ? 'Yes' : 'No');
+        html = html.replace('{{partstotal}}', data.partstotal);
+        html = html.replace('{{claimvatamt}}', data.claimvatamt);
+        html = html.replace('{{labourtotal}}', data.labourtotal);
+        html = html.replace('{{calculatedtotal}}', data.calculatedtotal);
+        html = html.replace('{{adjustedclaim}}', data.adjustedclaim);
+        html = html.replace('{{claimtotal}}', data.claimtotal);
         return html;
     }
 }

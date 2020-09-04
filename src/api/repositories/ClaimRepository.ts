@@ -126,7 +126,7 @@ export class ClaimRepository extends Repository<Claim>  {
             left join guarantee on policy.policynumber = guarantee.policynumber \
             left join covertype on guarantee.coverid = covertype.coverid \
             left join purchaseduration on guarantee.durationid = purchaseduration.durationid \
-            where claims.claimid = '${claimid}' \
+            where claims.claimid = ${claimid} \
         `;
         return this.query(query);
     }

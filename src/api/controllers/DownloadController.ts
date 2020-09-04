@@ -12,6 +12,8 @@ import { DownloadService } from '../services/DownloadService';
 import { PolicyService } from '../services/PolicyService';
 import { promisify } from 'util';
 import { ClaimService } from '../services/ClaimService';
+import { ClaimPartsService } from '../services/ClaimPartsService';
+import { ClaimLabourService } from '../services/ClaimLabourService';
 
 // @Authorized()
 @Controller('/download')
@@ -21,7 +23,9 @@ export class DownloadController {
     constructor(
         private downloadService: DownloadService,
         private policyService: PolicyService,
-        private claimService: ClaimService
+        private claimService: ClaimService,
+        private cliamPartsService: ClaimPartsService,
+        private cliamLabourService: ClaimLabourService
     ) { }
 
     @Get('/agreement/:id')
@@ -53,11 +57,13 @@ export class DownloadController {
     @Get('/claim/:id')
     public async downloadAsPdfForClaim(@Req() req: Request, @Res() res: Response, @Param('id') id: string): Promise<Response> {
         const option = { format: 'Letter', zoomFactor: 0.7 };
-        const data = await this.claimService.findOneForPdfById(4435);
-        const html = this.downloadService.printQuoteForClaim(data[0]);
+        const data = await this.claimService.findOneForPdfById(parseInt(id, 10));
+        const claimParts = await this.cliamPartsService.findOneByClaimId(parseInt(id, 10));
+        const claimLabours = await this.cliamLabourService.findOneByClaimId(parseInt(id, 10));
+        const html = this.downloadService.printQuoteForClaim(data[0], claimParts, claimLabours);
         const fut = new Promise((resolve, reject) => {
             res.setHeader('Content-Type', 'application/pdf');
-            res.setHeader('Content-Disposition', `attachment; filename=AU Warranties Agreement.pdf;`);
+            res.setHeader('Content-Disposition', `attachment; filename=AU Warranties Agreement ${data[0].claimnumber}.pdf;`);
             res.writeHead(200, { 'Content-Type': 'application/pdf' });
             pdf.create(html, option).toStream((err, stream) => {
                 if (err) {

@@ -74,12 +74,14 @@ const utilService = {
 
     // convert string to title case
     toTitleCase: (str: string): string => {
-        const sentence = str.toLowerCase().split(' ');
         let res = '';
-        for (let i = 0; i < sentence.length; i++) {
-           sentence[i] = sentence[i][0].toUpperCase() + sentence[i].slice(1);
+        if (str !== '') {
+            const sentence = str.toLowerCase().split(' ');
+            for (let i = 0; i < sentence.length; i++) {
+               sentence[i] = sentence[i][0].toUpperCase() + sentence[i].slice(1);
+            }
+            res = sentence.join(' ');
         }
-        res = sentence.join(' ');
         return res;
     },
 

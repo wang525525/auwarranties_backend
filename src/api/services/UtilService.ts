@@ -94,6 +94,15 @@ const utilService = {
         return res;
     },
 
+    // convert number to string
+    toString: (number: any): string => {
+        const res = '';
+        if (number) {
+            return number.toString();
+        }
+        return res;
+    },
+
 };
 
 export default utilService;

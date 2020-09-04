@@ -112,8 +112,7 @@ export class DownloadController {
             data = await this.invoiceService.findOneForPdfByIds(invoiceIds);
         } else {
             userData = await this.invoiceService.findUsersAllByLimit(lim);
-            console.log('userdata ==', userData);
-            if (userData && userData.invoiceid && userData.invoiceid.length > 0) {
+            if (userData && userData && userData.length > 0) {
                 userData.map(item => {
                     invoiceIds.push(item.invoiceid);
                 });

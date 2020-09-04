@@ -46,7 +46,8 @@ export class DownloadService {
         html = html.replace('{{startdate}}', utilService.formatDateWithYYYYMMDD(data.startdate));
         html = html.replace('{{covertype}}', data.covertype);
         html = html.replace('{{vehiclecategory}}', data.vehiclecategory);
-        html = html.replace('{{duration}}', `${utilService.toTitleCase(data.durationvalue.toString())} ${utilService.toUpperCase(data.durationtype)}`);
+        html = html.replace('{{duration}}', `${utilService.toTitleCase(utilService.toString(data.durationvalue))} \
+                                             ${utilService.toUpperCase(data.durationtype)}`);
         html = html.replace('{{claimlimitamount}}', data.claimlimitamount);
         html = html.replace('{{retailprice}}', data.retailprice);
 
@@ -56,19 +57,19 @@ export class DownloadService {
         html = html.replace('{{carmake}}', utilService.toUpperCase(data.carmake));
         html = html.replace('{{carmodel}}', data.carmodel);
         html = html.replace('{{cartype}}', `${utilService.toUpperCase(data.cartype)} ${utilService.toUpperCase(data.carcolour)}`);
-        html = html.replace('{{enginecapacity}}', utilService.toUpperCase(data.enginecapacity.toString()));
+        html = html.replace('{{enginecapacity}}', utilService.toUpperCase(utilService.toString(data.enginecapacity)));
         html = html.replace('{{transmission}}', utilService.toUpperCase(data.transmission));
         html = html.replace('{{fueltype}}', utilService.toUpperCase(data.fueltype));
         html = html.replace('{{regdate}}',
                             utilService.formatDateWithYYYYMMDD(
-                                (utilService.convertTimestampToDate(parseInt(data.regdate, 10))).toString()
+                                utilService.toString(utilService.convertTimestampToDate(parseInt(data.regdate, 10)))
                             ));
         html = html.replace('{{purchasedate}}',
                             utilService.formatDateWithYYYYMMDD(
-                                (utilService.convertTimestampToDate(parseInt(data.purchasedate, 10))).toString()
+                                utilService.toString(utilService.convertTimestampToDate(parseInt(data.purchasedate, 10)))
                             ));
-        html = html.replace('{{mileage}}', utilService.toUpperCase(data.mileage.toString()));
-        html = html.replace('{{purchaseprice}}', utilService.toUpperCase(data.purchaseprice.toString()));
+        html = html.replace('{{mileage}}', utilService.toUpperCase(utilService.toString(data.mileage)));
+        html = html.replace('{{purchaseprice}}', utilService.toUpperCase(utilService.toString(data.purchaseprice)));
         html = html.replace('{{fourbyfour}}', data.fourbyfour ? 'Yes' : 'No');
         html = html.replace('{{luxury}}', data.luxury ? 'Yes' : 'No');
         html = html.replace('{{specialist}}', data.specialist ? 'Yes' : 'No');
@@ -84,12 +85,12 @@ export class DownloadService {
 
         html = html.replace('{{claimdate}}',
                                 utilService.formatDateWithYYYYMMDD(
-                                    (utilService.convertTimestampToDate(parseInt(data.claimdateseconds, 10))).toString()
+                                    utilService.toString(utilService.convertTimestampToDate(parseInt(data.claimdateseconds, 10)))
                             ));
         html = html.replace('{{claimnumber}}', data.claimnumber);
         html = html.replace('{{agreement}}', `${data.policynumber} (${
                                 utilService.formatDateWithYYYYMMDD(
-                                    (utilService.convertTimestampToDate(parseInt(data.claimdateseconds, 10))).toString()
+                                    utilService.toString(utilService.convertTimestampToDate(parseInt(data.claimdateseconds, 10)))
                                 )})`
                             );
         html = html.replace('{{claimname}}', `${utilService.toUpperCase(data.title)} \
@@ -229,7 +230,7 @@ export class DownloadService {
                     </td>\
                     <td style="width:30%;" valign="top" align="center">\
                         <b>Date: ${utilService.formatDateWithYYYYMMDD(
-                            (utilService.convertTimestampToDate(parseInt(user.invdateseconds, 10))).toString()
+                            utilService.toString(utilService.convertTimestampToDate(parseInt(user.invdateseconds, 10)))
                         )}</b>\
                     </td>\
                 </tr>\
@@ -284,9 +285,9 @@ export class DownloadService {
                 if (invoice.poladmincosttype === 0) {
                     adminstr = '0';
                 } else if (invoice.poladmincosttype === 1) {
-                    adminstr = invoice.poladmincostcent.toString() + '%';
+                    adminstr = utilService.toString(invoice.poladmincostcent) + '%';
                 } else if (invoice.poladmincosttype === 2) {
-                    adminstr = '£' + invoice.poladmincostamt.toString();
+                    adminstr = '£' + utilService.toString(invoice.poladmincostamt);
                 }
                 res += `\
                     <tr>\
@@ -300,8 +301,8 @@ export class DownloadService {
                             ${(invoice.carmodel.length > 7) ? invoice.carmodel.substr(0, 7) + '..' : invoice.carmodel}\
                         </td>\
                         <td style="width:8%;" align="center">\
-                            ${(invoice.enginecapacity.toString().length > 7) ?
-                                invoice.enginecapacity.toString().substr(0, 7) + '..' : invoice.enginecapacity.toString()}\
+                            ${(utilService.toString(invoice.enginecapacity).length > 7) ?
+                                utilService.toString(invoice.enginecapacity).substr(0, 7) + '..' : utilService.toString(invoice.enginecapacity)}\
                         </td>\
                         <td style="width:8%;" align="center">\
                             ${(invoice.custlastname.length > 7) ? invoice.custlastname.substr(0, 7) + '..' : invoice.custlastname}\
@@ -310,22 +311,22 @@ export class DownloadService {
                             ${(invoice.covertype.length > 7) ? invoice.covertype.substr(0, 7) + '..' : invoice.covertype}\
                         </td>\
                         <td style="width:8%;" align="center">\
-                            ${invoice.claimlimitamount.toString()}\
+                            ${utilService.toString(invoice.claimlimitamount)}\
                         </td>\
                         <td style="width:8%;" align="center">\
-                            ${invoice.durationvalue.toString()}\
+                            ${utilService.toString(invoice.durationvalue)}\
                         </td>\
                         <td style="width:8%;" align="center">\
-                            ${invoice.nett.toString()}\
+                            ${utilService.toString(invoice.nett)}\
                         </td>\
                         <td style="width:8%;" align="center">\
                             ${adminstr}\
                         </td>\
                         <td style="width:8%;" align="center">\
-                            ${(invoice.tax + invoice.taxadmin).toString()}\
+                            ${utilService.toString(invoice.tax + invoice.taxadmin)}\
                         </td>\
                         <td style="width:8%;" align="center">\
-                            ${(invoice.gross + invoice.taxadmin + invoice.poladmincostamt).toString()}\
+                            ${utilService.toString(invoice.gross + invoice.taxadmin + invoice.poladmincostamt)}\
                         </td>\
                     </tr>\
                 `;
@@ -341,16 +342,16 @@ export class DownloadService {
                     <td style="width:8%;" align="center"></td>\
                     <td style="width:8%;" align="center"></td>\
                     <td style="width:8%;" align="center">\
-                        ${user.net.toString()}\
+                        ${utilService.toString(user.net)}\
                     </td>\
                     <td style="width:8%;" align="center">\
-                        ${user.totaladmin.toString()}\
+                        ${utilService.toString(user.totaladmin)}\
                     </td>\
                     <td style="width:8%;" align="center">\
-                        <b>${(user.tax + user.taxadmin).toString()}</b>\
+                        <b>${utilService.toString(user.tax + user.taxadmin)}</b>\
                     </td>\
                     <td style="width:8%;" align="center">\
-                        <b>${(user.gross).toString()}</b>\
+                        <b>${utilService.toString(user.gross)}</b>\
                     </td>\
                 </tr>\
             `;

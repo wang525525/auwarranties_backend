@@ -139,7 +139,7 @@ export class InvoiceRepository extends Repository<Invoice>  {
      */
     public findUsersAllByLimit(limit: number): Promise<any> {
         const query = `\
-            select * from users, invoices where invoices.dealerid = users.userid order by invoices.invoicedate limit ${limit} \
+            select * from users, invoices where invoices.dealerid = users.userid order by invoices.invoicedate desc limit ${limit} \
         `;
         return this.query(query);
     }

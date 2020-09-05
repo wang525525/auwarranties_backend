@@ -58,6 +58,10 @@ export class InvoiceService {
         return this.invoiceRepository.getFilterDate(userId);
     }
 
+    public setPaymentState(data: any): Promise<any> {
+        return this.invoiceRepository.markPayment(data);
+    }
+
     public async delete(invoiceid: number): Promise<void> {
         this.log.info('Delete a invoice');
         await this.invoiceRepository.delete(invoiceid);

@@ -106,6 +106,18 @@ export class InvoiceController {
         }
     }
 
+    @Post('/mark')
+    @ResponseSchema(InvoiceResponse)
+    public async mark(@Body() body: any): Promise<any> {
+        const res = await this.invoiceService.setPaymentState(body);
+
+        if (res) {
+            return { status: ResponseMessage.SUCCEEDED };
+        } else {
+            return { status: ResponseMessage.FAILED };
+        }
+    }
+
     @Delete('/:id')
     @ResponseSchema(StatusResponse)
     public async delete(@Param('id') id: string): Promise<StatusResponse> {

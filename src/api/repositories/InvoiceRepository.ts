@@ -143,4 +143,17 @@ export class InvoiceRepository extends Repository<Invoice>  {
         `;
         return this.query(query);
     }
+
+    /**
+     * Set invoice statement by invoice id
+     */
+    public markPayment(data: any): Promise<any> {
+        const query = `\
+            update invoices set state = ${data.state}, paiddate = '${data.paiddate}' where invoiceid = ${data.invoiceid}; \
+        `;
+        this.query(`\
+            update policy set state = ${data.state} where invoiceid = ${data.invoiceid}; \
+        `);
+        return this.query(query);
+    }
 }

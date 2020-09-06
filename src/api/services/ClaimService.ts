@@ -39,6 +39,14 @@ export class ClaimService {
         return updateClaim;
     }
 
+    public async insertHistory(history: any): Promise<any> {
+        this.log.info('Insert history in claim =>');
+
+        const res = await this.claimRepository.insertHistory(history);
+
+        return res;
+    }
+
     public findByUserId(branchid: number): Promise<Claim[]> {
         return this.claimRepository.findByUserId(branchid);
     }

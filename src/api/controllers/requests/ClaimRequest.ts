@@ -1,4 +1,5 @@
 import { IsString, IsNumber, IsBoolean, IsDate } from 'class-validator';
+import { MailRegisterRequest } from './MailRequest';
 
 export class ClaimRegisterRequest {
 
@@ -98,8 +99,30 @@ export class ClaimRegisterRequest {
     @IsDate()
     public adminrespondtime: Date;
 }
-
 export class ClaimUpdateRequest extends ClaimRegisterRequest {
     @IsNumber()
     public claimid: number;
+}
+
+export class ClaimHistoryRegisterRequest {
+
+    @IsNumber()
+    public claimid: number;
+
+    @IsNumber()
+    public statusid: number;
+
+    @IsString()
+    public claimnumber: string;
+
+}
+
+export class ClaimEmail {
+
+    @IsNumber()
+    public userid: number;
+
+    public claim: ClaimHistoryRegisterRequest;
+
+    public mail: MailRegisterRequest;
 }

@@ -1,9 +1,11 @@
 import { EntityRepository, Repository } from 'typeorm';
 
 import { Claim } from '../models/Claim';
+import utilService from '../services/UtilService';
 
 @EntityRepository(Claim)
 export class ClaimRepository extends Repository<Claim>  {
+
     /**
      * Find All Claims By limit count
      */
@@ -127,6 +129,19 @@ export class ClaimRepository extends Repository<Claim>  {
             left join covertype on guarantee.coverid = covertype.coverid \
             left join purchaseduration on guarantee.durationid = purchaseduration.durationid \
             where claims.claimid = ${claimid} \
+        `;
+        return this.query(query);
+    }
+
+    /**
+     * update the history of claims
+     */
+    public insertHistory(history: any): Promise<any> {
+        const curDate = new Date();
+        const curDateStr = utilService.formatDateWithYYYYMMDD(utilService.toString(curDate));
+        const query = `\
+            insert into claimshistory (claimid, statusid, historydate, operator, description ) \
+            Values (${history.claimid}, ${history.statusid}, '${curDateStr}', ${history.userid}, '${history.desc}');\
         `;
         return this.query(query);
     }

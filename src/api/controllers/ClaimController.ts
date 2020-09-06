@@ -9,10 +9,11 @@ import { Claim } from '../models/Claim';
 import { ClaimService } from '../services/ClaimService';
 
 import { ResponseMessage } from '../Common';
-import { ClaimRegisterRequest, ClaimUpdateRequest } from './requests/ClaimRequest';
+import { ClaimRegisterRequest, ClaimUpdateRequest, ClaimEmail } from './requests/ClaimRequest';
 import { ClaimsResponse, ClaimResponse, ClaimDetail } from './responses/ClaimResponse';
-import { StatusResponse } from './responses/CommonResponse';
+import { StatusResponse, GeneralResponse } from './responses/CommonResponse';
 import utilService from '../services/UtilService';
+import { MailService } from '../services/MailService';
 
 @Authorized()
 @JsonController('/claim')
@@ -20,7 +21,8 @@ import utilService from '../services/UtilService';
 export class ClaimController {
 
     constructor(
-        private claimService: ClaimService
+        private claimService: ClaimService,
+        private mailService: MailService
     ) { }
 
     @Get('/:branchid')
@@ -103,6 +105,29 @@ export class ClaimController {
             const updatedClaim = await this.claimService.update(updateClaim) as ClaimDetail;
 
             return {status: ResponseMessage.SUCCEEDED, res: updatedClaim };
+        } else {
+            return {status: ResponseMessage.NOT_FOUND_DURATION, res: undefined};
+        }
+    }
+
+    @Post('/email/office')
+    @ResponseSchema(ClaimResponse)
+    public async emailToOffice(@Body() body: ClaimEmail): Promise<GeneralResponse> {
+        const res = await this.mailService.sendEmail(body.mail);
+        const history = {
+            claimid: body.claim.claimid,
+            statusid: body.claim.statusid,
+            userid: body.userid,
+            desc: body.mail.text || undefined,
+        };
+        const histRes = await this.claimService.insertHistory(history);
+
+        if (res) {
+            if (histRes) {
+                return {status: ResponseMessage.SUCCEEDED, res: undefined };
+            } else {
+                return {status: ResponseMessage.SUCCEEDED, res: 'Email Sent But claims history is not inserted.' };
+            }
         } else {
             return {status: ResponseMessage.NOT_FOUND_DURATION, res: undefined};
         }

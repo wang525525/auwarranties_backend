@@ -55,6 +55,15 @@ export const env = {
         synchronize: toBool(getOsEnvOptional('TYPEORM_SYNCHRONIZE')),
         logging: getOsEnv('TYPEORM_LOGGING'),
     },
+    email: {
+        driver: getOsEnv('MAIL_DRIVER'),
+        service: getOsEnv('MAIL_SERVICE'),
+        host: getOsEnv('MAIL_HOST'),
+        port: getOsEnv('MAIL_PORT'),
+        user: getOsEnv('MAIL_USER'),
+        password: getOsEnv('MAIL_PASSWORD'),
+        encryption: getOsEnv('MAIL_ENCRYPTION'),
+    },
     graphql: {
         enabled: toBool(getOsEnv('GRAPHQL_ENABLED')),
         route: getOsEnv('GRAPHQL_ROUTE'),

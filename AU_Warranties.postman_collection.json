@@ -3961,7 +3961,7 @@
 					"response": []
 				},
 				{
-					"name": "Update",
+					"name": "Send Email To Office",
 					"request": {
 						"method": "POST",
 						"header": [
@@ -3980,10 +3980,10 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"claimid\": 4487,\r\n    \"mileageatclaim\": 0,\r\n    \"failedpart\": \"\",\r\n    \"failedarea\": \"\",\r\n    \"failurecause\": \"asdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdf\",\r\n    \"repairsrequired\": \"qqqq q q q q q q q q q q q q wewewewew\",\r\n    \"labourperhour\": 0,\r\n    \"partstotal\": 0,\r\n    \"labourtotal\": 0,\r\n    \"claimtotal\": 0,\r\n    \"payvat\": true,\r\n    \"adjustedclaim\": 0,\r\n    \"policyid\": 18192,\r\n    \"dateclaim\": \"2019-09-03T16:00:00.000Z\",\r\n    \"claimdateseconds\": \"3650444337\",\r\n    \"claimnumber\": \"AUCLM3359\",\r\n    \"state\": 24,\r\n    \"calculatedtotal\": 0,\r\n    \"claimvatamt\": 0,\r\n    \"claimsvatcent\": 20,\r\n    \"notes\": \"\",\r\n    \"claimnotifyemail\": \"none@gmail.co.uk\",\r\n    \"paiddate\": null,\r\n    \"lastservicedates\": \"\",\r\n    \"faultdiagnosed\": false,\r\n    \"confirmedwarrantyclaim\": false,\r\n    \"advicedtodiagnosefault\": true,\r\n    \"advicedtosenddiagnostic\": \"False\",\r\n    \"hasbooklet\": \"False\",\r\n    \"repairinggarage\": \"\",\r\n    \"adminresponded\": null,\r\n    \"represponded\": null,\r\n    \"adminrespondtime\": null\r\n}"
+							"raw": "{\r\n    \"from\": \"app@auwarranties.co.uk\",\r\n    \"to\": \"admin@auwarranties.co.uk\",\r\n    \"subject\": \"Rep Response AUCLMXXXX\",\r\n    \"text\": \"This is the text\"\r\n}"
 						},
 						"url": {
-							"raw": "http://localhost:5000/api/claim/update",
+							"raw": "http://localhost:5000/api/claim/email/office",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -3992,7 +3992,8 @@
 							"path": [
 								"api",
 								"claim",
-								"update"
+								"email",
+								"office"
 							]
 						}
 					},

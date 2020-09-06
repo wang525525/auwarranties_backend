@@ -3980,7 +3980,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"from\": \"app@auwarranties.co.uk\",\r\n    \"to\": \"admin@auwarranties.co.uk\",\r\n    \"subject\": \"Rep Response AUCLMXXXX\",\r\n    \"text\": \"This is the text\"\r\n}"
+							"raw": "{\r\n    \"userid\": 2,\r\n    \"claim\": {\r\n        \"claimid\": 4485,\r\n        \"statusid\": 12,\r\n        \"claimnumber\": \"CALMXXX\"\r\n    },\r\n    \"mail\": {\r\n        \"from\": \"app@auwarranties.co.uk\",\r\n        \"to\": \"wang525525@gmail.com\",\r\n        \"subject\": \"Rep Response AUCLMXXXX\",\r\n        \"text\": \"This is the text\"\r\n    }\r\n}"
 						},
 						"url": {
 							"raw": "http://localhost:5000/api/claim/email/office",
@@ -3995,7 +3995,8 @@
 								"email",
 								"office"
 							]
-						}
+						},
+						"description": "\"to\": \"wang525525@gmail.com\", // admin@auwarranties.co.uk"
 					},
 					"response": []
 				},

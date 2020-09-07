@@ -15,4 +15,7 @@ export class MailRegisterRequest {
     @IsString()
     public text?: string;
 
+    @IsOptional()
+    @IsString()
+    public html?: string;
 }

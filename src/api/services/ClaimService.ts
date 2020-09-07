@@ -59,6 +59,10 @@ export class ClaimService {
         return this.claimRepository.findOneById(claimid);
     }
 
+    public getDataForEmail(claimid: number): Promise<Claim | undefined> {
+        return this.claimRepository.getDataForEmail(claimid);
+    }
+
     public findOneForPdfById(claimid: number): Promise<Claim | undefined> {
         return this.claimRepository.findOneForPdfById(claimid);
     }

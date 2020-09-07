@@ -4,8 +4,8 @@ import {
 } from 'routing-controllers';
 import { OpenAPI, ResponseSchema } from 'routing-controllers-openapi';
 
-// import * as fs from 'fs';
-// import * as path from 'path';
+import * as fs from 'fs';
+import * as path from 'path';
 
 import { Claim } from '../models/Claim';
 
@@ -146,24 +146,31 @@ export class ClaimController {
     @Post('/email/account')
     @ResponseSchema(ClaimResponse)
     public async emailToAccount(@Body() body: ClaimEmail): Promise<GeneralResponse> {
+
+        const repinfo = body.repinfo;
+        const data = await this.claimService.getDataForEmail(body.claim.claimid);
+        const html = this.getEmailHtml(data, repinfo);
         const mail = body.mail as MailRegisterRequest;
         mail.from = env.email.user;
-        mail.to = 'wang525525@gmail.com'; // body.email
+        mail.to = 'wang525525@gmail.com'; // data.policy.branchuser.email
+        mail.html = html;
         const res = await this.mailService.sendEmail(body.mail);
 
         // insert claimshitory
         const history = {
-            claimid: body.claim.claimid,
-            state: body.claim.state,
-            userid: body.userid,
-            desc: body.mail.text || undefined,
+            claimid: data.claimid,
+            state: data.state,
+            userid: data.policy.branchuser.userid,
+            desc: body.mail.html || undefined,
         };
         const histRes = await this.claimService.insertHistory(history);
 
         // update claims
+        const curDate = new Date();
+        const curDateStr = utilService.formatDateWithYYYYMMDD(utilService.toString(curDate));
         const claim: ClaimUpdateRequest = {
-            claimid: body.claim.claimid,
-            adminrespondtime: body.claim.adminrespondtime,
+            claimid: data.claimid,
+            adminrespondtime: curDateStr,
             adminresponded: true,
         } as Claim;
         const claimRes = await this.claimService.update(claim);
@@ -193,12 +200,56 @@ export class ClaimController {
     }
 
     // non api function here.
-    // public getEmailHtml(mailBody: any): any {
-    //     let res = '';
-    //     const dir = path.dirname(require.main.filename);
-    //     let html = fs.readFileSync(dir + '/public/template/policy_pdf.html', 'utf8');
+    public getEmailHtml(data: any, repinfodata: any): any {
+        const dir = path.dirname(require.main.filename);
+        let html = fs.readFileSync(dir + '/public/template/claimemail.html', 'utf8');
 
-    //     return res;
-    // }
+        if (data.policy && data.policy.branchuser) {
+            const policy = data.policy;
+            const user = data.policy.branchuser;
+            const repinfo = repinfodata;
+            const curDate = new Date();
+            const curDateStr = utilService.formatDateWithYYYYMMDD(utilService.toString(curDate));
+
+            html = html.replace('{{nameofdealer}}', policy.branchname);
+            html = html.replace('{{emailofdealer}}', user.email);
+            html = html.replace('{{phoneofdealer}}', `${utilService.toUpperCase(user.phonelandline)} \
+                                                    ${utilService.toUpperCase(user.phonemobile)}`);
+            html = html.replace('{{policydate}}', curDateStr);
+
+            html = html.replace('{{policytype}}', utilService.toUpperCase(policy.guarantee.cover.covername));
+            html = html.replace('{{policyduration}}', `${utilService.toUpperCase(utilService.toString(policy.guarantee.duration.durationvalue))} \
+                                                        ${utilService.toUpperCase(policy.guarantee.duration.durationtype)}`);
+            html = html.replace('{{policyclaimamt}}', utilService.toString(policy.guarantee.claimlimitamount));
+
+            html = html.replace('{{nameofcustomer}}', `${utilService.toUpperCase(policy.forename)} \
+                                                        ${utilService.toUpperCase(policy.surname)}`);
+            html = html.replace('{{telephone}}', `${utilService.toUpperCase(policy.hometel)} \
+                                                    ${utilService.toUpperCase(policy.mobile)}`);
+            html = html.replace('{{email}}', `${utilService.toUpperCase(policy.email)} \
+                                                ${utilService.toUpperCase(user.email)}`);
+            html = html.replace('{{reg}}', `${utilService.toUpperCase(policy.vehicle.vrm)} \
+                                            ${utilService.toUpperCase(policy.policynumber)}`);
+            html = html.replace('{{mileage}}', utilService.toString(policy.vehicle.mileage));
+            html = html.replace('{{mileageatclaim}}', utilService.toString(policy.mileageatclaim));
+            html = html.replace('{{dateofservices}}', utilService.toUpperCase(data.lastservicedates));
+            html = html.replace('{{faultdescription}}', utilService.toString(data.failurecause));
+            html = html.replace('{{diagnosticsfrom}}', utilService.toString(data.advicedtodiagnosefault));
+            html = html.replace('{{advicedfordiag}}', utilService.toString(data.advicedtodiagnosefault));
+            html = html.replace('{{confirmwarrantyclaim}}', utilService.toString(data.confirmedwarrantyclaim));
+            html = html.replace('{{customeradvicedtosenddiag}}', utilService.toString(data.advicedtosenddiagnostic));
+            html = html.replace('{{hasbooklet}}', utilService.toString(data.hasbooklet));
+            html = html.replace('{{garagedetails}}', utilService.toString(data.repairinggarage));
+            html = html.replace('{{comments}}', utilService.toString(data.notes));
+
+            html = html.replace('{{isitcovereditem}}', utilService.toString(repinfo.isitcovereditem));
+            html = html.replace('{{customerquotesorourquotes}}', utilService.toString(repinfo.customerquotesorourquotes));
+            html = html.replace('{{officerecommendation}}', utilService.toString(repinfo.officerecommendation));
+            html = html.replace('{{repairscompleted}}', utilService.toString(repinfo.repairscompleted));
+            html = html.replace('{{diagnosticsattached}}', utilService.toString(repinfo.diagnosticsattached));
+            return html;
+        }
+        return '';
+    }
 
 }

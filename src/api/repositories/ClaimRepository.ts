@@ -101,6 +101,7 @@ export class ClaimRepository extends Repository<Claim>  {
                                      'claims.confirmedwarrantyclaim', 'claims.advicedtodiagnosefault', 'claims.advicedtosenddiagnostic', 'claims.hasbooklet',
                                      'claims.repairinggarage', 'claims.labourtotal', 'claims.mileageatclaim', 'claims.partstotal', 'claims.payvat',
                                      'claims.repairsrequired', 'claims.claimvatamt', 'claims.claimnotifyemail', 'claims.state',
+                                     'users.userid', 'users.username',
                                      'policy.policyid', 'policy.dateseconds', 'policy.policynumber', 'policy.title', 'policy.forename', 'policy.surname',
                                      'policy.address1', 'policy.address2', 'policy.address3', 'policy.town', 'policy.postcode', 'policy.branchname',
                                      'vehicle.vehicleid', 'vehicle.regdate', 'vehicle.carmake', 'vehicle.carmodel', 'vehicle.cartype', 'vehicle.fueltype',
@@ -133,6 +134,17 @@ export class ClaimRepository extends Repository<Claim>  {
         return this.query(query);
     }
 
+    public getDataForEmail(id: number): Promise<any> {
+        return this.createQueryBuilder('claims')
+                            .leftJoinAndSelect('claims.policy', 'policy')
+                            .leftJoinAndSelect('policy.branchuser', 'users')
+                            .leftJoinAndSelect('policy.vehicle', 'vehicle')
+                            .leftJoinAndSelect('policy.guarantee', 'guarantee')
+                            .leftJoinAndSelect('guarantee.cover', 'covertype')
+                            .leftJoinAndSelect('guarantee.duration', 'purchaseduration')
+                            .where(`claimid=${id}`)
+                            .getOne();
+    }
     /**
      * update the history of claims
      */
@@ -143,7 +155,6 @@ export class ClaimRepository extends Repository<Claim>  {
             insert into claimshistory (claimid, statusid, historydate, operator, description ) \
             Values (${history.claimid}, ${history.state}, '${curDateStr}', ${history.userid}, '${history.desc}');\
         `;
-        console.log('query ==', query);
         return this.query(query);
     }
 }

@@ -144,4 +144,7 @@ export class ClaimEmail {
     public claim: ClaimUpdateRequest;
 
     public mail: MailRegisterRequest;
+
+    @IsOptional()
+    public repinfo?: any;
 }

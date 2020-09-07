@@ -120,7 +120,7 @@ export class ClaimController {
     public async emailToOffice(@Body() body: ClaimEmail): Promise<GeneralResponse> {
         const mail = body.mail as MailRegisterRequest;
         mail.from = env.email.user;
-        mail.to = 'wang525525@gmail.com'; // env.email.admin_user;
+        mail.to = env.email.admin_user;
         const res = await this.mailService.sendEmail(body.mail);
 
         // insert claimshitory
@@ -152,7 +152,7 @@ export class ClaimController {
         const html = this.getEmailHtml(data, repinfo);
         const mail = body.mail as MailRegisterRequest;
         mail.from = env.email.user;
-        mail.to = 'wang525525@gmail.com'; // data.policy.branchuser.email
+        mail.to = data.policy.branchuser.email
         mail.html = html;
         const res = await this.mailService.sendEmail(body.mail);
 

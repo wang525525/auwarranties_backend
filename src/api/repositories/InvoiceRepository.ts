@@ -154,7 +154,6 @@ export class InvoiceRepository extends Repository<Invoice>  {
         this.query(`\
             update policy set state = ${data.state} where invoiceid = ${data.invoiceid}; \
         `);
-        console.log('query ==', query);
         return this.query(query);
     }
 }

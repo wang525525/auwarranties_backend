@@ -213,34 +213,34 @@ export class ClaimController {
 
             html = html.replace('{{nameofdealer}}', policy.branchname);
             html = html.replace('{{emailofdealer}}', user.email);
-            html = html.replace('{{phoneofdealer}}', `${utilService.toUpperCase(user.phonelandline)} \
-                                                    ${utilService.toUpperCase(user.phonemobile)}`);
+            html = html.replace('{{phoneofdealer}}', `${utilService.toUpperCase(user.phonelandline || '')} \
+                                                    ${utilService.toUpperCase(user.phonemobile || '')}`);
             html = html.replace('{{policydate}}', curDateStr);
 
-            html = html.replace('{{policytype}}', utilService.toUpperCase(policy.guarantee.cover.covername));
-            html = html.replace('{{policyduration}}', `${utilService.toUpperCase(utilService.toString(policy.guarantee.duration.durationvalue))} \
-                                                        ${utilService.toUpperCase(policy.guarantee.duration.durationtype)}`);
-            html = html.replace('{{policyclaimamt}}', utilService.toString(policy.guarantee.claimlimitamount));
+            html = html.replace('{{policytype}}', utilService.toUpperCase(policy.guarantee.cover.covername || ''));
+            html = html.replace('{{policyduration}}', `${utilService.toUpperCase(utilService.toString(policy.guarantee.duration.durationvalue || ''))} \
+                                                        ${utilService.toUpperCase(policy.guarantee.duration.durationtype || '')}`);
+            html = html.replace('{{policyclaimamt}}', utilService.toString(policy.guarantee.claimlimitamount || ''));
 
-            html = html.replace('{{nameofcustomer}}', `${utilService.toUpperCase(policy.forename)} \
-                                                        ${utilService.toUpperCase(policy.surname)}`);
-            html = html.replace('{{telephone}}', `${utilService.toUpperCase(policy.hometel)} \
-                                                    ${utilService.toUpperCase(policy.mobile)}`);
-            html = html.replace('{{email}}', `${utilService.toUpperCase(policy.email)} \
-                                                ${utilService.toUpperCase(user.email)}`);
-            html = html.replace('{{reg}}', `${utilService.toUpperCase(policy.vehicle.vrm)} \
-                                            ${utilService.toUpperCase(policy.policynumber)}`);
-            html = html.replace('{{mileage}}', utilService.toString(policy.vehicle.mileage));
-            html = html.replace('{{mileageatclaim}}', utilService.toString(policy.mileageatclaim));
-            html = html.replace('{{dateofservices}}', utilService.toUpperCase(data.lastservicedates));
-            html = html.replace('{{faultdescription}}', utilService.toString(data.failurecause));
-            html = html.replace('{{diagnosticsfrom}}', utilService.toString(data.advicedtodiagnosefault));
-            html = html.replace('{{advicedfordiag}}', utilService.toString(data.advicedtodiagnosefault));
-            html = html.replace('{{confirmwarrantyclaim}}', utilService.toString(data.confirmedwarrantyclaim));
-            html = html.replace('{{customeradvicedtosenddiag}}', utilService.toString(data.advicedtosenddiagnostic));
-            html = html.replace('{{hasbooklet}}', utilService.toString(data.hasbooklet));
-            html = html.replace('{{garagedetails}}', utilService.toString(data.repairinggarage));
-            html = html.replace('{{comments}}', utilService.toString(data.notes));
+            html = html.replace('{{nameofcustomer}}', `${utilService.toUpperCase(policy.forename || '')} \
+                                                        ${utilService.toUpperCase(policy.surname || '')}`);
+            html = html.replace('{{telephone}}', `${utilService.toUpperCase(policy.hometel || '')} \
+                                                    ${utilService.toUpperCase(policy.mobile || '')}`);
+            html = html.replace('{{email}}', `${utilService.toUpperCase(policy.email || '')} \
+                                                ${utilService.toUpperCase(user.email || '')}`);
+            html = html.replace('{{reg}}', `${utilService.toUpperCase(policy.vehicle.vrm || '')} \
+                                            ${utilService.toUpperCase(policy.policynumber || '')}`);
+            html = html.replace('{{mileage}}', utilService.toString(policy.vehicle.mileage || ''));
+            html = html.replace('{{mileageatclaim}}', utilService.toString(policy.mileageatclaim || ''));
+            html = html.replace('{{dateofservices}}', utilService.toUpperCase(data.lastservicedates || ''));
+            html = html.replace('{{faultdescription}}', utilService.toString(data.failurecause || ''));
+            html = html.replace('{{diagnosticsfrom}}', utilService.toString(data.advicedtodiagnosefault || ''));
+            html = html.replace('{{advicedfordiag}}', utilService.toString(data.advicedtodiagnosefault || ''));
+            html = html.replace('{{confirmwarrantyclaim}}', utilService.toString(data.confirmedwarrantyclaim || ''));
+            html = html.replace('{{customeradvicedtosenddiag}}', utilService.toString(data.advicedtosenddiagnostic || ''));
+            html = html.replace('{{hasbooklet}}', utilService.toString(data.hasbooklet || ''));
+            html = html.replace('{{garagedetails}}', utilService.toString(data.repairinggarage || ''));
+            html = html.replace('{{comments}}', utilService.toString(data.notes || ''));
 
             html = html.replace('{{isitcovereditem}}', utilService.toString(repinfo.isitcovereditem));
             html = html.replace('{{customerquotesorourquotes}}', utilService.toString(repinfo.customerquotesorourquotes));

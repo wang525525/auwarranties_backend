@@ -88,7 +88,7 @@ const utilService = {
     // convert string to title case
     toUpperCase: (str: string): string => {
         const res = '';
-        if (str !== '') {
+        if (!str || str !== '') {
             return str.toUpperCase();
         }
         return res;

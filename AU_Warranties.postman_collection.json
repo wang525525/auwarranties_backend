@@ -4138,7 +4138,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"userid\": 2,\r\n    \"claim\": {\r\n        \"claimid\": 4485,\r\n        \"state\": 12,\r\n        \"claimnumber\": \"CALMXXX\"\r\n    },\r\n    \"mail\": {\r\n        \"subject\": \"Rep Response AUCLMXXXX\",\r\n        \"text\": \"This is the text\"\r\n    }\r\n}"
+							"raw": "{\r\n    \"claim\": {\r\n        \"claimid\": 4485,\r\n        \"claimnumber\": \"CALMXXX\"\r\n    },\r\n    \"mail\": {\r\n        \"subject\": \"AU Warranties Claim CALMXXX\"\r\n    }\r\n}"
 						},
 						"url": {
 							"raw": "http://localhost:5000/api/claim/email/account",

@@ -63,6 +63,7 @@ export const env = {
         user: getOsEnv('MAIL_USER'),
         password: getOsEnv('MAIL_PASSWORD'),
         encryption: getOsEnv('MAIL_ENCRYPTION'),
+        admin_user: getOsEnv('MAIL_ADMIN_USER'),
     },
     graphql: {
         enabled: toBool(getOsEnv('GRAPHQL_ENABLED')),

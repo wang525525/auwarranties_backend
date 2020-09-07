@@ -9,173 +9,205 @@ export class Claim {
     @PrimaryGeneratedColumn()
     public claimid: number;
 
+    @IsOptional()
     @Column({
         nullable: true,
     })
-    public mileageatclaim: number;
+    public mileageatclaim?: number;
 
+    @IsOptional()
     @Column({
         nullable: true,
     })
-    public failedpart: string;
+    public failedpart?: string;
 
+    @IsOptional()
     @Column({
         nullable: true,
     })
-    public failedarea: string;
+    public failedarea?: string;
 
+    @IsOptional()
     @Column({
         nullable: true,
     })
-    public failurecause: string;
+    public failurecause?: string;
 
+    @IsOptional()
     @Column({
         nullable: true,
     })
-    public repairsrequired: string;
+    public repairsrequired?: string;
 
+    @IsOptional()
     @Column({
         nullable: true,
     })
-    public labourperhour: number;
+    public labourperhour?: number;
 
+    @IsOptional()
     @Column({
         nullable: true,
     })
-    public partstotal: number;
+    public partstotal?: number;
 
+    @IsOptional()
     @Column({
         nullable: true,
     })
-    public labourtotal: number;
+    public labourtotal?: number;
 
+    @IsOptional()
     @Column({
         nullable: true,
     })
-    public claimtotal: number;
+    public claimtotal?: number;
 
+    @IsOptional()
     @Column({
         nullable: true,
     })
-    public payvat: boolean;
+    public payvat?: boolean;
 
+    @IsOptional()
     @Column({
         nullable: true,
     })
-    public adjustedclaim: number;
+    public adjustedclaim?: number;
 
+    @IsOptional()
     @Column({
         nullable: true,
     })
-    public policyid: number;
+    public policyid?: number;
 
     @OneToOne(type => Policy, entity => entity.policyid)
     @JoinColumn({ name: 'policyid', referencedColumnName: 'policyid'})
     @IsOptional()
     public policy?: Policy;
 
+    @IsOptional()
     @Column({
         nullable: true,
     })
-    public dateclaim: Date;
+    public dateclaim?: Date;
 
+    @IsOptional()
     @Column({
         nullable: true,
     })
-    public claimdateseconds: number;
+    public claimdateseconds?: number;
 
+    @IsOptional()
     @Column({
         nullable: true,
     })
-    public claimnumber: string;
+    public claimnumber?: string;
 
+    @IsOptional()
     @Column({
         nullable: true,
     })
-    public state: number;
+    public state?: number;
 
     @OneToOne(type => State, entity => entity.stateid)
     @JoinColumn({ name: 'state', referencedColumnName: 'stateid'})
     @IsOptional()
     public claimstate?: State;
 
+    @IsOptional()
     @Column({
         nullable: true,
     })
-    public calculatedtotal: number;
+    public calculatedtotal?: number;
 
+    @IsOptional()
     @Column({
         nullable: true,
     })
-    public claimvatamt: number;
+    public claimvatamt?: number;
 
+    @IsOptional()
     @Column({
         nullable: true,
     })
-    public claimsvatcent: number;
+    public claimsvatcent?: number;
 
+    @IsOptional()
     @Column({
         nullable: true,
     })
-    public notes: string;
+    public notes?: string;
 
+    @IsOptional()
     @Column({
         nullable: true,
     })
-    public claimnotifyemail: string;
+    public claimnotifyemail?: string;
 
+    @IsOptional()
     @Column({
         nullable: true,
     })
-    public paiddate: Date;
+    public paiddate?: Date;
 
+    @IsOptional()
     @Column({
         nullable: true,
     })
-    public lastservicedates: string;
+    public lastservicedates?: string;
 
+    @IsOptional()
     @Column({
         nullable: true,
     })
-    public faultdiagnosed: boolean;
+    public faultdiagnosed?: boolean;
 
+    @IsOptional()
     @Column({
         nullable: true,
     })
-    public confirmedwarrantyclaim: boolean;
+    public confirmedwarrantyclaim?: boolean;
 
+    @IsOptional()
     @Column({
         nullable: true,
     })
-    public advicedtodiagnosefault: boolean;
+    public advicedtodiagnosefault?: boolean;
 
+    @IsOptional()
     @Column({
         nullable: true,
     })
-    public advicedtosenddiagnostic: string;
+    public advicedtosenddiagnostic?: string;
 
+    @IsOptional()
     @Column({
         nullable: true,
     })
-    public hasbooklet: string;
+    public hasbooklet?: string;
 
+    @IsOptional()
     @Column({
         nullable: true,
     })
-    public repairinggarage: string;
+    public repairinggarage?: string;
 
+    @IsOptional()
     @Column({
         nullable: true,
     })
-    public adminresponded: boolean;
+    public adminresponded?: boolean;
 
+    @IsOptional()
     @Column({
         nullable: true,
     })
-    public represponded: boolean;
+    public represponded?: boolean;
 
+    @IsOptional()
     @Column({
         nullable: true,
     })
-    public adminrespondtime: Date;
+    public adminrespondtime?: Date;
 }

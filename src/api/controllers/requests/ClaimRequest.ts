@@ -1,120 +1,139 @@
-import { IsString, IsNumber, IsBoolean, IsDate } from 'class-validator';
+import { IsString, IsNumber, IsBoolean, IsDate, IsOptional } from 'class-validator';
 import { MailRegisterRequest } from './MailRequest';
 
 export class ClaimRegisterRequest {
 
+    @IsOptional()
     @IsNumber()
-    public mileageatclaim: number;
+    public mileageatclaim?: number;
 
+    @IsOptional()
     @IsString()
-    public failedpart: string;
+    public failedpart?: string;
 
+    @IsOptional()
     @IsString()
-    public failedarea: string;
+    public failedarea?: string;
 
+    @IsOptional()
     @IsString()
-    public failurecause: string;
+    public failurecause?: string;
 
+    @IsOptional()
     @IsString()
-    public repairsrequired: string;
+    public repairsrequired?: string;
 
+    @IsOptional()
     @IsNumber()
-    public labourperhour: number;
+    public labourperhour?: number;
 
+    @IsOptional()
     @IsNumber()
-    public partstotal: number;
+    public partstotal?: number;
 
+    @IsOptional()
     @IsNumber()
-    public labourtotal: number;
+    public labourtotal?: number;
 
+    @IsOptional()
     @IsNumber()
-    public claimtotal: number;
+    public claimtotal?: number;
 
+    @IsOptional()
     @IsBoolean()
-    public payvat: boolean;
+    public payvat?: boolean;
 
+    @IsOptional()
     @IsNumber()
-    public adjustedclaim: number;
+    public adjustedclaim?: number;
 
+    @IsOptional()
     @IsNumber()
-    public policyid: number;
+    public policyid?: number;
 
+    @IsOptional()
     @IsDate()
-    public dateclaim: Date;
+    public dateclaim?: Date;
 
+    @IsOptional()
     @IsNumber()
-    public claimdateseconds: number;
+    public claimdateseconds?: number;
 
+    @IsOptional()
     @IsString()
-    public claimnumber: string;
+    public claimnumber?: string;
 
+    @IsOptional()
     @IsNumber()
-    public state: number;
+    public state?: number;
 
+    @IsOptional()
     @IsNumber()
-    public calculatedtotal: number;
+    public calculatedtotal?: number;
 
+    @IsOptional()
     @IsNumber()
-    public claimvatamt: number;
+    public claimvatamt?: number;
 
+    @IsOptional()
     @IsNumber()
-    public claimsvatcent: number;
+    public claimsvatcent?: number;
 
+    @IsOptional()
     @IsString()
-    public notes: string;
+    public notes?: string;
 
+    @IsOptional()
     @IsString()
-    public claimnotifyemail: string;
+    public claimnotifyemail?: string;
 
+    @IsOptional()
     @IsDate()
-    public paiddate: Date;
+    public paiddate?: Date;
 
+    @IsOptional()
     @IsString()
-    public lastservicedates: string;
+    public lastservicedates?: string;
 
+    @IsOptional()
     @IsBoolean()
-    public faultdiagnosed: boolean;
+    public faultdiagnosed?: boolean;
 
+    @IsOptional()
     @IsBoolean()
-    public confirmedwarrantyclaim: boolean;
+    public confirmedwarrantyclaim?: boolean;
 
+    @IsOptional()
     @IsBoolean()
-    public advicedtodiagnosefault: boolean;
+    public advicedtodiagnosefault?: boolean;
 
+    @IsOptional()
     @IsString()
-    public advicedtosenddiagnostic: string;
+    public advicedtosenddiagnostic?: string;
 
+    @IsOptional()
     @IsString()
-    public hasbooklet: string;
+    public hasbooklet?: string;
 
+    @IsOptional()
     @IsString()
-    public repairinggarage: string;
+    public repairinggarage?: string;
 
+    @IsOptional()
     @IsBoolean()
-    public adminresponded: boolean;
+    public adminresponded?: boolean;
 
+    @IsOptional()
     @IsBoolean()
-    public represponded: boolean;
+    public represponded?: boolean;
 
+    @IsOptional()
     @IsDate()
-    public adminrespondtime: Date;
+    public adminrespondtime?: Date;
 }
 export class ClaimUpdateRequest extends ClaimRegisterRequest {
     @IsNumber()
     public claimid: number;
-}
-
-export class ClaimHistoryRegisterRequest {
-
-    @IsNumber()
-    public claimid: number;
-
-    @IsNumber()
-    public statusid: number;
-
-    @IsString()
-    public claimnumber: string;
-
 }
 
 export class ClaimEmail {
@@ -122,7 +141,7 @@ export class ClaimEmail {
     @IsNumber()
     public userid: number;
 
-    public claim: ClaimHistoryRegisterRequest;
+    public claim: ClaimUpdateRequest;
 
     public mail: MailRegisterRequest;
 }

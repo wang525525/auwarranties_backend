@@ -3995,8 +3995,7 @@
 								"email",
 								"office"
 							]
-						},
-						"description": "\"to\": \"wang525525@gmail.com\", // admin@auwarranties.co.uk"
+						}
 					},
 					"response": []
 				},
@@ -4116,6 +4115,46 @@
 								}
 							]
 						}
+					},
+					"response": []
+				},
+				{
+					"name": "Send Email To Account",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNkYXJiYXIiLCJwYXNzd29yZCI6IkFVMTIzISIsInNlc3Npb25faWQiOiIzMGY2NmY4Mi03YzgwLTQ1NmUtOWRhMS1jZTY4ODgxZjNiNTYiLCJpYXQiOjE1OTcxNTI0MDh9.CIZUqBAnEf7ym3SXFZr-4J9sFASmoJRt4qtXAEcs_Jo"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"userid\": 2,\r\n    \"claim\": {\r\n        \"claimid\": 4485,\r\n        \"state\": 12,\r\n        \"claimnumber\": \"CALMXXX\"\r\n    },\r\n    \"mail\": {\r\n        \"subject\": \"Rep Response AUCLMXXXX\",\r\n        \"text\": \"This is the text\"\r\n    }\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/claim/email/account",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"claim",
+								"email",
+								"account"
+							]
+						},
+						"description": "\"email\": \"wang525525@gmail.com\", // current login user email."
 					},
 					"response": []
 				}

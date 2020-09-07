@@ -141,8 +141,9 @@ export class ClaimRepository extends Repository<Claim>  {
         const curDateStr = utilService.formatDateWithYYYYMMDD(utilService.toString(curDate));
         const query = `\
             insert into claimshistory (claimid, statusid, historydate, operator, description ) \
-            Values (${history.claimid}, ${history.statusid}, '${curDateStr}', ${history.userid}, '${history.desc}');\
+            Values (${history.claimid}, ${history.state}, '${curDateStr}', ${history.userid}, '${history.desc}');\
         `;
+        console.log('query ==', query);
         return this.query(query);
     }
 }

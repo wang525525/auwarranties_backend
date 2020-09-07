@@ -98,7 +98,7 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:5000/api/users/502",
+							"raw": "http://localhost:5000/api/users/22",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -107,7 +107,7 @@
 							"path": [
 								"api",
 								"users",
-								"502"
+								"22"
 							]
 						}
 					},
@@ -278,7 +278,7 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:5000/api/users?search=Euroway",
+							"raw": "http://localhost:5000/api/users?search=a",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -291,7 +291,7 @@
 							"query": [
 								{
 									"key": "search",
-									"value": "Euroway"
+									"value": "a"
 								}
 							]
 						}
@@ -730,7 +730,7 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:5000/api/permission/14",
+							"raw": "http://localhost:5000/api/permission/-1",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -739,7 +739,7 @@
 							"path": [
 								"api",
 								"permission",
-								"14"
+								"-1"
 							]
 						}
 					},
@@ -1131,7 +1131,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n\t\"dealerid\": 502,\r\n    \"paymentamount\": 3333,\r\n    \"comment\": \"RETURN AGREED BY M STOKES\",\r\n    \"paymentnumber\": \"AUPAY380\",\r\n    \"datepayment\": \"2020-08-05T16:00:00.000Z\",\r\n    \"paidbyoperator\": null\r\n}"
+							"raw": "{\r\n\t\"dealerid\": 502,\r\n    \"paymentamount\": 3333,\r\n    \"comment\": \"RETURN AGREED BY M STOKES\",\r\n    \"datepayment\": \"2020-08-05T16:00:00.000Z\",\r\n    \"paidbyoperator\": null\r\n}"
 						},
 						"url": {
 							"raw": "http://localhost:5000/api/payments/create",
@@ -2004,7 +2004,7 @@
 							"raw": "{\r\n    \"groupid\": 22,\r\n    \"dealerid\":[502, 490, 488]\r\n}"
 						},
 						"url": {
-							"raw": "http://localhost:5000/api/group/none/members?search=Sales",
+							"raw": "http://localhost:5000/api/group/none/members?search=longbrooks",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -2019,7 +2019,7 @@
 							"query": [
 								{
 									"key": "search",
-									"value": "Sales"
+									"value": "longbrooks"
 								}
 							]
 						}
@@ -3006,7 +3006,7 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:5000/api/policy/one/199",
+							"raw": "http://localhost:5000/api/policy/one/24417",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -3016,7 +3016,7 @@
 								"api",
 								"policy",
 								"one",
-								"199"
+								"24417"
 							]
 						}
 					},
@@ -3155,7 +3155,7 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:5000/api/policy/50?search=ee",
+							"raw": "http://localhost:5000/api/policy/50?search=Nurseries",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -3169,7 +3169,7 @@
 							"query": [
 								{
 									"key": "search",
-									"value": "ee"
+									"value": "Nurseries"
 								}
 							]
 						}
@@ -3195,7 +3195,7 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:5000/api/policy/all/250?search=ee",
+							"raw": "http://localhost:5000/api/policy/all/250?search=8 Airlie Grove",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -3210,7 +3210,7 @@
 							"query": [
 								{
 									"key": "search",
-									"value": "ee"
+									"value": "8 Airlie Grove"
 								}
 							]
 						}
@@ -3423,7 +3423,7 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:5000/api/state/policy",
+							"raw": "http://localhost:5000/api/state/type/claim",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -3432,7 +3432,8 @@
 							"path": [
 								"api",
 								"state",
-								"policy"
+								"type",
+								"claim"
 							]
 						}
 					},
@@ -3906,7 +3907,7 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:5000/api/claim/one/3406",
+							"raw": "http://localhost:5000/api/claim/one/16",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -3916,7 +3917,7 @@
 								"api",
 								"claim",
 								"one",
-								"3406"
+								"16"
 							]
 						}
 					},
@@ -3980,13 +3981,16 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"userid\": 2,\r\n    \"claim\": {\r\n        \"claimid\": 4485,\r\n        \"statusid\": 12,\r\n        \"claimnumber\": \"CALMXXX\"\r\n    },\r\n    \"mail\": {\r\n        \"from\": \"app@auwarranties.co.uk\",\r\n        \"to\": \"wang525525@gmail.com\",\r\n        \"subject\": \"Rep Response AUCLMXXXX\",\r\n        \"text\": \"This is the text\"\r\n    }\r\n}"
+							"raw": "{\r\n    \"userid\": 2,\r\n    \"claim\": {\r\n        \"claimid\": 4485,\r\n        \"state\": 12,\r\n        \"claimnumber\": \"CALMXXX\"\r\n    },\r\n    \"mail\": {\r\n        \"subject\": \"Rep Response AUCLMXXXX\",\r\n        \"text\": \"This is the text\"\r\n    }\r\n}"
 						},
 						"url": {
-							"raw": "http://localhost:5000/api/claim/email/office",
+							"raw": "http://35.176.66.97:5000/api/claim/email/office",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"35",
+								"176",
+								"66",
+								"97"
 							],
 							"port": "5000",
 							"path": [
@@ -4056,7 +4060,7 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:5000/api/claim/50?search=AUCLM3359",
+							"raw": "http://localhost:5000/api/claim/50",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -4066,12 +4070,6 @@
 								"api",
 								"claim",
 								"50"
-							],
-							"query": [
-								{
-									"key": "search",
-									"value": "AUCLM3359"
-								}
 							]
 						}
 					},
@@ -4096,7 +4094,7 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:5000/api/claim/all/200?search=a",
+							"raw": "http://localhost:5000/api/claim/all/200?search=AUCLM4400",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -4111,7 +4109,7 @@
 							"query": [
 								{
 									"key": "search",
-									"value": "a"
+									"value": "AUCLM4400"
 								}
 							]
 						}
@@ -4138,7 +4136,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"claim\": {\r\n        \"claimid\": 4485,\r\n        \"claimnumber\": \"CALMXXX\"\r\n    },\r\n    \"mail\": {\r\n        \"subject\": \"AU Warranties Claim CALMXXX\"\r\n    }\r\n}"
+							"raw": "{\r\n    \"claim\": {\r\n        \"claimid\": 4485,\r\n        \"claimnumber\": \"CALMXXX\"\r\n    },\r\n    \"mail\": {\r\n        \"subject\": \"AU Warranties Claim CALMXXX\"\r\n    },\r\n    \"repinfo\": {\r\n        \"isitcovereditem\": \"isitcovereditem\",\r\n        \"customerquotesorourquotes\": \"customerquotesorourquotes\",\r\n        \"officerecommendation\": \"officerecommendation\",\r\n        \"repairscompleted\": \"repairscompleted\",\r\n        \"diagnosticsattached\": \"diagnosticsattached\"\r\n    }\r\n}"
 						},
 						"url": {
 							"raw": "http://localhost:5000/api/claim/email/account",
@@ -4401,7 +4399,7 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:5000/api/invoice/all/250?search=AUINV341",
+							"raw": "http://localhost:5000/api/invoice/all/250?date=2020-07-31",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -4415,8 +4413,8 @@
 							],
 							"query": [
 								{
-									"key": "search",
-									"value": "AUINV341"
+									"key": "date",
+									"value": "2020-07-31"
 								}
 							]
 						}
@@ -4442,7 +4440,7 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:5000/api/invoice/50?search=AUINV341",
+							"raw": "http://localhost:5000/api/invoice/50?date=2020-07-24",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -4455,8 +4453,8 @@
 							],
 							"query": [
 								{
-									"key": "search",
-									"value": "AUINV341"
+									"key": "date",
+									"value": "2020-07-24"
 								}
 							]
 						}
@@ -4482,7 +4480,7 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:5000/api/invoice/filter/date",
+							"raw": "http://localhost:5000/api/invoice/filter/date?userid=50",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -4493,13 +4491,19 @@
 								"invoice",
 								"filter",
 								"date"
+							],
+							"query": [
+								{
+									"key": "userid",
+									"value": "50"
+								}
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "MyArray",
+					"name": "Pay as Mark",
 					"request": {
 						"method": "POST",
 						"header": [
@@ -4521,7 +4525,7 @@
 							"raw": "{\r\n    \"invoiceid\": 158015,\r\n    \"state\": 10,\r\n    \"paiddate\": \"2020-09-05\"\r\n}"
 						},
 						"url": {
-							"raw": "http://localhost:5000/api/mark",
+							"raw": "http://localhost:5000/api/invoice/mark",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -4529,6 +4533,7 @@
 							"port": "5000",
 							"path": [
 								"api",
+								"invoice",
 								"mark"
 							]
 						},
@@ -5477,7 +5482,7 @@
 							"raw": "{\r\n    \r\n}"
 						},
 						"url": {
-							"raw": "http://localhost:5000/api/claimparts/claim/195",
+							"raw": "http://localhost:5000/api/claimparts/claim/4435",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -5487,7 +5492,7 @@
 								"api",
 								"claimparts",
 								"claim",
-								"195"
+								"4435"
 							]
 						}
 					},
@@ -5914,10 +5919,13 @@
 					"raw": "{\r\n  \"username\": \"sdarbar\",\r\n  \"password\": \"AU123!\"\r\n}"
 				},
 				"url": {
-					"raw": "http://localhost:5000/api/auth/login",
+					"raw": "http://35.176.66.97:5000/api/auth/login",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"35",
+						"176",
+						"66",
+						"97"
 					],
 					"port": "5000",
 					"path": [

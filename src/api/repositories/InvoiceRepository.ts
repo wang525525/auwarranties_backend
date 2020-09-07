@@ -149,11 +149,12 @@ export class InvoiceRepository extends Repository<Invoice>  {
      */
     public markPayment(data: any): Promise<any> {
         const query = `\
-            update invoices set state = ${data.state}, paiddate = '${data.paiddate}' where invoiceid = ${data.invoiceid}; \
+            update invoices set state = ${data.state} ${data.paiddate ? `, paiddate = '${data.paiddate}'` : ''}  where invoiceid = ${data.invoiceid}; \
         `;
         this.query(`\
             update policy set state = ${data.state} where invoiceid = ${data.invoiceid}; \
         `);
+        console.log('query ==', query);
         return this.query(query);
     }
 }

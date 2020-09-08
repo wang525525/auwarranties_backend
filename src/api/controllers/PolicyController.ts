@@ -76,6 +76,13 @@ export class PolicyController {
         return res;
     }
 
+    @Get('/vehicle/:vrm')
+    @ResponseSchema(PolicysResponse)
+    public async getVehicle(@Param('vrm') vrm: string): Promise<GeneralResponse> {
+        const res = await this.extService.getVehicle(vrm);
+        return res;
+    }
+
     @Post('/create')
     @ResponseSchema(PolicyResponse)
     public async create(@Body() body: PolicyRegisterRequest): Promise<PolicyResponse> {

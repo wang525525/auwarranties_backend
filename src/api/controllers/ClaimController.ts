@@ -152,7 +152,7 @@ export class ClaimController {
         const html = this.getEmailHtml(data, repinfo);
         const mail = body.mail as MailRegisterRequest;
         mail.from = env.email.user;
-        mail.to = data.policy.branchuser.email
+        mail.to = data.policy.branchuser.email;
         mail.html = html;
         const res = await this.mailService.sendEmail(body.mail);
 

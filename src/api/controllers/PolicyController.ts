@@ -13,6 +13,7 @@ import { ResponseMessage } from '../Common';
 import { PolicyRegisterRequest, PolicyUpdateRequest } from './requests/PolicyRequest';
 import { PolicysResponse, PolicyResponse, PolicyDetail } from './responses/PolicyResponse';
 import { StatusResponse, GeneralResponse } from './responses/CommonResponse';
+import { ExtService } from '../services/ExtService';
 
 @Authorized()
 @JsonController('/policy')
@@ -20,7 +21,8 @@ import { StatusResponse, GeneralResponse } from './responses/CommonResponse';
 export class PolicyController {
 
     constructor(
-        private policyService: PolicyService
+        private policyService: PolicyService,
+        private extService: ExtService
     ) { }
 
     @Get('/:branchid')
@@ -65,6 +67,13 @@ export class PolicyController {
         } else {
             return {status: ResponseMessage.NOT_FOUND_DURATION, res: undefined};
         }
+    }
+
+    @Get('/post/:postcode')
+    @ResponseSchema(PolicysResponse)
+    public async getAddresses(@Param('postcode') postcode: string): Promise<GeneralResponse> {
+        const res = await this.extService.getAddresses(postcode);
+        return res;
     }
 
     @Post('/create')

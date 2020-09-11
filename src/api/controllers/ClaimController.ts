@@ -62,19 +62,20 @@ export class ClaimController {
     }
 
     @Get('/one/:id')
-    @ResponseSchema(ClaimResponse)
-    public async policyOne(@Param('id') id: string): Promise<ClaimResponse> {
+    @ResponseSchema(GeneralResponse)
+    public async policyOne(@Param('id') id: string): Promise<GeneralResponse> {
         const claim = await this.claimService.findOneById(parseInt(id, 10)) as ClaimDetail;
         claim.claimdateDate = utilService.convertTimestampToDate(claim.claimdateseconds);
-        if (claim.policy) {
-            claim.policy.datesecondsDate = utilService.convertTimestampToDate(claim.policy.dateseconds);
-
-            // check validation in policy
-            this.getValidation(claim.policy);
-        }
 
         if (claim) {
-            return {status: ResponseMessage.SUCCEEDED, res: claim};
+            if (claim.policy) {
+                claim.policy.datesecondsDate = utilService.convertTimestampToDate(claim.policy.dateseconds);
+                // check validation in policy
+                this.getValidation(claim.policy);
+            }
+            const res = JSON.parse(JSON.stringify(claim));
+            res.policy = [claim.policy];
+            return {status: ResponseMessage.SUCCEEDED, res: res};
         } else {
             return {status: ResponseMessage.NOT_FOUND_DURATION, res: undefined};
         }

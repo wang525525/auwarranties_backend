@@ -70,18 +70,7 @@ export class ClaimController {
             claim.policy.datesecondsDate = utilService.convertTimestampToDate(claim.policy.dateseconds);
 
             // check validation in policy
-            const policy = claim.policy;
-            const curDate = new Date();
-            if (policy.datesecondsDate < curDate) {
-                const monthDiff = utilService.monthDiff(policy.datesecondsDate, curDate);
-                if (monthDiff > policy.guarantee.duration.durationvalue) {
-                    policy.validation = 'Expired';
-                } else {
-                    policy.validation = 'Valid';
-                }
-            } else {
-                policy.validation = 'Expired';
-            }
+            this.getValidation(claim.policy);
         }
 
         if (claim) {
@@ -97,6 +86,9 @@ export class ClaimController {
         const res = await this.policyService.getPolicyByVRM(vrm);
 
         if (res && res.length > 0) {
+            res.map(policy => {
+                this.getValidation(policy);
+            });
             return { status: ResponseMessage.SUCCEEDED, res: res };
         } else {
             return { status: ResponseMessage.NOT_FOUND_POLICY, res: undefined };
@@ -309,6 +301,21 @@ export class ClaimController {
             return html;
         }
         return '';
+    }
+
+    public getValidation(policy: any): void {
+        // check validation in policy
+        const curDate = new Date();
+        if (policy.datesecondsDate < curDate) {
+            const monthDiff = utilService.monthDiff(policy.datesecondsDate, curDate);
+            if (monthDiff > policy.guarantee.duration.durationvalue) {
+                policy.validation = 'Expired';
+            } else {
+                policy.validation = 'Valid';
+            }
+        } else {
+            policy.validation = 'Expired';
+        }
     }
 
 }

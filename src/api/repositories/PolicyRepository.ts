@@ -81,21 +81,28 @@ export class PolicyRepository extends Repository<Policy>  {
     }
 
     public getPolicyByVRM(vrm: string): any {
-        // return this.createQueryBuilder('policy')
-        //             .leftJoinAndSelect('policy.policystate', 'state')
-        //             .leftJoinAndSelect('policy.vehicle', 'vehicle')
-        //             .leftJoinAndSelect('policy.guarantee', 'guarantee')
-        //             .leftJoinAndSelect('guarantee.duration', 'purchaseduration')
-        //             .where(`vehicle.vrm ilike '%${vrm}%'`)
-        //             .getMany();
-        const query = `\
-            select * from policy \
-            left join vehicle on policy.policynumber = vehicle.policynumber \
-            left join guarantee on policy.policynumber = guarantee.policynumber \
-            left join state on policy.state = state.stateid \
-            left join purchaseduration on guarantee.durationid = purchaseduration.durationid \
-            where vehicle.vrm ilike '%${vrm}%' \
-        `;
-        return this.query(query);
+        return this.createQueryBuilder('policy')
+                    .leftJoinAndSelect('policy.policystate', 'state')
+                    .leftJoinAndSelect('policy.vehicle', 'vehicle')
+                    .leftJoinAndSelect('policy.guarantee', 'guarantee')
+                    .leftJoinAndSelect('guarantee.duration', 'purchaseduration')
+                    .where(`vehicle.vrm ilike '%${vrm}%'`)
+                    .select(['policy.policyid', 'policy.dateseconds', 'policy.policynumber', 'policy.title', 'policy.forename', 'policy.surname',
+                             'policy.address1', 'policy.address2', 'policy.address3', 'policy.town', 'policy.postcode', 'policy.branchname',
+                             'vehicle.vehicleid', 'vehicle.regdate', 'vehicle.carmake', 'vehicle.carmodel', 'vehicle.cartype', 'vehicle.fueltype',
+                             'vehicle.carcolour', 'vehicle.vrm',
+                             'state.stateid', 'state.statename', 'state.statetype',
+                             'purchaseduration.durationid', 'purchaseduration.durationvalue', 'purchaseduration.durationtype',
+                             'guarantee.guaranteeid', 'guarantee.claimlimitamount'])
+                    .getMany();
+        // const query = `\
+        //     select * from policy \
+        //     left join vehicle on policy.policynumber = vehicle.policynumber \
+        //     left join guarantee on policy.policynumber = guarantee.policynumber \
+        //     left join state on policy.state = state.stateid \
+        //     left join purchaseduration on guarantee.durationid = purchaseduration.durationid \
+        //     where vehicle.vrm ilike '%${vrm}%' \
+        // `;
+        // return this.query(query);
     }
 }

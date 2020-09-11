@@ -79,4 +79,23 @@ export class PolicyRepository extends Repository<Policy>  {
         `;
         return this.query(query);
     }
+
+    public getPolicyByVRM(vrm: string): any {
+        // return this.createQueryBuilder('policy')
+        //             .leftJoinAndSelect('policy.policystate', 'state')
+        //             .leftJoinAndSelect('policy.vehicle', 'vehicle')
+        //             .leftJoinAndSelect('policy.guarantee', 'guarantee')
+        //             .leftJoinAndSelect('guarantee.duration', 'purchaseduration')
+        //             .where(`vehicle.vrm ilike '%${vrm}%'`)
+        //             .getMany();
+        const query = `\
+            select * from policy \
+            left join vehicle on policy.policynumber = vehicle.policynumber \
+            left join guarantee on policy.policynumber = guarantee.policynumber \
+            left join state on policy.state = state.stateid \
+            left join purchaseduration on guarantee.durationid = purchaseduration.durationid \
+            where vehicle.vrm ilike '%${vrm}%' \
+        `;
+        return this.query(query);
+    }
 }

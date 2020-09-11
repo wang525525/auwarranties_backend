@@ -19,6 +19,7 @@ import utilService from '../services/UtilService';
 import { MailService } from '../services/MailService';
 import { MailRegisterRequest } from './requests/MailRequest';
 import { env } from '../../env';
+import { PolicyService } from '../services/PolicyService';
 
 @Authorized()
 @JsonController('/claim')
@@ -27,7 +28,8 @@ export class ClaimController {
 
     constructor(
         private claimService: ClaimService,
-        private mailService: MailService
+        private mailService: MailService,
+        private policyService: PolicyService
     ) { }
 
     @Get('/:branchid')
@@ -86,6 +88,18 @@ export class ClaimController {
             return {status: ResponseMessage.SUCCEEDED, res: claim};
         } else {
             return {status: ResponseMessage.NOT_FOUND_DURATION, res: undefined};
+        }
+    }
+
+    @Get('/vrm/:vrm')
+    @ResponseSchema(ClaimsResponse)
+    public async getPolicyByVRM(@Param('vrm') vrm: string): Promise<GeneralResponse> {
+        const res = await this.policyService.getPolicyByVRM(vrm);
+
+        if (res && res.length > 0) {
+            return { status: ResponseMessage.SUCCEEDED, res: res };
+        } else {
+            return { status: ResponseMessage.NOT_FOUND_POLICY, res: undefined };
         }
     }
 

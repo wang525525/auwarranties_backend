@@ -59,4 +59,8 @@ export class PolicyService {
         const res = utilService.toUpperCase(vrm) + utilService.toString(key);
         return res;
     }
+
+    public async getPolicyByVRM(vrm: string): Promise<any> {
+        return await this.policyRepository.getPolicyByVRM(vrm);
+    }
 }

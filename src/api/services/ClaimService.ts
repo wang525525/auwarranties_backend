@@ -77,7 +77,6 @@ export class ClaimService {
     public async getUniqueClaimNumber(): Promise<string> {
         const key = await this.claimRepository.getUniqueClaimNumber();
         const uniqKey = utilService.toString(parseInt(key[0].k, 10) + 1);
-        console.log('uniqKey==', uniqKey);
         return 'AUCLM' + utilService.toString(uniqKey);
     }
 }

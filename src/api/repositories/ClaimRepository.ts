@@ -162,7 +162,6 @@ export class ClaimRepository extends Repository<Claim>  {
         const query = `\
             select max(regexp_replace(claimnumber, 'AUCLM','')::int) as k from claims;
         `;
-        console.log('query ==', query);
         return this.query(query);
     }
 }

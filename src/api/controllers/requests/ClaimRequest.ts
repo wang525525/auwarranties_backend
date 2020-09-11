@@ -130,6 +130,10 @@ export class ClaimRegisterRequest {
     @IsOptional()
     @IsDate()
     public adminrespondtime?: Date;
+
+    @IsOptional()
+    @IsNumber()
+    public userid?: number;
 }
 export class ClaimUpdateRequest extends ClaimRegisterRequest {
     @IsNumber()

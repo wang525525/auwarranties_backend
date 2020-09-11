@@ -93,11 +93,27 @@ export class ClaimController {
     @ResponseSchema(ClaimResponse)
     public async create(@Body() body: ClaimRegisterRequest): Promise<ClaimResponse> {
         body.claimnumber = await this.claimService.getUniqueClaimNumber();
+        const userid = body.userid;
         let newClaim = new Claim();
         newClaim = body as Claim;
         const createdClaim = await this.claimService.create(newClaim) as ClaimDetail;
+        const data = await this.claimService.getDataForEmail(createdClaim.claimid);
+        const html = this.getEmailHtml(data);
 
-        return {status: ResponseMessage.SUCCEEDED, res: createdClaim};
+        // insert claimshitory
+        const history = {
+            claimid: data.claimid,
+            state: 25, // Awaiting Admin Response
+            userid: userid,
+            desc: html,
+        };
+        const histRes = await this.claimService.insertHistory(history);
+
+        if (histRes) {
+            return {status: ResponseMessage.SUCCEEDED, res: createdClaim};
+        } else {
+            return {status: ResponseMessage.FAILED_SAVE_CLAIMHISTORY, res: undefined};
+        }
     }
 
     @Post('/update')
@@ -201,7 +217,7 @@ export class ClaimController {
     }
 
     // non api function here.
-    public getEmailHtml(data: any, repinfodata: any): any {
+    public getEmailHtml(data: any, repinfodata: any = undefined): any {
         const dir = path.dirname(require.main.filename);
         let html = fs.readFileSync(dir + '/public/template/claimemail.html', 'utf8');
 
@@ -243,11 +259,39 @@ export class ClaimController {
             html = html.replace('{{garagedetails}}', utilService.toString(data.repairinggarage || ''));
             html = html.replace('{{comments}}', utilService.toString(data.notes || ''));
 
-            html = html.replace('{{isitcovereditem}}', utilService.toString(repinfo.isitcovereditem));
-            html = html.replace('{{customerquotesorourquotes}}', utilService.toString(repinfo.customerquotesorourquotes));
-            html = html.replace('{{officerecommendation}}', utilService.toString(repinfo.officerecommendation));
-            html = html.replace('{{repairscompleted}}', utilService.toString(repinfo.repairscompleted));
-            html = html.replace('{{diagnosticsattached}}', utilService.toString(repinfo.diagnosticsattached));
+            if (repinfo !== undefined) {
+                const repdata = `\
+                    <table cellspacing = "0" style= "width:550px;border: 1px solid black; " >\
+                        <tr>\
+                            <p style = "text-size: 14pt;"><b>Details from AU</b></p>\
+                        </tr>\
+                        <tr>\
+                            <td class="col1">Is it a covered item?</td>\
+                            <td class="col2">${utilService.toString(repinfo.isitcovereditem)}</td>\
+                        </tr>\
+                        <tr>\
+                            <td class="col1">Are these customer quotes or our quotes?</td>\
+                            <td class="col2">${utilService.toString(repinfo.customerquotesorourquotes)}</td>\
+                        </tr>\
+                        <tr>\
+                            <td class="col1">Office Recommendation</td>\
+                            <td class="col2">${utilService.toString(repinfo.officerecommendation)}</td>\
+                        </tr>\
+                        <tr>\
+                            <td class="col1">Have the repairs already been completed?</td>\
+                            <td class="col2">${utilService.toString(repinfo.repairscompleted)}</td>\
+                        </tr>\
+                        <tr>\
+                            <td class="col1">Diagnostics attached or garage email below?</td>\
+                            <td class="col2">${utilService.toString(repinfo.diagnosticsattached)}</td>\
+                        </tr>\
+                    </table>\
+                `;
+                html = html.replace('{{repdata}}', repdata);
+            } else {
+                html = html.replace('{{repdata}}', '');
+            }
+
             return html;
         }
         return '';

@@ -4,6 +4,7 @@ import { OrmRepository } from 'typeorm-typedi-extensions';
 import { Logger, LoggerInterface } from '../../decorators/Logger';
 import { Claim } from '../models/Claim';
 import { ClaimRepository } from '../repositories/ClaimRepository';
+import utilService from './UtilService';
 
 @Service()
 export class ClaimService {
@@ -71,5 +72,12 @@ export class ClaimService {
         this.log.info('Delete a claim');
         await this.claimRepository.delete(claimid);
         return;
+    }
+
+    public async getUniqueClaimNumber(): Promise<string> {
+        const key = await this.claimRepository.getUniqueClaimNumber();
+        const uniqKey = utilService.toString(parseInt(key[0].k, 10) + 1);
+        console.log('uniqKey==', uniqKey);
+        return 'AUCLM' + utilService.toString(uniqKey);
     }
 }

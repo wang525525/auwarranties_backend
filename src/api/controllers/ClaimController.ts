@@ -92,6 +92,7 @@ export class ClaimController {
     @Post('/create')
     @ResponseSchema(ClaimResponse)
     public async create(@Body() body: ClaimRegisterRequest): Promise<ClaimResponse> {
+        body.claimnumber = await this.claimService.getUniqueClaimNumber();
         let newClaim = new Claim();
         newClaim = body as Claim;
         const createdClaim = await this.claimService.create(newClaim) as ClaimDetail;

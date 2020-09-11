@@ -73,6 +73,9 @@ export class PolicyController {
     @ResponseSchema(PolicysResponse)
     public async getAddresses(@Param('postcode') postcode: string): Promise<GeneralResponse> {
         const res = await this.extService.getAddresses(postcode);
+        if (res.res && res.res.Addresses && res.res.Addresses.length > 0) {
+            res.res.Addresses = this.getAddressesFromRaw(res.res.Addresses);
+        }
         return res;
     }
 
@@ -147,6 +150,65 @@ export class PolicyController {
         }
         res = `Total: ${policies.length}, Not Invoiced: ${notinvoiced}, Payment Pending: ${pendingcount} \
                 (£ ${grosspending}), Paid: ${paidcount} (£ ${grosspaid})`;
+        return res;
+    }
+
+    // get Addresses
+    public getAddressesFromRaw(addresses: any): any {
+        const res = [];
+
+        if (addresses && addresses.length > 0) {
+            addresses.map(address => {
+                const add = address.split(',');
+                let addr = '';
+                let addArr = [];
+                const item = {
+                    addr: '',
+                    addObj: {
+                        add1: '',
+                        add2: '',
+                        add3: '',
+                    },
+                };
+                if (add.length > 0) {
+                    for (let i = 0; i < add.length; i++) {
+                        if (add[i] !== '' && add[i] !== ' ') {
+                            if (i === 0) {
+                                addr = add[i];
+                            } else {
+                                addr = addr + ',' + add[i];
+                            }
+                        }
+                    }
+                    item.addr = addr;
+                    if (addr !== '') {
+                        addArr = addr.split(',');
+                        if (addArr.length >= 1) {
+                            item.addObj.add1 = addArr[0];
+                        }
+                        if (addArr.length >= 2) {
+                            item.addObj.add2 = addArr[1];
+                        }
+                        if (addArr.length >= 3) {
+                            item.addObj.add3 = addArr[2];
+                        }
+                        if (addArr.length >= 4) {
+                            item.addObj.add3 = addArr[2] + ',' + addArr[3];
+                        }
+                        if (addArr.length >= 5) {
+                            item.addObj.add2 = addArr[1] + ',' + addArr[2];
+                            item.addObj.add2 = addArr[3] + ',' + addArr[4];
+                        }
+                        if (addArr.length >= 6) {
+                            item.addObj.add1 = addArr[0] + ',' + addArr[1];
+                            item.addObj.add2 = addArr[2] + ',' + addArr[3];
+                            item.addObj.add3 = addArr[4] + ',' + addArr[5];
+                        }
+                    }
+                }
+                res.push(item);
+            });
+        }
         return res;
     }
 

@@ -95,14 +95,5 @@ export class PolicyRepository extends Repository<Policy>  {
                              'purchaseduration.durationid', 'purchaseduration.durationvalue', 'purchaseduration.durationtype',
                              'guarantee.guaranteeid', 'guarantee.claimlimitamount'])
                     .getMany();
-        // const query = `\
-        //     select * from policy \
-        //     left join vehicle on policy.policynumber = vehicle.policynumber \
-        //     left join guarantee on policy.policynumber = guarantee.policynumber \
-        //     left join state on policy.state = state.stateid \
-        //     left join purchaseduration on guarantee.durationid = purchaseduration.durationid \
-        //     where vehicle.vrm ilike '%${vrm}%' \
-        // `;
-        // return this.query(query);
     }
 }

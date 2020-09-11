@@ -72,4 +72,11 @@ export class PolicyRepository extends Repository<Policy>  {
         `;
         return this.query(query);
     }
+
+    public getUniquePolicyNumber(vrm: string): Promise<any> {
+        const query = `\
+            select count(*) as k from policy,vehicle where vehicle.vrm = '${vrm}' and policy.policynumber = vehicle.policynumber
+        `;
+        return this.query(query);
+    }
 }

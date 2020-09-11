@@ -182,6 +182,9 @@ export class PolicyRegisterRequest {
 
     @IsDate()
     public dateexpiry: Date;
+
+    @IsString()
+    public vehicleVRM: string;
 }
 
 export class PolicyUpdateRequest extends PolicyRegisterRequest {

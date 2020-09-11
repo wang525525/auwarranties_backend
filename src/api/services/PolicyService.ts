@@ -4,6 +4,7 @@ import { OrmRepository } from 'typeorm-typedi-extensions';
 import { Logger, LoggerInterface } from '../../decorators/Logger';
 import { Policy } from '../models/Policy';
 import { PolicyRepository } from '../repositories/PolicyRepository';
+import utilService from './UtilService';
 
 @Service()
 export class PolicyService {
@@ -50,5 +51,12 @@ export class PolicyService {
         this.log.info('Delete a policy');
         await this.policyRepository.delete(policyid);
         return;
+    }
+
+    public async getUniquePolicyNumber(vrm: string): Promise<string> {
+        const uniqKey = await this.policyRepository.getUniquePolicyNumber(vrm);
+        const key = parseInt(uniqKey[0].k, 10) + 1;
+        const res = utilService.toUpperCase(vrm) + utilService.toString(key);
+        return res;
     }
 }

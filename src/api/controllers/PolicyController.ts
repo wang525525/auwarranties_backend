@@ -90,6 +90,9 @@ export class PolicyController {
     @ResponseSchema(PolicyResponse)
     public async create(@Body() body: PolicyRegisterRequest): Promise<PolicyResponse> {
         body.dateseconds = utilService.convertDateToTimestamp(body.datesecondsDate);
+        body.policynumber = await this.policyService.getUniquePolicyNumber(body.vehicleVRM);
+        delete body.vehicleVRM;
+
         let newPolicy = new Policy();
         newPolicy = body as Policy;
         const createdPolicy = await this.policyService.create(newPolicy) as PolicyDetail;

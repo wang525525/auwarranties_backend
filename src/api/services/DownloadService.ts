@@ -74,6 +74,15 @@ export class DownloadService {
         html = html.replace('{{luxury}}', data.luxury ? 'Yes' : 'No');
         html = html.replace('{{specialist}}', data.specialist ? 'Yes' : 'No');
 
+        if (data.branchid === 440) {
+            html = html.replace('{{motorprotect}}', this.getMotorProtectPart());
+            html = html.replace('{{logo}}', 'http://localhost:5000/img/motor_protect.png');
+            html = html.replace('{{logowidth}}', '320');
+        } else {
+            html = html.replace('{{motorprotect}}', '');
+            html = html.replace('{{logo}}', 'http://localhost:5000/img/main-logo.png');
+            html = html.replace('{{logowidth}}', '160');
+        }
         return html;
     }
 
@@ -369,6 +378,52 @@ export class DownloadService {
             </table>
         `;
 
+        return res;
+    }
+
+    public getMotorProtectPart(): string {
+        let res = '';
+        res += `\
+            <table cellpadding="0" cellspacing="0" style="padding: 40px 0 0 0;">\
+                <tr>\
+                    <td style="width:50%;" valign="top">\
+                        <div class="d-flex">\
+                            <span>Email:</span>\
+                            <span>claims@protectmymotor.com</span>\
+                        </div>\
+                    </td>\
+                    <td style="width:50%;" valign="top">\
+                        <div class="d-flex">\
+                            <span>Tel:</span>\
+                            <span>0161 96 9579</span>\
+                        </div>\
+                    </td>\
+                </tr>\
+            </table>\
+            <table cellpadding="0" cellspacing="0" style="padding: 20px 0 0 0;">\
+                <tr>\
+                    <td style="width:1000%;" valign="top">\
+                        <div class="d-flex">\
+                            <h2 style="text-decoration: underline; margin: 0px; line-height: 44px">Data Protection and Privacy</h2>\
+                        </div>\
+                    </td>\
+                </tr>\
+                <tr>\
+                    <td style="width:1000%;" valign="top">\
+                        <div class="d-flex">\
+                            <span style="font-size: 12px; line-height: 12px;">\
+                                We process information about you in accordance with our Privacy Policy. You consent to such processing and you warrant\
+                                to the best of your knowledge and belief that all data provided by you is accurate. We hold a data protection registration\
+                                and comply with the Data Protection Act 2018. In the event that you purchase or obtain any goods or services from third\
+                                party then your acquisition of such goods or services will be in accordance with the third party's terms and conditions and\
+                                we exclude so far as permitted by law all liability to you in respect of the same.\
+                                Motor Protect is a trading name of The Car Sales Company\
+                            </span>\
+                        </div>\
+                    </td>\
+                </tr>\
+            </table>\
+        `;
         return res;
     }
 

@@ -63,7 +63,7 @@
                 <td class="text-right">
                     <div><span>Date: {{policydate}}</span></div>
                     <div><span><b>No: {{policynumber}}</b></span></div>
-                    <img src="http:localhost:5000/img/main-logo.png" alt="logo" width="160" />
+                    <img src="{{logo}}" alt="logo" width="{{logowidth}}" />
                 </td>
             </tr>
         </table>
@@ -306,6 +306,9 @@
                 </td>
             </tr>
         </table>
+
+        <!-- table for motor protector -->
+        {{motorprotect}}
     </div>
 </body>
 </html>

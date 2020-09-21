@@ -15,7 +15,7 @@ export class DownloadService {
 
     // for agreement
     public printQuoteForPolicy(data: any = undefined): string {
-        this.log.info('Make the pdf file for Policy.');
+        this.log.info('Make the pdf file for Policy.', data.branchid);
         const dir = path.dirname(require.main.filename);
         let html = fs.readFileSync(dir + '/public/template/policy_pdf.html', 'utf8');
 

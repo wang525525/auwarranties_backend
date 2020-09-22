@@ -34,7 +34,7 @@ export class PermissionController {
     @Get('/:id')
     @ResponseSchema(PermissionResponse)
     public async one(@Param('id') id: string): Promise<PermissionResponse> {
-        let permission = await this.permissionService.findOneById(parseInt(id, 10)) as PermissionDetail;
+        let permission = await this.permissionService.findOneById(parseInt(id, 10)) as any;
         if (permission) {
             const items = await this.permissionService.findItems(permission.permissionid) as PermissionItemDetail[];
             permission.items = this.addItemsToPermission(permission, items);

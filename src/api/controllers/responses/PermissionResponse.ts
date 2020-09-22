@@ -1,6 +1,7 @@
 import { IsString, IsNumber, IsArray, IsBoolean, IsJSON, ValidateNested, IsOptional } from 'class-validator';
 import { Type } from 'class-transformer';
 import { PermissionItemDetail } from '../requests/PermissionRequest';
+import { PermissionItem } from '../../models/Permission';
 
 export class PermissionDetail {
 
@@ -12,6 +13,11 @@ export class PermissionDetail {
 
     @IsBoolean()
     public active: boolean;
+
+    @ValidateNested({ each: true })
+    @IsArray()
+    @Type(() => PermissionItem)
+    public permissionItems: PermissionItem[];
 
     @ValidateNested({each: true})
     @IsArray()

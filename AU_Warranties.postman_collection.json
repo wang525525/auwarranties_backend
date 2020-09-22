@@ -6035,16 +6035,13 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"username\": \"sdarbar\",\r\n  \"password\": \"AU123!\"\r\n}"
+					"raw": "{\r\n  \"username\": \"wrightcar\",\r\n  \"password\": \"Wrightcar123\"\r\n}"
 				},
 				"url": {
-					"raw": "http://35.176.66.97:5000/api/auth/login",
+					"raw": "http://localhost:5000/api/auth/login",
 					"protocol": "http",
 					"host": [
-						"35",
-						"176",
-						"66",
-						"97"
+						"localhost"
 					],
 					"port": "5000",
 					"path": [

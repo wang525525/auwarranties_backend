@@ -12,6 +12,14 @@ export class UserRepository extends Repository<User>  {
                             .getMany();
     }
 
+    public findOneWithPermissionByUserName(username: string): Promise<any> {
+        return this.createQueryBuilder('users')
+                            .leftJoinAndSelect('users.permission', 'permission')
+                            .leftJoinAndSelect('permission.permissionItems', 'permissionitems')
+                            .where(`users.username='${username}'`)
+                            .getOne();
+    }
+
     public searchText(search: string): any {
         return `\
             companyname ilike '%${search}%' or username ilike '%${search}%' or email ilike '%${search}%' or \

@@ -1,7 +1,9 @@
+import { IsOptional } from 'class-validator';
 // import * as bcrypt from 'bcrypt';
 // import { Exclude } from 'class-transformer';
 // import { IsNotEmpty } from 'class-validator';
-import { PrimaryGeneratedColumn, Column, Entity } from 'typeorm';
+import { PrimaryGeneratedColumn, Column, Entity, OneToOne, JoinColumn } from 'typeorm';
+import { Permission } from './Permission';
 
 @Entity('users')
 export class User {
@@ -214,6 +216,11 @@ export class User {
         nullable: true,
     })
     public permissionid: number;
+
+    @OneToOne(type => Permission, entity => entity.permissionid)
+    @JoinColumn({ name: 'permissionid', referencedColumnName: 'permissionid'})
+    @IsOptional()
+    public permission?: Permission;
 
     @Column({
         nullable: true,

@@ -1,4 +1,4 @@
-import { PrimaryGeneratedColumn, Column, Entity } from 'typeorm';
+import { PrimaryGeneratedColumn, Column, Entity, OneToMany, JoinColumn, ManyToOne } from 'typeorm';
 import { IsOptional } from 'class-validator';
 
 @Entity('permission')
@@ -17,6 +17,10 @@ export class Permission {
     })
     public active: boolean;
 
+    @OneToMany(type => PermissionItem, permissionItems => permissionItems.permission)
+    @JoinColumn({name: 'permissionid', referencedColumnName: 'permissionid'})
+    @IsOptional()
+    public permissionItems: PermissionItem[];
 }
 
 @Entity('permissionitems')
@@ -44,4 +48,8 @@ export class PermissionItem {
     @IsOptional()
     public permissiontype?: string;
 
+    @ManyToOne(type => Permission, permission => permission.permissionid)
+    @JoinColumn({name: 'permissionid', referencedColumnName: 'permissionid'})
+    @IsOptional()
+    public permission: Permission;
 }

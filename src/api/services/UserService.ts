@@ -63,6 +63,10 @@ export class UserService {
         return this.userRepository.findOne({userid});
     }
 
+    public findOneWithPermissionByUserName(username: string): Promise<any | undefined> {
+        return this.userRepository.findOneWithPermissionByUserName(username);
+    }
+
     public statusByUserId(userid: number): Promise<User | undefined> {
         return this.userRepository.statusByUserId(userid);
     }

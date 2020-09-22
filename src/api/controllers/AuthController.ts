@@ -38,7 +38,7 @@ export class AuthController {
     @Post('/login')
     public async login(@Body() body: UserLoginRequest): Promise<any> {
 
-        const user = await this.userService.findOne(body.username);
+        const user = await this.userService.findOneWithPermissionByUserName(body.username);
 
         if (!user) {
             return {status: ResponseMessage.NOT_FOUND_USER};

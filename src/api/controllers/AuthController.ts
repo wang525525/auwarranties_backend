@@ -44,6 +44,12 @@ export class AuthController {
             return {status: ResponseMessage.NOT_FOUND_USER};
         }
 
+        if (user.permission === null) {
+            user.permission = {
+                permissionItems: [],
+            };
+        }
+
         if (!(await User.comparePassword(user, body.password))) {
             return {status: ResponseMessage.AUTHORIZATION_FAILED};
         }

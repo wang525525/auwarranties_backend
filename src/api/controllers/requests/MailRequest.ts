@@ -1,4 +1,4 @@
-import { IsString, IsOptional } from 'class-validator';
+import { IsString, IsOptional, IsNumber } from 'class-validator';
 
 export class MailRegisterRequest {
 
@@ -18,4 +18,18 @@ export class MailRegisterRequest {
     @IsOptional()
     @IsString()
     public html?: string;
+}
+
+export class CustomMailRequest {
+    @IsNumber()
+    @IsOptional()
+    public userid?: number;
+
+    @IsString()
+    @IsOptional()
+    public title?: string;
+
+    @IsString()
+    @IsOptional()
+    public description?: string;
 }

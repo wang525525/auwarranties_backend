@@ -3348,6 +3348,44 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "SendDeleteRequest",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNkYXJiYXIiLCJwYXNzd29yZCI6IkFVMTIzISIsInNlc3Npb25faWQiOiIzMGY2NmY4Mi03YzgwLTQ1NmUtOWRhMS1jZTY4ODgxZjNiNTYiLCJpYXQiOjE1OTcxNTI0MDh9.CIZUqBAnEf7ym3SXFZr-4J9sFASmoJRt4qtXAEcs_Jo"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"userid\": 491,\r\n    \"title\": \"Delete Agreement GJ14DHO1\",\r\n    \"description\": \"This is the test.\"\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/policy/requestdelete",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"policy",
+								"requestdelete"
+							]
+						}
+					},
+					"response": []
 				}
 			],
 			"protocolProfileBehavior": {}

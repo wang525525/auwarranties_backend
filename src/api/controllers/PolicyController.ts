@@ -14,6 +14,9 @@ import { PolicyRegisterRequest, PolicyUpdateRequest } from './requests/PolicyReq
 import { PolicysResponse, PolicyResponse, PolicyDetail } from './responses/PolicyResponse';
 import { StatusResponse, GeneralResponse } from './responses/CommonResponse';
 import { ExtService } from '../services/ExtService';
+import { Mail } from '../models/Mail';
+import { CustomMailRequest } from './requests/MailRequest';
+import { MailService } from '../services/MailService';
 
 @Authorized()
 @JsonController('/policy')
@@ -22,7 +25,8 @@ export class PolicyController {
 
     constructor(
         private policyService: PolicyService,
-        private extService: ExtService
+        private extService: ExtService,
+        private mailService: MailService
     ) { }
 
     @Get('/:branchid')
@@ -114,6 +118,29 @@ export class PolicyController {
             return {status: ResponseMessage.SUCCEEDED, res: updatedPolicy };
         } else {
             return {status: ResponseMessage.NOT_FOUND_DURATION, res: undefined};
+        }
+    }
+
+    @Post('/requestdelete')
+    @ResponseSchema(GeneralResponse)
+    public async requestDelete(@Body() body: CustomMailRequest): Promise<GeneralResponse> {
+
+        // send mail
+        const mail: Mail = {
+            from: 'app@auwarranties.co.uk',
+            subject: body.title,
+            text: body.description,
+        };
+        if (body.userid === 440) {
+            mail.to = 'claims@protectmymotor.com';
+        } else {
+            mail.to = 'admin@auwarranties.co.uk';
+        }
+        const res = this.mailService.sendEmail(mail);
+        if (res) {
+            return { status: ResponseMessage.SUCCEEDED, res: undefined };
+        } else {
+            return { status: ResponseMessage.FAILED, res: undefined };
         }
     }
 

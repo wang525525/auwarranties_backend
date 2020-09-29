@@ -5,9 +5,11 @@ import { createExpressServer } from 'routing-controllers';
 import { authorizationChecker } from '../auth/authorizationChecker';
 import { currentUserChecker } from '../auth/currentUserChecker';
 import { env } from '../env';
-// import cron from 'cron';
+import cron from 'cron';
+import { ScheduleService } from '../api/services/ScheduleService';
+import { Container } from 'typedi';
 
-export const expressLoader: MicroframeworkLoader = (settings: MicroframeworkSettings | undefined) => {
+export const expressLoader: MicroframeworkLoader = async (settings: MicroframeworkSettings | undefined) => {
     if (settings) {
         const connection = settings.getData('connection');
 
@@ -45,8 +47,17 @@ export const expressLoader: MicroframeworkLoader = (settings: MicroframeworkSett
         settings.setData('express_app', expressApp);
 
         // start Cron job
-        // const CronJob = cron.CronJob;
-        // const job = new CronJob('0 */1 * * * *', doInvoices(0));
-        // job.start();
+        const CronJob = cron.CronJob;
+        const schedule = Container.get<ScheduleService>(ScheduleService);
+        const schedules = await schedule.find();
+        console.log('schedules ==', schedules);
+        if (schedules && schedules.length > 0) {
+            for (const schd of schedules) {
+                if (schd.task === 'Invoices') {
+                    const job = new CronJob('0 0 13 * * *', schedule.doInvoices(12));
+                    job.start();
+                }
+            }
+        }
     }
 };

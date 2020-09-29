@@ -120,7 +120,7 @@ export class PermissionController {
                 permissionitemid: -1,
                 permissionid: (permission && permission.permissionid) || undefined,
                 permissionvalue: false,
-                permissiontype: undefined,
+                permissiontype: item,
             };
 
             if (items) {

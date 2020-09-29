@@ -135,7 +135,6 @@ export class PolicyRepository extends Repository<Policy>  {
                 ${query1} where branchid = ${userId} ${invcondition} and datepolicy between '${startdt}' and '${enddt}' ${query2}\
             `;
         }
-        console.log(' ### ', query);
         return this.query(query);
     }
 

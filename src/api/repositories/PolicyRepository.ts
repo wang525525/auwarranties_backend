@@ -68,7 +68,7 @@ export class PolicyRepository extends Repository<Policy>  {
             left join guarantee on policy.policynumber = guarantee.policynumber \
             left join purchaseduration on guarantee.durationid = purchaseduration.durationid \
             left join users on policy.branchid = users.userid \
-            where policy.policyid = ${policyid} \
+            where policy.policyid = ${policyid} order by datepolicy DESC \
         `;
         return this.query(query);
     }
@@ -133,6 +133,7 @@ export class PolicyRepository extends Repository<Policy>  {
                 ${query1} where branchid = ${userId} ${invcondition} and datepolicy between '${startdt}' and '${enddt}' ${query2}\
             `;
         }
+        console.log(' ######### ', query);
         return this.query(query);
     }
 

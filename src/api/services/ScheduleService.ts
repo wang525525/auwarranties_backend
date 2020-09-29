@@ -169,9 +169,9 @@ export class ScheduleService {
                 let refundtypeduration;
                 console.log('prices ==', prices.length, plrs, plr.policyid);
                 for (const price of prices) {
-                    if (price.coverid === parseInt(plr.coverid, 10) &&
-                        price.durationid === parseInt(plr.durationid, 10) &&
-                        price.claimid === parseInt(plr.claimlimitid, 10)) {
+                    if (price.coverid === parseInt(plr.coverid || 0, 10) &&
+                        price.durationid === parseInt(plr.durationid || 0, 10) &&
+                        price.claimid === parseInt(plr.claimlimitid || 0, 10)) {
                         if (price.id) {
                             const idx = exps.findIndex(item => item.pricingid === price.id);
 

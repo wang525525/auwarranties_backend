@@ -80,19 +80,19 @@ export class ScheduleService {
 
         const prices = await this.pricingRepository.findAll() as PricingDetail[];
         if (!prices) {
-            this.doInvociesAbort();
+            this.doInvociesAbort('prices abort');
             return;
         }
 
         const vats = await this.settingRepository.findVatsByType('VAT');
         if (!vats || vats.length < 0 || !vats[0].settingvalue) {
-            this.doInvociesAbort();
+            this.doInvociesAbort('vats abort');
             return;
         }
 
         const dealers = await this.policyRepository.getPoliciesWithNonInvoice(userId);
         if (!dealers) {
-            this.doInvociesAbort();
+            this.doInvociesAbort('dealers abort');
             return;
         }
 
@@ -111,7 +111,7 @@ export class ScheduleService {
             // pricing exception
             const prcgexception = await this.exceptionRepository.findSimpleByUserId(dealer.userid);
             if (!prcgexception) {
-                this.doInvociesAbort();
+                this.doInvociesAbort('pricing exception abort');
                 return;
             }
             const exps: Exception[] = [];
@@ -137,7 +137,7 @@ export class ScheduleService {
                 this.log.info('Debug user');
                 break;
             }
-
+            console.log(' == ', plrs.length);
             // policy loop
             let firstAdded = false; // used to create list.
             let policylist = '';
@@ -231,13 +231,14 @@ export class ScheduleService {
                     adminnett = adminnett + poladminnett;
                     gross = gross + polgross + poladmintax + poladminnett;
                 } else {
-                    this.doInvociesAbort();
+                    this.doInvociesAbort('price found abort');
                     return;
                 }
 
                 const comrs = await this.commissionRepository.getCommissionWithInvoice(parseInt(dealer.userid, 10)) as any[];
+                console.log(' comrs == ', comrs.length);
                 if (!comrs) {
-                    this.doInvociesAbort();
+                    this.doInvociesAbort('commissions abort');
                     return;
                 }
 
@@ -270,8 +271,9 @@ export class ScheduleService {
 
                 upPol.policyid = parseInt(plr.policyid, 10);
                 const updatedPol = await this.policyRepository.save(upPol);
+
                 if (!updatedPol) {
-                    this.doInvociesAbort();
+                    this.doInvociesAbort('update policy abort');
                     return;
                 }
             }
@@ -315,7 +317,7 @@ export class ScheduleService {
                     };
                     const createdNewInv = await this.invoiceRepository.save(inserInv);
                     if (!createdNewInv) {
-                        this.doInvociesAbort();
+                        this.doInvociesAbort('create new invoice abort');
                         return;
                     }
                 }
@@ -343,8 +345,8 @@ export class ScheduleService {
         }
     }
 
-    public doInvociesAbort(): void {
-        this.log.info('Invoice Aborts');
+    public doInvociesAbort(str: string): void {
+        this.log.info('Invoice Aborts', str);
     }
 
     public async checkSchedule(): Promise<any[]> {

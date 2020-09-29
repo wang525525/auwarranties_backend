@@ -29,6 +29,7 @@ export class PolicyRepository extends Repository<Policy>  {
     public findByUserIdSearch(branchid: number, search: string): Promise<any> {
         return this.getBaseQuery().where(`branchid=${branchid} \
                                     ${search ? `and (${this.searchText(search)})` : ``}`)
+                                    .orderBy({'policy.datepolicy': 'DESC'})
                                   .getMany();
     }
 
@@ -43,7 +44,7 @@ export class PolicyRepository extends Repository<Policy>  {
             vehicle.fueltype ilike '%${search}%' or vehicle.transmission ilike '%${search}%' or vehicle.vin ilike '%${search}%' or \
             vehicle.extranum ilike '%${search}%' or \
             guarantee.covertype ilike '%${search}%' or guarantee.vehiclecategory ilike '%${search}%' or \
-            purchaseduration.durationtype ilike '%${search}%'`;
+            purchaseduration.durationtype ilike '%${search}%' `;
     }
 
     /**
@@ -68,7 +69,7 @@ export class PolicyRepository extends Repository<Policy>  {
             left join guarantee on policy.policynumber = guarantee.policynumber \
             left join purchaseduration on guarantee.durationid = purchaseduration.durationid \
             left join users on policy.branchid = users.userid \
-            where policy.policyid = ${policyid} order by datepolicy DESC \
+            where policy.policyid = ${policyid} \
         `;
         return this.query(query);
     }

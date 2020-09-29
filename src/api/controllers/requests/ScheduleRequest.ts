@@ -1,4 +1,4 @@
-import { IsString, IsNumber, IsDate } from 'class-validator';
+import { IsString, IsNumber, IsDate, IsOptional } from 'class-validator';
 
 export class ScheduleRegisterRequest {
 
@@ -36,4 +36,20 @@ export class ScheduleRegisterRequest {
 export class ScheduleUpdateRequest extends ScheduleRegisterRequest {
     @IsNumber()
     public id: number;
+}
+
+export class ScheduleCustomRequest {
+
+    @IsNumber()
+    @IsOptional()
+    public scheduleid?: number;
+
+    @IsString()
+    @IsOptional()
+    public startdt?: string;
+
+    @IsString()
+    @IsOptional()
+    public enddt?: string;
+
 }

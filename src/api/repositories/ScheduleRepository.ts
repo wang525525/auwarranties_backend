@@ -12,7 +12,6 @@ export class ScheduleRepository extends Repository<Schedule>  {
         const query = `\
             select * from schedule where day = ${day} and hour = ${hour} and commence < '${commence}' and (rundate  <> '${commence}' or rundate is null)\
         `;
-        console.log('queyr ==', query);
         return this.query(query);
     }
 }

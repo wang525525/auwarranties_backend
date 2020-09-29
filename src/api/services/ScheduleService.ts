@@ -66,8 +66,8 @@ export class ScheduleService {
     }
 
     public async doInvoices(scheduleId: number,
-                            startdt: Date = undefined,
-                            enddt: Date = undefined,
+                            startdt: string = undefined,
+                            enddt: string = undefined,
                             userId: number = 0,
                             invoiceNumber: string = ''): Promise<void> {
         this.log.info('Do Invoices.');

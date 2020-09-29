@@ -109,7 +109,7 @@ export class PolicyRepository extends Repository<Policy>  {
         return this.query(query);
     }
 
-    public getPoliciesNotInvoiced(isAll: boolean, userId: number, invoiceNumber: string, startdt: Date, enddt: Date): Promise<any> {
+    public getPoliciesNotInvoiced(isAll: boolean, userId: number, invoiceNumber: string, startdt: string, enddt: string): Promise<any> {
         let query = '';
         const query1 = `\
             select * from policy left join vehicle on policy.policynumber = vehicle.policynumber  \

@@ -9,9 +9,9 @@ import { Schedule } from '../models/Schedule';
 import { ScheduleService } from '../services/ScheduleService';
 
 import { ResponseMessage } from '../Common';
-import { ScheduleRegisterRequest, ScheduleUpdateRequest } from './requests/ScheduleRequest';
+import { ScheduleCustomRequest, ScheduleRegisterRequest, ScheduleUpdateRequest } from './requests/ScheduleRequest';
 import { SchedulesResponse, ScheduleResponse, ScheduleDetail } from './responses/ScheduleResponse';
-import { StatusResponse } from './responses/CommonResponse';
+import { GeneralResponse, StatusResponse } from './responses/CommonResponse';
 
 @Authorized()
 @JsonController('/schedule')
@@ -39,6 +39,14 @@ export class ScheduleController {
         } else {
             return {status: ResponseMessage.NOT_FOUND_DURATION, res: undefined};
         }
+    }
+
+    @Post('/custom')
+    @ResponseSchema(GeneralResponse)
+    public async scheduleNow(@Body() body: ScheduleCustomRequest): Promise<GeneralResponse> {
+        await this.scheduleService.doInvoices(body.scheduleid, body.startdt, body.enddt);
+
+        return { status: ResponseMessage.SUCCEEDED, res: undefined };
     }
 
     @Post('/create')

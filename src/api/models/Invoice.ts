@@ -7,22 +7,26 @@ import { State } from './State';
 export class Invoice {
 
     @PrimaryGeneratedColumn()
-    public invoiceid: number;
+    @IsOptional()
+    public invoiceid?: number;
 
     @Column({
         nullable: true,
     })
-    public invoicedate: Date;
+    @IsOptional()
+    public invoicedate?: Date;
 
     @Column({
         nullable: true,
     })
-    public invdateseconds: number;
+    @IsOptional()
+    public invdateseconds?: number;
 
     @Column({
         nullable: true,
     })
-    public dealerid: number;
+    @IsOptional()
+    public dealerid?: number;
 
     @OneToOne(type => User, entity => entity.userid)
     @JoinColumn({ name: 'dealerid', referencedColumnName: 'userid'})
@@ -32,7 +36,8 @@ export class Invoice {
     @Column({
         nullable: true,
     })
-    public state: number;
+    @IsOptional()
+    public state?: number;
 
     @OneToOne(type => State, entity => entity.stateid)
     @JoinColumn({ name: 'state', referencedColumnName: 'stateid'})
@@ -42,80 +47,96 @@ export class Invoice {
     @Column({
         nullable: true,
     })
-    public invoicenumber: string;
+    @IsOptional()
+    public invoicenumber?: string;
 
     @Column({
         nullable: true,
     })
-    public details: string;
+    @IsOptional()
+    public details?: string;
 
     @Column({
         nullable: true,
     })
-    public net: number;
+    @IsOptional()
+    public net?: number;
 
     @Column({
         nullable: true,
     })
-    public tax: number;
+    @IsOptional()
+    public tax?: number;
 
     @Column({
         nullable: true,
     })
-    public gross: number;
+    @IsOptional()
+    public gross?: number;
 
     @Column({
         nullable: true,
     })
-    public taxpercentage: number;
+    @IsOptional()
+    public taxpercentage?: number;
 
     @Column({
         nullable: true,
     })
-    public invlog: string;
+    @IsOptional()
+    public invlog?: string;
 
     @Column({
         nullable: true,
     })
-    public paiddate: Date;
+    @IsOptional()
+    public paiddate?: Date;
 
     @Column({
         nullable: true,
     })
-    public invvatrule: number;
+    @IsOptional()
+    public invvatrule?: number;
 
     @Column({
         nullable: true,
     })
-    public invvatamount: number;
+    @IsOptional()
+    public invvatamount?: number;
 
     @Column({
         nullable: true,
     })
-    public invadmincosttype: number;
+    @IsOptional()
+    public invadmincosttype?: number;
 
     @Column({
         nullable: true,
     })
-    public invadmincostcent: number;
+    @IsOptional()
+    public invadmincostcent?: number;
 
     @Column({
         nullable: true,
     })
-    public invadmincostamt: number;
+    @IsOptional()
+    public invadmincostamt?: number;
 
     @Column({
         nullable: true,
     })
-    public invvatcent: number;
+    @IsOptional()
+    public invvatcent?: number;
 
     @Column({
         nullable: true,
     })
-    public taxadmin: number;
+    @IsOptional()
+    public taxadmin?: number;
 
     @Column({
         nullable: true,
     })
-    public totaladmin: number;
+    @IsOptional()
+    public totaladmin?: number;
 }

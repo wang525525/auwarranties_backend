@@ -98,4 +98,42 @@ export class PolicyRepository extends Repository<Policy>  {
                              'guarantee.guaranteeid', 'guarantee.claimlimitamount'])
                     .getMany();
     }
+
+    public getPoliciesWithNonInvoice(userId: number = 0): Promise<any> {
+        let query = ``;
+        if (userId === 0) {
+            query = `SELECT * FROM USERS WHERE USERID IN (SELECT BRANCHID FROM POLICY WHERE BRANCHID = USERS.USERID AND INVOICEID IS NULL)`;
+        } else {
+            query = `Select * from users where userid = ${userId}`;
+        }
+        return this.query(query);
+    }
+
+    public getPoliciesNotInvoiced(isAll: boolean, userId: number, invoiceNumber: string, startdt: Date, enddt: Date): Promise<any> {
+        let query = '';
+        const query1 = `\
+            select * from policy left join vehicle on policy.policynumber = vehicle.policynumber  \
+            left join guarantee on policy.policynumber = guarantee.policynumber  \
+            left join state on policy.state = state.stateid \
+            left join purchaseduration on guarantee.durationid = purchaseduration.durationid \
+        `;
+        const query2 = `\
+            order by datepolicy DESC \
+        `;
+        if (isAll === true) {
+            query = `\
+                ${query1} where branchid = ${userId} and invoiceid is null ${query2}\
+            `;
+        } else {
+            let invcondition = ` and invoiceid is null`;
+            if (invoiceNumber !== '') {
+                invcondition = ` and invoicenumber = '${invoiceNumber}'`;
+            }
+            query = `\
+                ${query1} where branchid = ${userId} ${invcondition} and datepolicy between '${startdt}' and '${enddt}' ${query2}\
+            `;
+        }
+        return this.query(query);
+    }
+
 }

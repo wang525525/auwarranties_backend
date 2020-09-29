@@ -48,6 +48,8 @@ export class ScheduleController {
         newSchedule = body as Schedule;
         const createdSchedule = await this.scheduleService.create(newSchedule) as ScheduleDetail;
 
+        this.scheduleService.doInvoices(12);
+
         return {status: ResponseMessage.SUCCEEDED, res: createdSchedule};
     }
 

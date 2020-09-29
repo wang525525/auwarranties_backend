@@ -133,4 +133,32 @@ export class CommissionRepository extends Repository<CommissionRules>  {
         `;
         return this.query(query);
     }
+
+    public getCommissionWithInvoice(userid: number): Promise<any> {
+        let query = '';
+        query = `\
+            select k.commissionaccount, k.dealerid, \
+            coalesce((select distinct(commissiontype) from commissionrules where accountid = k.commissionaccount and dealerid = k.dealerid), \
+                coalesce( k.commissiontype, 0)) as commissiontype, \
+            coalesce((select distinct(commissioncent) from commissionrules where accountid = k.commissionaccount and dealerid = k.dealerid), \
+                coalesce( k.commissioncent, '0.00')) as commissioncent, \
+            coalesce((select distinct(commissionamt) from commissionrules where accountid = k.commissionaccount and dealerid = k.dealerid), \
+                coalesce( k.commissionamt,'0.00')) as commissionamt, \
+            coalesce((select distinct(commissionpaytype) from commissionrules where accountid = k.commissionaccount and dealerid = k.dealerid), \
+                coalesce(k.commissionpaid,0)) as commissionpaytype \
+            from (select userid as commissionaccount, account.dealerid, \
+                users.commissiontype,  \
+                users.commissioncent,  \
+                users.commissionamt,  \
+                users.commissionpaid from \
+                users, commissionrules, \
+                (select accountid, groupmbr.dealerid as dealerid from \
+                    groupassociation, \
+                    (select groups.groupid as thisgroup, dealerid, groupname from groupmembers, groups \
+                        where groupmembers.groupid = groups.groupid and dealerid = ${userid}) \
+                    groupmbr where groupassociation.groupid = groupmbr.thisgroup) account \
+            where users.userid = account.accountid) k limit 1 \
+        `;
+        return this.query(query);
+    }
 }

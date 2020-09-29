@@ -16,52 +16,62 @@ export class Policy {
     @Column({
         nullable: true,
     })
-    public address1: string;
+    @IsOptional()
+    public address1?: string;
 
     @Column({
         nullable: true,
     })
-    public address2: string;
+    @IsOptional()
+    public address2?: string;
 
     @Column({
         nullable: true,
     })
-    public address3: string;
+    @IsOptional()
+    public address3?: string;
 
     @Column({
         nullable: true,
     })
-    public company: string;
+    @IsOptional()
+    public company?: string;
 
     @Column({
         nullable: true,
     })
-    public country: string;
+    @IsOptional()
+    public country?: string;
 
     @Column({
         nullable: true,
     })
-    public email: string;
+    @IsOptional()
+    public email?: string;
 
     @Column({
         nullable: true,
     })
-    public forename: string;
+    @IsOptional()
+    public forename?: string;
 
     @Column({
         nullable: true,
     })
-    public hometel: string;
+    @IsOptional()
+    public hometel?: string;
 
     @Column({
         nullable: true,
     })
-    public mobile: string;
+    @IsOptional()
+    public mobile?: string;
 
     @Column({
         nullable: true,
     })
-    public policynumber: string;
+    @IsOptional()
+    public policynumber?: string;
 
     @OneToOne(type => Vehicle, entity => entity.policynumber)
     @JoinColumn({ name: 'policynumber', referencedColumnName: 'policynumber'})
@@ -76,32 +86,38 @@ export class Policy {
     @Column({
         nullable: true,
     })
-    public postcode: string;
+    @IsOptional()
+    public postcode?: string;
 
     @Column({
         nullable: true,
     })
-    public surname: string;
+    @IsOptional()
+    public surname?: string;
 
     @Column({
         nullable: true,
     })
-    public title: string;
+    @IsOptional()
+    public title?: string;
 
     @Column({
         nullable: true,
     })
-    public town: string;
+    @IsOptional()
+    public town?: string;
 
     @Column({
         nullable: true,
     })
-    public recordtype: number;
+    @IsOptional()
+    public recordtype?: number;
 
     @Column({
         nullable: true,
     })
-    public branchid: number;
+    @IsOptional()
+    public branchid?: number;
 
     @OneToOne(type => User)
     @JoinColumn({ name: 'branchid', referencedColumnName: 'userid'})
@@ -111,17 +127,20 @@ export class Policy {
     @Column({
         nullable: true,
     })
-    public branchname: string;
+    @IsOptional()
+    public branchname?: string;
 
     @Column({
         nullable: true,
     })
-    public dateseconds: number;
+    @IsOptional()
+    public dateseconds?: number;
 
     @Column({
         nullable: true,
     })
-    public coverid: number;
+    @IsOptional()
+    public coverid?: number;
 
     @OneToOne(type => CoverType)
     @JoinColumn({ name: 'coverid', referencedColumnName: 'coverid'})
@@ -131,12 +150,14 @@ export class Policy {
     @Column({
         nullable: true,
     })
-    public operator: number;
+    @IsOptional()
+    public operator?: number;
 
     @Column({
         nullable: true,
     })
-    public state: number;
+    @IsOptional()
+    public state?: number;
 
     @OneToOne(type => State)
     @JoinColumn({ name: 'state', referencedColumnName: 'stateid'})
@@ -146,135 +167,162 @@ export class Policy {
     @Column({
         nullable: true,
     })
-    public datepolicy: Date;
+    @IsOptional()
+    public datepolicy?: Date;
 
     @Column({
         nullable: true,
     })
-    public invoiceid: number;
+    @IsOptional()
+    public invoiceid?: number;
 
     @Column({
         nullable: true,
     })
-    public nett: number;
+    @IsOptional()
+    public nett?: number;
 
     @Column({
         nullable: true,
     })
-    public tax: number;
+    @IsOptional()
+    public tax?: number;
 
     @Column({
         nullable: true,
     })
-    public gross: number;
+    @IsOptional()
+    public gross?: number;
 
     @Column({
         nullable: true,
     })
-    public invoicenumber: string;
+    @IsOptional()
+    public invoicenumber?: string;
 
     @Column({
         nullable: true,
     })
-    public vatpercent: number;
+    @IsOptional()
+    public vatpercent?: number;
 
     @Column({
         nullable: true,
     })
-    public county: string;
+    @IsOptional()
+    public county?: string;
 
     @Column({
         nullable: true,
     })
-    public poladmincosttype: number;
+    @IsOptional()
+    public poladmincosttype?: number;
 
     @Column({
         nullable: true,
     })
-    public poladmincostcent: number;
+    @IsOptional()
+    public poladmincostcent?: number;
 
     @Column({
         nullable: true,
     })
-    public poladmincostamt: number;
+    @IsOptional()
+    public poladmincostamt?: number;
 
     @Column({
         nullable: true,
     })
-    public pricepaid: number;
+    @IsOptional()
+    public pricepaid?: number;
 
     @Column({
         nullable: true,
     })
-    public deposit: number;
+    @IsOptional()
+    public deposit?: number;
 
     @Column({
         nullable: true,
     })
-    public notifyemail: string;
+    @IsOptional()
+    public notifyemail?: string;
 
     @Column({
         nullable: true,
     })
-    public policycommissionaccount: number;
+    @IsOptional()
+    public policycommissionaccount?: number;
 
     @Column({
         nullable: true,
     })
-    public policycommissiontype: number;
+    @IsOptional()
+    public policycommissiontype?: number;
 
     @Column({
         nullable: true,
     })
-    public policycommissioncent: number;
+    @IsOptional()
+    public policycommissioncent?: number;
 
     @Column({
         nullable: true,
     })
-    public policycommissionamt: number;
+    @IsOptional()
+    public policycommissionamt?: number;
 
     @Column({
         nullable: true,
     })
-    public policycommissionvalue: number;
+    @IsOptional()
+    public policycommissionvalue?: number;
 
     @Column({
         nullable: true,
     })
-    public policycommissionpaytype: number;
+    @IsOptional()
+    public policycommissionpaytype?: number;
 
     @Column({
         nullable: true,
     })
-    public vatcalculation: string;
+    @IsOptional()
+    public vatcalculation?: string;
 
     @Column({
         nullable: true,
     })
-    public policyrefundtype: number;
+    @IsOptional()
+    public policyrefundtype?: number;
 
     @Column({
         nullable: true,
     })
-    public policyrefundvalue: number;
+    @IsOptional()
+    public policyrefundvalue?: number;
 
     @Column({
         nullable: true,
     })
-    public policyrefundduration: string;
+    @IsOptional()
+    public policyrefundduration?: string;
 
     @Column({
         nullable: true,
     })
-    public refunddone: boolean;
+    @IsOptional()
+    public refunddone?: boolean;
 
     @Column({
         nullable: true,
     })
-    public taxadmin: number;
+    @IsOptional()
+    public taxadmin?: number;
 
     @Column({
         nullable: true,
     })
-    public dateexpiry: Date;
+    @IsOptional()
+    public dateexpiry?: Date;
 }

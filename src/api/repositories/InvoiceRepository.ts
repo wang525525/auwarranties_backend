@@ -156,4 +156,27 @@ export class InvoiceRepository extends Repository<Invoice>  {
         `);
         return this.query(query);
     }
+
+    /**
+     * get the Unique Invoice ID
+     */
+    public getUniqueInvoiceNumber(): Promise<any> {
+        const query = `\
+            select max(regexp_replace(invoicenumber,'AUINC', '')::int) as k from invoices where invoicenumber ilike 'AUINC%'
+        `;
+        return this.query(query);
+    }
+
+    /**
+     * update invoice for policy
+     */
+    public updateInvoice(inv: Invoice): Promise<any> {
+        const query = `\
+            update invoices set net = ${inv.net}, tax = ${inv.tax}, taxadmin= ${inv.taxadmin}, totaladmin = ${inv.totaladmin}, \
+            gross = ${inv.gross}, details = '${inv.details}', invadmincosttype = ${inv.invadmincosttype}, invadmincostcent = ${inv.invadmincostcent}, \
+            invadmincostamt = ${inv.invadmincostamt}, invvatcent = ${inv.invvatcent} where invoicenumber = ${inv.invoicenumber} \
+        `;
+        return this.query(query);
+    }
+
 }

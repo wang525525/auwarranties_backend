@@ -9,12 +9,14 @@ import { Charge } from './Charge';
 export class Exception {
 
     @PrimaryGeneratedColumn()
-    public exceptionid: number;
+    @IsOptional()
+    public exceptionid?: number;
 
     @Column({
         nullable: true,
     })
-    public pricingid: number;
+    @IsOptional()
+    public pricingid?: number;
 
     @OneToOne(type => Pricing)
     @JoinColumn({ name: 'pricingid', referencedColumnName: 'id'})
@@ -24,7 +26,8 @@ export class Exception {
     @Column({
         nullable: true,
     })
-    public dealerid: number;
+    @IsOptional()
+    public dealerid?: number;
 
     @OneToOne(type => User)
     @JoinColumn({ name: 'dealerid', referencedColumnName: 'userid'})
@@ -40,7 +43,8 @@ export class Exception {
     @Column({
         nullable: true,
     })
-    public refundid: number;
+    @IsOptional()
+    public refundid?: number;
 
     @OneToOne(type => Refund)
     @JoinColumn({ name: 'refundid', referencedColumnName: 'refundid'})

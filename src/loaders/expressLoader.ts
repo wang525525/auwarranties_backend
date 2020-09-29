@@ -5,6 +5,7 @@ import { createExpressServer } from 'routing-controllers';
 import { authorizationChecker } from '../auth/authorizationChecker';
 import { currentUserChecker } from '../auth/currentUserChecker';
 import { env } from '../env';
+// import cron from 'cron';
 
 export const expressLoader: MicroframeworkLoader = (settings: MicroframeworkSettings | undefined) => {
     if (settings) {
@@ -42,5 +43,10 @@ export const expressLoader: MicroframeworkLoader = (settings: MicroframeworkSett
 
         // Here we can set the data for other loaders
         settings.setData('express_app', expressApp);
+
+        // start Cron job
+        // const CronJob = cron.CronJob;
+        // const job = new CronJob('0 */1 * * * *', doInvoices(0));
+        // job.start();
     }
 };

@@ -45,7 +45,7 @@ export class ScheduleController {
     @ResponseSchema(GeneralResponse)
     public async scheduleNow(@Body() body: ScheduleCustomRequest): Promise<GeneralResponse> {
         console.log(' ======== ', body);
-        await this.scheduleService.doInvoices(body.scheduleid, body.startdt, body.enddt);
+        await this.scheduleService.doInvoices(body.scheduleid);
 
         return { status: ResponseMessage.SUCCEEDED, res: undefined };
     }

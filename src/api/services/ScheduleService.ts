@@ -80,19 +80,19 @@ export class ScheduleService {
 
         const prices = await this.pricingRepository.findAll() as PricingDetail[];
         if (!prices) {
-            this.doInvociesAbort('prices abort');
+            this.doInvociesAbort('Prices not found', scheduleId);
             return;
         }
 
         const vats = await this.settingRepository.findVatsByType('VAT');
         if (!vats || vats.length < 0 || !vats[0].settingvalue) {
-            this.doInvociesAbort('vats abort');
+            this.doInvociesAbort('Vats not found', scheduleId);
             return;
         }
 
         const dealers = await this.policyRepository.getPoliciesWithNonInvoice(userId);
         if (!dealers) {
-            this.doInvociesAbort('dealers abort');
+            this.doInvociesAbort('Dealers not found', scheduleId);
             return;
         }
 
@@ -111,7 +111,7 @@ export class ScheduleService {
             // pricing exception
             const prcgexception = await this.exceptionRepository.findSimpleByUserId(dealer.userid);
             if (!prcgexception) {
-                this.doInvociesAbort('pricing exception abort');
+                this.doInvociesAbort('Pricing exception not found', scheduleId);
                 return;
             }
             const exps: Exception[] = [];
@@ -137,7 +137,7 @@ export class ScheduleService {
                 this.log.info('Debug user');
                 break;
             }
-            console.log(' == ', plrs.length);
+
             // policy loop
             let firstAdded = false; // used to create list.
             let policylist = '';
@@ -167,7 +167,7 @@ export class ScheduleService {
                 let refundtypesave = 0;
                 let refundtypevalue = 0;
                 let refundtypeduration;
-                console.log('prices ==', prices.length, plrs, plr.policyid);
+
                 for (const price of prices) {
                     if (price.coverid === parseInt(plr.coverid || 0, 10) &&
                         price.durationid === parseInt(plr.durationid || 0, 10) &&
@@ -231,14 +231,13 @@ export class ScheduleService {
                     adminnett = adminnett + poladminnett;
                     gross = gross + polgross + poladmintax + poladminnett;
                 } else {
-                    this.doInvociesAbort('price found abort');
+                    this.doInvociesAbort('Price not found', scheduleId);
                     return;
                 }
 
                 const comrs = await this.commissionRepository.getCommissionWithInvoice(parseInt(dealer.userid, 10)) as any[];
-                console.log(' comrs == ', comrs.length);
                 if (!comrs) {
-                    this.doInvociesAbort('commissions abort');
+                    this.doInvociesAbort('Commission not found', scheduleId);
                     return;
                 }
 
@@ -273,7 +272,7 @@ export class ScheduleService {
                 const updatedPol = await this.policyRepository.save(upPol);
 
                 if (!updatedPol) {
-                    this.doInvociesAbort('update policy abort');
+                    this.doInvociesAbort('Policy is not updated', scheduleId);
                     return;
                 }
             }
@@ -317,7 +316,7 @@ export class ScheduleService {
                     };
                     const createdNewInv = await this.invoiceRepository.save(inserInv);
                     if (!createdNewInv) {
-                        this.doInvociesAbort('create new invoice abort');
+                        this.doInvociesAbort('New Invoice is not created.', scheduleId);
                         return;
                     }
                 }
@@ -341,12 +340,29 @@ export class ScheduleService {
                 text: `Invoices Done ${utilService.formatDateWithYYYYMMDD(utilService.toString(curDate))}`,
             };
             const mailRes = this.mailService.sendEmail(mail);
-            this.log.info('mail is succeded.', mailRes);
+            this.log.info('mail is sent.', mailRes);
         }
     }
 
-    public doInvociesAbort(str: string): void {
-        this.log.info('Invoice Aborts', str);
+    public async doInvociesAbort(str: string, scheduleId: number): Promise<void> {
+        this.log.info('Invoice Aborts =>', str);
+        const curDate = new Date();
+        const schedule: Schedule = {
+            rundate: utilService.formatDateWithYYYYMMDD(utilService.toString(curDate)),
+            message: str,
+            id: scheduleId,
+        };
+
+        await this.scheduleRepository.save(schedule);
+
+        const mail: Mail = {
+            from: 'app@auwarranties.co.uk',
+            to: 'wang525525@gmail.com', // 'shahid@auwarranties.co.uk',
+            subject: 'Invoices Abort',
+            text: str,
+        };
+        const mailRes = this.mailService.sendEmail(mail);
+        this.log.info('mail is sent', mailRes);
     }
 
     public async checkSchedule(): Promise<any[]> {

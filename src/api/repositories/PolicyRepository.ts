@@ -20,6 +20,7 @@ export class PolicyRepository extends Repository<Policy>  {
     public findAllBySearch(limit: number, search: string): Promise<any> {
         return this.getBaseQuery().where(search ? this.searchText(search) : ``)
                                   .take(limit)
+                                  .orderBy({'policy.datepolicy': 'DESC'})
                                   .getMany();
     }
 

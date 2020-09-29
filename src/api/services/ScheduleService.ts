@@ -167,7 +167,7 @@ export class ScheduleService {
                 let refundtypesave = 0;
                 let refundtypevalue = 0;
                 let refundtypeduration;
-                console.log('prices ==', prices.length, plrs.length);
+                console.log('prices ==', prices.length, plrs.length, plr.policyid);
                 for (const price of prices) {
                     if (price.coverid === parseInt(plr.coverid, 10) &&
                         price.durationid === parseInt(plr.durationid, 10) &&

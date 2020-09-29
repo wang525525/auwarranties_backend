@@ -357,7 +357,7 @@ export class ScheduleService {
 
         const mail: Mail = {
             from: 'app@auwarranties.co.uk',
-            to: 'wang525525@gmail.com', // 'shahid@auwarranties.co.uk',
+            to: 'shahid@auwarranties.co.uk',
             subject: 'Invoices Abort',
             text: str,
         };

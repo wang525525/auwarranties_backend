@@ -98,16 +98,19 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:5000/api/users/22",
+							"raw": "http://35.176.66.97:5000/api/users/152",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"35",
+								"176",
+								"66",
+								"97"
 							],
 							"port": "5000",
 							"path": [
 								"api",
 								"users",
-								"22"
+								"152"
 							]
 						}
 					},
@@ -171,13 +174,16 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"userid\": 502,\r\n  \"username\": \"aaatestere\",\r\n  \"password\": \"123456\",\r\n  \"email\": \"user@example.com\",\r\n  \"address1\": \"string\",\r\n  \"address2\": \"string\",\r\n  \"county\": \"string\",\r\n  \"town\": \"string\",\r\n  \"active\": true,\r\n  \"hide\": true,\r\n  \"firstname\": \"string\",\r\n  \"lastname\": \"string\",\r\n  \"usertype\": 0,\r\n  \"dealerid\": 0,\r\n  \"companyname\": \"string\",\r\n  \"address3\": \"string\",\r\n  \"disppolicies\": 0,\r\n  \"vatamount\": 0,\r\n  \"vatpercentage\": 0,\r\n  \"commissioncent\": 0,\r\n  \"vatrule\": 0,\r\n  \"cansendtext\": true,\r\n  \"cansendemail\": true,\r\n  \"cansendbulkemail\": true,\r\n  \"ecardenabled\": true,\r\n  \"ecardfolderpath\": \"string\",\r\n  \"ecarddatafoldername\": \"string\",\r\n  \"admincosttype\": 0,\r\n  \"admincostcent\": 0,\r\n  \"admincostamt\": 0,\r\n  \"phonelandline\": \"string\",\r\n  \"phonemobile\": \"string\",\r\n  \"policiesavailable\": \"string\",\r\n  \"permissionid\": 0,\r\n  \"commissiontype\": 0,\r\n  \"commissionamt\": 0,\r\n  \"commissionpaid\": 0,\r\n  \"openingbalance\": 0,\r\n  \"refundafter\": 0,\r\n  \"sendagreementemail\": true,\r\n  \"usernotes\": \"string\",\r\n  \"appcode\": \"string\",\r\n  \"usecustomlogo\": true,\r\n  \"banksortcode\": \"string\",\r\n  \"bankaccountnumber\": \"string\",\r\n  \"pricingall\": true\r\n}"
+							"raw": "{\r\n  \"active\": true,\r\n\"address1\": \"Old Car Wash\",\r\n\"address2\": \"Chorley Road\",\r\n\"address3\": \"Walton-Le-Dale, Preston\",\r\n\"appcode\": \"0728466\",\r\n\"bankaccountnumber\": \"33333\",\r\n\"banksortcode\": \"535345\",\r\n\"companyname\": \"1st Choice Cars Preston\",\r\n\"country\": \"UK\",\r\n\"county\": \"Preston\",\r\n\"email\": \"sales@1stchoicecarspreston.co.uk\",\r\n\"firstname\": \"Max\",\r\n\"hide\": false,\r\n\"datejoined\": \"2019-01-17\",\r\n\"lastname\": \"Alli\",\r\n\"openingbalance\": 1,\r\n\"password\": \"1stchoice1\",\r\n\"permissionid\": 0,\r\n\"phonelandline\": \"07530728466\",\r\n\"phonemobile\": \"07746983926\",\r\n\"postcode\": \"PR54JN\",\r\n\"refundafter\": 1,\r\n\"sendagreementemail\": true,\r\n\"standard_exception\": false,\r\n\"town\": \"Preston\",\r\n\"usecustomlogo\": null,\r\n\"userid\": 404,\r\n\"username\": \"1stchoice\",\r\n\"usernotes\": null,\r\n\"usertype\": 0,\r\n\"vatamount\": 1,\r\n\"vatpercentage\": 1\r\n}"
 						},
 						"url": {
-							"raw": "http://localhost:5000/api/users/update",
+							"raw": "http://35.176.66.97:5000/api/users/update",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"35",
+								"176",
+								"66",
+								"97"
 							],
 							"port": "5000",
 							"path": [
@@ -730,7 +736,7 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:5000/api/permission/-1",
+							"raw": "http://localhost:5000/api/permission/12",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -739,7 +745,7 @@
 							"path": [
 								"api",
 								"permission",
-								"-1"
+								"12"
 							]
 						}
 					},
@@ -786,7 +792,7 @@
 				{
 					"name": "UpdatePermission",
 					"request": {
-						"method": "GET",
+						"method": "POST",
 						"header": [
 							{
 								"key": "Accept",
@@ -801,8 +807,12 @@
 								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNkYXJiYXIiLCJwYXNzd29yZCI6IkFVMTIzISIsInNlc3Npb25faWQiOiIxNjk3MWEzOC1hNWFiLTRmMmUtYWQ3OS1lNDA0ZWNjOGYzNzMiLCJpYXQiOjE1OTcwMjQ5ODd9.fVGEDKa8h3AI30qTzf9SltJCF5PMlZZ8_HV4ydwViJY"
 							}
 						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"permissionname\": \"aaa test\",\r\n    \"permissionid\": 13,\r\n\t\"active\": true,\r\n\t\"items\": [\r\n\t    {\r\n\t      \"permissionvalue\": true,\r\n\t      \"permissiontype\": \"string\"\r\n\t    }\r\n\t]\r\n}"
+						},
 						"url": {
-							"raw": "http://localhost:5000/api/paymentin/all",
+							"raw": "http://localhost:5000/api/permission/update",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -810,8 +820,8 @@
 							"port": "5000",
 							"path": [
 								"api",
-								"paymentin",
-								"all"
+								"permission",
+								"update"
 							]
 						}
 					},
@@ -3957,7 +3967,7 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:5000/api/claim/50",
+							"raw": "http://localhost:5000/api/claim/439",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -3966,7 +3976,7 @@
 							"path": [
 								"api",
 								"claim",
-								"50"
+								"439"
 							]
 						}
 					},
@@ -6035,7 +6045,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"username\": \"wrightcar\",\r\n  \"password\": \"Wrightcar123\"\r\n}"
+					"raw": "{\r\n  \"username\": \"MJones123\",\r\n  \"password\": \"MJones123\"\r\n}"
 				},
 				"url": {
 					"raw": "http://localhost:5000/api/auth/login",
@@ -6088,6 +6098,41 @@
 					"path": [
 						"api",
 						"myclass"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Test Link",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNkYXJiYXIiLCJwYXNzd29yZCI6IkFVMTIzISIsInNlc3Npb25faWQiOiIzMGY2NmY4Mi03YzgwLTQ1NmUtOWRhMS1jZTY4ODgxZjNiNTYiLCJpYXQiOjE1OTcxNTI0MDh9.CIZUqBAnEf7ym3SXFZr-4J9sFASmoJRt4qtXAEcs_Jo"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:5000/api/users/test/link",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"users",
+						"test",
+						"link"
 					]
 				}
 			},

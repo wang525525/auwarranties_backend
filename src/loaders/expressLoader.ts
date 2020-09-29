@@ -50,11 +50,13 @@ export const expressLoader: MicroframeworkLoader = async (settings: Microframewo
         const CronJob = cron.CronJob;
         const schedule = Container.get<ScheduleService>(ScheduleService);
         const schedules = await schedule.find();
-        console.log('schedules ==', schedules);
+
         if (schedules && schedules.length > 0) {
             for (const schd of schedules) {
                 if (schd.task === 'Invoices') {
-                    const job = new CronJob('0 0 13 * * *', schedule.doInvoices(12));
+                    const job = new CronJob('0 0 */1 * * *', () => {
+                        schedule.doInvoices(schd.id);
+                    }, undefined, true);
                     job.start();
                 }
             }

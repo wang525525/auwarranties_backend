@@ -71,6 +71,13 @@ export class ScheduleService {
                             userId: number = 0,
                             invoiceNumber: string = ''): Promise<void> {
         this.log.info('Do Invoices.');
+
+        const res = await this.checkSchedule();
+        if (!res || res.length === -1) {
+            this.log.info('Already invoiced.');
+            return;
+        }
+
         const prices = await this.pricingRepository.findAll() as PricingDetail[];
         if (!prices) {
             this.doInvociesAbort();
@@ -90,7 +97,6 @@ export class ScheduleService {
         }
 
         const curDate = new Date();
-
         // Begin transaction
         for (const dealer of dealers) {
             // create new invoice number
@@ -339,5 +345,14 @@ export class ScheduleService {
 
     public doInvociesAbort(): void {
         this.log.info('Invoice Aborts');
+    }
+
+    public async checkSchedule(): Promise<any[]> {
+        const curDate = new Date();
+        const dayOfWeek = curDate.getDay();
+        const hour = curDate.getHours();
+        const commence = utilService.formatDateWithYYYYMMDD(utilService.toString(curDate));
+
+        return await this.scheduleRepository.getSchedule(dayOfWeek, hour, commence) as any[];
     }
 }

@@ -88,8 +88,8 @@ export class ClaimController {
 
         if (res && res.length > 0) {
             res.map(policy => {
-                this.getValidation(policy);
                 policy.datesecondsDate = utilService.convertTimestampToDate(policy.dateseconds);
+                this.getValidation(policy);
             });
             return { status: ResponseMessage.SUCCEEDED, res: res };
         } else {

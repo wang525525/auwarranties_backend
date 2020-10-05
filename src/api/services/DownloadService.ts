@@ -16,14 +16,15 @@ export class DownloadService {
     // for agreement
     public printQuoteForPolicy(data: any = undefined): string {
         this.log.info('Make the pdf file for Policy.');
+        console.log(' agreement data ==', data);
         const dir = path.dirname(require.main.filename);
         let html = fs.readFileSync(dir + '/public/template/policy_pdf.html', 'utf8');
-
-        html = html.replace('{{branchname}}', data.branchname);
-        html = html.replace('{{branchadd1}}', data.branchadd1);
-        html = html.replace('{{branchadd2}}', data.branchadd2);
-        html = html.replace('{{branchadd3}}', data.branchadd3);
-        html = html.replace('{{branchpost}}', data.branchpost);
+        
+        html = html.replace('{{branchname}}', data.branchname || '');
+        html = html.replace('{{branchadd1}}', data.branchadd1 || '');
+        html = html.replace('{{branchadd2}}', data.branchadd2 || '');
+        html = html.replace('{{branchadd3}}', data.branchadd3 || '');
+        html = html.replace('{{branchpost}}', data.branchpost || '');
         if (data.branchcounty !== '' && data.branchcountry !== '') {
             html = html.replace('{{branchlocation}}', data.branchcounty + ' ' + data.branchcountry);
         } else if (data.branchcounty !== '' && data.branchcountry === '') {
@@ -47,19 +48,19 @@ export class DownloadService {
         html = html.replace('{{covertype}}', data.covertype);
         html = html.replace('{{vehiclecategory}}', data.vehiclecategory);
         html = html.replace('{{duration}}', `${utilService.toTitleCase(utilService.toString(data.durationvalue))} \
-                                             ${utilService.toUpperCase(data.durationtype)}`);
+                                             ${utilService.toUpperCase(data.durationtype || '')}`);
         html = html.replace('{{claimlimitamount}}', data.claimlimitamount);
         html = html.replace('{{retailprice}}', data.retailprice);
 
         // vehicle details
-        html = html.replace('{{vrm}}', utilService.toUpperCase(data.vrm));
-        html = html.replace('{{vin}}', utilService.toUpperCase(data.vin));
-        html = html.replace('{{carmake}}', utilService.toUpperCase(data.carmake));
+        html = html.replace('{{vrm}}', utilService.toUpperCase(data.vrm || ''));
+        html = html.replace('{{vin}}', utilService.toUpperCase(data.vin || ''));
+        html = html.replace('{{carmake}}', utilService.toUpperCase(data.carmake || ''));
         html = html.replace('{{carmodel}}', data.carmodel);
-        html = html.replace('{{cartype}}', `${utilService.toUpperCase(data.cartype)} ${utilService.toUpperCase(data.carcolour)}`);
-        html = html.replace('{{enginecapacity}}', utilService.toUpperCase(utilService.toString(data.enginecapacity)));
-        html = html.replace('{{transmission}}', utilService.toUpperCase(data.transmission));
-        html = html.replace('{{fueltype}}', utilService.toUpperCase(data.fueltype));
+        html = html.replace('{{cartype}}', `${utilService.toUpperCase(data.cartype || '')} ${utilService.toUpperCase(data.carcolour || '')}`);
+        html = html.replace('{{enginecapacity}}', utilService.toUpperCase(utilService.toString(data.enginecapacity || '')));
+        html = html.replace('{{transmission}}', utilService.toUpperCase(data.transmission || ''));
+        html = html.replace('{{fueltype}}', utilService.toUpperCase(data.fueltype || ''));
         html = html.replace('{{regdate}}',
                             utilService.formatDateWithYYYYMMDD(
                                 utilService.toString(utilService.convertTimestampToDate(parseInt(data.regdate, 10)))
@@ -68,8 +69,8 @@ export class DownloadService {
                             utilService.formatDateWithYYYYMMDD(
                                 utilService.toString(utilService.convertTimestampToDate(parseInt(data.purchasedate, 10)))
                             ));
-        html = html.replace('{{mileage}}', utilService.toUpperCase(utilService.toString(data.mileage)));
-        html = html.replace('{{purchaseprice}}', utilService.toUpperCase(utilService.toString(data.purchaseprice)));
+        html = html.replace('{{mileage}}', utilService.toUpperCase(utilService.toString(data.mileage || '')));
+        html = html.replace('{{purchaseprice}}', utilService.toUpperCase(utilService.toString(data.purchaseprice || '')));
         html = html.replace('{{fourbyfour}}', data.fourbyfour ? 'Yes' : 'No');
         html = html.replace('{{luxury}}', data.luxury ? 'Yes' : 'No');
         html = html.replace('{{specialist}}', data.specialist ? 'Yes' : 'No');

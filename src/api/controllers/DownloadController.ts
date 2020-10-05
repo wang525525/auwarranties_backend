@@ -32,10 +32,8 @@ export class DownloadController {
 
     @Get('/agreement/:id')
     public async downloadAsPdfForAgreement(@Req() req: Request, @Res() res: Response, @Param('id') id: string): Promise<Response> {
-        console.log(' ########################## ');
         const option = { format: 'Letter' };
         const data = await this.policyService.findOneForPdfById(parseInt(id, 10));
-        console.log(' ### === ', data);
         const html = this.downloadService.printQuoteForPolicy(data[0]);
         const fut = new Promise((resolve, reject) => {
             res.setHeader('Content-Type', 'application/pdf');
@@ -150,7 +148,7 @@ export class DownloadController {
     public async downloadDocument(@Param('filename') filename: string, @Res() response: Response): Promise<any> {
         const dir = path.dirname(require.main.filename);
         const file = dir + '//public//docs//' + filename;
-        await promisify<string, void>(response.download.bind(response))(file);
+        await promisify<string>(response.download.bind(response))(file);
         return response;
     }
 

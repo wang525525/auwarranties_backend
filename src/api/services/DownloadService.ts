@@ -16,10 +16,8 @@ export class DownloadService {
     // for agreement
     public printQuoteForPolicy(data: any = undefined): string {
         this.log.info('Make the pdf file for Policy.');
-        console.log(' agreement data ==', data);
         const dir = path.dirname(require.main.filename);
         let html = fs.readFileSync(dir + '/public/template/policy_pdf.html', 'utf8');
-        
         html = html.replace('{{branchname}}', data.branchname || '');
         html = html.replace('{{branchadd1}}', data.branchadd1 || '');
         html = html.replace('{{branchadd2}}', data.branchadd2 || '');

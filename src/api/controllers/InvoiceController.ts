@@ -8,7 +8,7 @@ import { Invoice } from '../models/Invoice';
 
 import { InvoiceService } from '../services/InvoiceService';
 
-import { ResponseMessage } from '../Common';
+import { ResponseMessage, StaticVariables } from '../Common';
 import { InvoiceRegisterRequest, InvoiceUpdateRequest } from './requests/InvoiceRequest';
 import { InvoicesResponse, InvoiceResponse, InvoiceDetail } from './responses/InvoiceResponse';
 import { StatusResponse, GeneralResponse } from './responses/CommonResponse';
@@ -28,9 +28,12 @@ export class InvoiceController {
     @ResponseSchema(GeneralResponse)
     public async one(@Param('userid') userid: string,
                      @QueryParam('search', {required: false}) search: string,
-                     @QueryParam('date', {required: false}) date: string): Promise<GeneralResponse> {
+                     @QueryParam('date', {required: false}) date: string,
+                     @QueryParam('limit', {required: false}) limit: string): Promise<GeneralResponse> {
         let invoices;
-        invoices = await this.invoiceService.findByUserIdSearch(parseInt(userid, 10), search, utilService.formatDateWithYYYYMMDD(date)) as InvoiceDetail[];
+        const userId = parseInt(userid, 10);
+        const limitCnt = limit ? parseInt(limit, 10) : StaticVariables.MAX_LIMIT;
+        invoices = await this.invoiceService.findByUserIdSearch(userId, search, utilService.formatDateWithYYYYMMDD(date), limitCnt) as InvoiceDetail[];
 
         if (invoices) {
             const res = {

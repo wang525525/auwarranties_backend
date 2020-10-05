@@ -40,11 +40,12 @@ export class InvoiceRepository extends Repository<Invoice>  {
     /**
      * Find Invoices By userid and search
      */
-    public findByUserIdSearch(dealerid: number, search: string, date: string): Promise<any> {
+    public findByUserIdSearch(dealerid: number, search: string, date: string, limit: number): Promise<any> {
         return this.getBaseQuery()
                             .where(`invoices.dealerid=${dealerid} \
                                     ${search ? `and (${this.searchText(search)})` : ``} \
                                     ${date ? `and (${this.searchDate(date)})` : ``}`)
+                            .take(limit)
                             .orderBy({'invoices.invoicedate': 'DESC'})
                             .getMany();
     }

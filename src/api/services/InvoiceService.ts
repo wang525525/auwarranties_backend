@@ -34,8 +34,8 @@ export class InvoiceService {
         return updateInvoice;
     }
 
-    public findByUserIdSearch(dealerid: number, search: string, date: string): Promise<Invoice[]> {
-        return this.invoiceRepository.findByUserIdSearch(dealerid, search, date);
+    public findByUserIdSearch(dealerid: number, search: string, date: string, limit: number): Promise<Invoice[]> {
+        return this.invoiceRepository.findByUserIdSearch(dealerid, search, date, limit);
     }
 
     public findOneById(invoiceid: number): Promise<Invoice | undefined> {

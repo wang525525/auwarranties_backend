@@ -4435,7 +4435,7 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:5000/api/invoice/50",
+							"raw": "http://localhost:5000/api/invoice/50?limit=20",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -4445,6 +4445,12 @@
 								"api",
 								"invoice",
 								"50"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "20"
+								}
 							]
 						}
 					},

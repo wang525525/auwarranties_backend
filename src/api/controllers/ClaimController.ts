@@ -11,7 +11,7 @@ import { Claim } from '../models/Claim';
 
 import { ClaimService } from '../services/ClaimService';
 
-import { ResponseMessage } from '../Common';
+import { ResponseMessage, StaticVariables } from '../Common';
 import { ClaimRegisterRequest, ClaimUpdateRequest, ClaimEmail } from './requests/ClaimRequest';
 import { ClaimsResponse, ClaimResponse, ClaimDetail } from './responses/ClaimResponse';
 import { StatusResponse, GeneralResponse } from './responses/CommonResponse';
@@ -34,12 +34,16 @@ export class ClaimController {
 
     @Get('/:branchid')
     @ResponseSchema(ClaimsResponse)
-    public async one(@Param('branchid') branchid: string, @QueryParam('search', {required: false}) search: string): Promise<ClaimsResponse> {
+    public async one(@Param('branchid') branchid: string,
+                     @QueryParam('search', {required: false}) search: string,
+                     @QueryParam('limit', {required: false}) limit: string): Promise<ClaimsResponse> {
         let policy;
+        const branchId = parseInt(branchid, 10);
+        const limitCnt = limit ? parseInt(limit, 10) : StaticVariables.MAX_LIMIT;
         if (search) {
-            policy = await this.claimService.findByUserIdSearch(parseInt(branchid, 10), search) as ClaimDetail[];
+            policy = await this.claimService.findByUserIdSearch(branchId, search, limitCnt) as ClaimDetail[];
         } else {
-            policy = await this.claimService.findByUserId(parseInt(branchid, 10)) as ClaimDetail[];
+            policy = await this.claimService.findByUserId(branchId, limitCnt) as ClaimDetail[];
         }
         if (policy) {
             return {status: ResponseMessage.SUCCEEDED, res: policy};

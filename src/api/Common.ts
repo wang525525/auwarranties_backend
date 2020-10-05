@@ -110,4 +110,10 @@ export class ResponseMessage {
 
     // claim labour status comment
     public static readonly NOT_FOUND_CLAIMLABOUR = 'Not found claim labour';
+
+}
+
+export class StaticVariables {
+    // max limit count for all list
+    public static readonly MAX_LIMIT = 500;
 }

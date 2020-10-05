@@ -35,8 +35,8 @@ export class PolicyService {
         return updatePolicy;
     }
 
-    public findByUserIdSearch(branchid: number, search: string): Promise<Policy[]> {
-        return this.policyRepository.findByUserIdSearch(branchid, search);
+    public findByUserIdSearch(branchid: number, search: string, limit: number): Promise<Policy[]> {
+        return this.policyRepository.findByUserIdSearch(branchid, search, limit);
     }
 
     public findOneById(policyid: number): Promise<Policy | undefined> {

@@ -10,7 +10,7 @@ export class PaymentsRepository extends Repository<Payments>  {
     public findAll(): Promise<any> {
         return this.createQueryBuilder('payments')
                             .leftJoinAndSelect('payments.dealer', 'users')
-                            .orderBy({'users.username': 'ASC'})
+                            .orderBy({'payments.datepayment': 'DESC'})
                             .getMany();
     }
 
@@ -21,7 +21,7 @@ export class PaymentsRepository extends Repository<Payments>  {
         return this.createQueryBuilder('payments')
                             .leftJoinAndSelect('payments.dealer', 'users')
                             .where(`payments.paymentid=${paymentid}`)
-                            .orderBy({'users.username': 'ASC'})
+                            .orderBy({'payments.datepayment': 'DESC'})
                             .getMany();
     }
 

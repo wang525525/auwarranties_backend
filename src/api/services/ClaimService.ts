@@ -48,12 +48,12 @@ export class ClaimService {
         return res;
     }
 
-    public findByUserId(branchid: number): Promise<Claim[]> {
-        return this.claimRepository.findByUserId(branchid);
+    public findByUserId(branchid: number, limit: number): Promise<Claim[]> {
+        return this.claimRepository.findByUserId(branchid, limit);
     }
 
-    public findByUserIdSearch(branchid: number, search: string): Promise<Claim[]> {
-        return this.claimRepository.findByUserIdSearch(branchid, search);
+    public findByUserIdSearch(branchid: number, search: string, limit: number): Promise<Claim[]> {
+        return this.claimRepository.findByUserIdSearch(branchid, search, limit);
     }
 
     public findOneById(claimid: number): Promise<Claim | undefined> {

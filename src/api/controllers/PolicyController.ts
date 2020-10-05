@@ -9,7 +9,7 @@ import { Policy } from '../models/Policy';
 import { PolicyService } from '../services/PolicyService';
 import utilService from '../services/UtilService';
 
-import { ResponseMessage } from '../Common';
+import { ResponseMessage, StaticVariables } from '../Common';
 import { PolicyRegisterRequest, PolicyUpdateRequest } from './requests/PolicyRequest';
 import { PolicysResponse, PolicyResponse, PolicyDetail } from './responses/PolicyResponse';
 import { StatusResponse, GeneralResponse } from './responses/CommonResponse';
@@ -31,9 +31,13 @@ export class PolicyController {
 
     @Get('/:branchid')
     @ResponseSchema(GeneralResponse)
-    public async one(@Param('branchid') branchid: string, @QueryParam('search', {required: false}) search: string): Promise<GeneralResponse> {
+    public async one(@Param('branchid') branchid: string,
+                     @QueryParam('search', {required: false}) search: string,
+                     @QueryParam('limit', {required: false}) limit: string): Promise<GeneralResponse> {
         let policies;
-        policies = await this.policyService.findByUserIdSearch(parseInt(branchid, 10), search) as PolicyDetail[];
+        const branchId = parseInt(branchid, 10);
+        const limitCnt = limit ? parseInt(limit, 10) : StaticVariables.MAX_LIMIT;
+        policies = await this.policyService.findByUserIdSearch(branchId, search, limitCnt) as PolicyDetail[];
 
         if (policies) {
             const res = {

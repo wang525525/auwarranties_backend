@@ -1141,7 +1141,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n\t\"dealerid\": 502,\r\n    \"paymentamount\": 3333,\r\n    \"comment\": \"RETURN AGREED BY M STOKES\",\r\n    \"datepayment\": \"2020-08-05T16:00:00.000Z\",\r\n    \"paidbyoperator\": null\r\n}"
+							"raw": "{\r\n\t\"dealerid\": 502,\r\n    \"paymentamount\": 3333,\r\n    \"comment\": \"RETURN AGREED BY M STOKES\",\r\n    \"datepayment\": \"2020-10-05T16:00:00.000Z\",\r\n    \"paidbyoperator\": null\r\n}"
 						},
 						"url": {
 							"raw": "http://localhost:5000/api/payments/create",
@@ -3203,7 +3203,7 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:5000/api/policy/50?search=Nurseries",
+							"raw": "http://localhost:5000/api/policy/50?search=Nurseries&limit=20",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -3218,6 +3218,10 @@
 								{
 									"key": "search",
 									"value": "Nurseries"
+								},
+								{
+									"key": "limit",
+									"value": "20"
 								}
 							]
 						}
@@ -4230,7 +4234,7 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:5000/api/claim/50",
+							"raw": "http://localhost:5000/api/claim/50?search=AUCLM3359&limit=50",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -4240,6 +4244,16 @@
 								"api",
 								"claim",
 								"50"
+							],
+							"query": [
+								{
+									"key": "search",
+									"value": "AUCLM3359"
+								},
+								{
+									"key": "limit",
+									"value": "50"
+								}
 							]
 						}
 					},

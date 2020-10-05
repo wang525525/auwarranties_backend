@@ -27,10 +27,11 @@ export class PolicyRepository extends Repository<Policy>  {
     /**
      * Find Policies By userid and search text
      */
-    public findByUserIdSearch(branchid: number, search: string): Promise<any> {
+    public findByUserIdSearch(branchid: number, search: string, limit: number): Promise<any> {
         return this.getBaseQuery().where(`branchid=${branchid} \
-                                    ${search ? `and (${this.searchText(search)})` : ``}`)
-                                    .orderBy({'policy.datepolicy': 'DESC'})
+                                  ${search ? `and (${this.searchText(search)})` : ``}`)
+                                  .take(limit)
+                                  .orderBy({'policy.datepolicy': 'DESC'})
                                   .getMany();
     }
 

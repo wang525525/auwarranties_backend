@@ -30,20 +30,22 @@ export class ClaimRepository extends Repository<Claim>  {
     /**
      * Find Policies By userid
      */
-    public findByUserId(branchid: number): Promise<any> {
+    public findByUserId(branchid: number, limit: number): Promise<any> {
         return this.getBaseQueryForList()
                             .where(`policy.branchid=${branchid}`)
                             .select(this.getSelectArrayForList())
+                            .take(limit)
                             .getMany();
     }
 
     /**
      * Find Policies By userid
      */
-    public findByUserIdSearch(branchid: number, search: string): Promise<any> {
+    public findByUserIdSearch(branchid: number, search: string, limit: number): Promise<any> {
         return this.getBaseQueryForList()
                             .where(`policy.branchid=${branchid} and (${this.searchText(search)})`)
                             .select(this.getSelectArrayForList())
+                            .take(limit)
                             .getMany();
     }
 
